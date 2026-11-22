@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Съёмочный день</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6b2c'/%3E%3Cpath d='M14 26h36v22H14zM14 26l6-10 8 4-6 6M28 20l8-4 6 10' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ea; --surface:#ffffff; --surface2:#ece8df; --ink:#1b1d21; --muted:#6a6e76; --line:#e2ddd2;
+  --accent:#e8541a; --accent-ink:#ffffff; --accent-soft:#fde6d9;
+  --ok:#1f8a4c; --ok-soft:#dcf2e4; --warn:#b26a00; --warn-soft:#fdeccd; --bad:#c23a30; --bad-soft:#fadbd8;
+  --shadow:0 1px 2px rgba(20,20,20,.06),0 4px 14px rgba(20,20,20,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161a; --surface:#1e2127; --surface2:#2a2e36; --ink:#f1efe9; --muted:#9ba0a9; --line:#2f333b;
+    --accent:#ff7a3d; --accent-ink:#1a1006; --accent-soft:#3a2418;
+    --ok:#4cc882; --ok-soft:#173326; --warn:#f0b04a; --warn-soft:#3a2b10; --bad:#ff7d72; --bad-soft:#40201d;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:15px;line-height:1.35;overflow-x:hidden}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+svg{display:block}
+.ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#app{position:relative;height:100dvh;max-width:430px;margin:0 auto;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+@media (min-width:520px){
+  body{background:radial-gradient(circle at 20% 10%,#2b2f3a,#0e0f12)}
+  #app{height:min(880px,calc(100dvh - 32px));margin:16px auto;border-radius:38px;box-shadow:0 0 0 10px #000,0 30px 80px rgba(0,0,0,.5)}
+}
+.top{flex:none;padding:calc(env(safe-area-inset-top) + 12px) 16px 10px;display:flex;align-items:center;gap:10px}
+.top h1{margin:0;font-family:Unbounded,Manrope,sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;flex:1;min-width:0}
+.top .sub{font-size:12.5px;color:var(--muted);font-weight:600}
+.iconbtn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow);flex:none}
+.demo{flex:none;margin:0 16px 8px;padding:6px 12px;border-radius:999px;background:var(--warn-soft);color:var(--warn);font-size:12px;font-weight:700;text-align:center}
+main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 24px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.tabbar{flex:none;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(env(safe-area-inset-bottom) + 6px)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:11px;font-weight:700;color:var(--muted);border-radius:12px;min-height:52px}
+.tab.on{color:var(--accent)}
+.tab.on .ico{stroke-width:2.2}
+.card{background:var(--surface);border-radius:20px;padding:16px;box-shadow:var(--shadow);margin-bottom:12px}
+h2{font-family:Unbounded,Manrope,sans-serif;font-size:15px;font-weight:600;margin:20px 0 10px;letter-spacing:-.01em}
+.pcard{display:block;width:100%;text-align:left;position:relative;overflow:hidden}
+.pcard .tag{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+.pcard h3{margin:4px 0 12px;font-size:17px;font-weight:800;line-height:1.25}
+.meta{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:12px}
+.meta b{color:var(--ink)}
+.bar{height:8px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--accent);transition:width .35s}
+.bar.ok i{background:var(--ok)} .bar.bad i{background:var(--bad)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.small{font-size:12.5px;color:var(--muted);font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;font-size:12.5px;font-weight:800;white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.bad{background:var(--bad-soft);color:var(--bad)} .chip.gray{background:var(--surface2);color:var(--muted)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border-radius:16px;font-weight:800;font-size:16px;background:var(--accent);color:var(--accent-ink);padding:0 18px}
+.btn.sec{background:var(--surface2);color:var(--ink)}
+.btn.line{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn:active,.pcard:active,.iconbtn:active{transform:scale(.98)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.kv dt{color:var(--muted);font-weight:600} .kv dd{margin:0;font-weight:700;text-align:right}
+.hero{background:linear-gradient(135deg,var(--accent),#ff9a5c);color:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.hero .d{font-family:Unbounded,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.02em;text-transform:capitalize}
+.hero .s{opacity:.92;font-weight:600;font-size:13.5px;margin-top:2px}
+.hero .big{display:flex;gap:10px;margin-top:14px}
+.hero .big div{flex:1;background:rgba(255,255,255,.2);border-radius:14px;padding:10px 12px}
+.hero .big small{display:block;font-size:11.5px;font-weight:700;opacity:.9}
+.hero .big b{font-size:19px;font-weight:800}
+.tl{position:relative;margin:0;padding:0;list-style:none}
+.tl li{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.tl li:last-child{border-bottom:0}
+.tl time{font-weight:800;font-size:14px;color:var(--accent)}
+.tl b{display:block;font-size:14.5px} .tl span{font-size:12.5px;color:var(--muted);font-weight:600}
+.shift{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:8px 0 0}
+.person{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.person:last-child{border-bottom:0}
+.ava{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none;color:#fff}
+.person .n{flex:1;min-width:0} .person .n b{display:block;font-size:14.5px} .person .n span{font-size:12.5px;color:var(--muted);font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acard{background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.acard .ph{aspect-ratio:4/4.2;position:relative}
+.acard .ph svg{width:100%;height:100%}
+.acard .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.acard b{font-size:14.5px;line-height:1.2} .acard .role{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:8px}
+.acard .st{margin-top:auto;width:100%;min-height:40px;justify-content:center;font-size:13px}
+.hint{font-size:12.5px;color:var(--muted);font-weight:600;margin:0 2px 12px}
+.lcard{background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:12px}
+.lcard .ph{height:128px} .lcard .ph svg{width:100%;height:100%}
+.lcard .bd{padding:14px 16px 16px}
+.lcard h3{margin:0 0 4px;font-size:16.5px;font-weight:800}
+.lcard p{margin:0 0 12px;color:var(--muted);font-size:13.5px;font-weight:600}
+.lcard .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lcard .acts .btn{min-height:46px;font-size:14px;border-radius:14px}
+.chk{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--line);min-height:52px}
+.chk:last-child{border-bottom:0}
+.box{width:26px;height:26px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center;flex:none;color:transparent;background:var(--surface)}
+.chk.on .box{background:var(--ok);border-color:var(--ok);color:#fff}
+.chk.on .t{text-decoration:line-through;color:var(--muted)}
+.chk .t{flex:1;font-weight:700;font-size:14.5px} .chk .k{font-size:11.5px;font-weight:800;color:var(--muted);background:var(--surface2);padding:3px 8px;border-radius:99px}
+.scn{display:flex;align-items:center;justify-content:space-between;margin:18px 0 0}
+.scn b{font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.money{font-variant-numeric:tabular-nums;font-weight:800;white-space:nowrap}
+.bl{padding:12px 0;border-bottom:1px solid var(--line)} .bl:last-child{border-bottom:0}
+.bl .top2{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;font-weight:700;font-size:14.5px}
+.bl .nums{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:5px}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.sum div{background:var(--surface2);border-radius:14px;padding:10px 12px}
+.sum small{display:block;font-size:11.5px;font-weight:700;color:var(--muted)} .sum b{font-size:16px}
+.sheet-bg{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;z-index:50;animation:fade .2s}
+.sheet{width:100%;background:var(--surface);border-radius:28px 28px 0 0;padding:12px 20px calc(env(safe-area-inset-bottom) + 22px);animation:up .25s;max-height:90%;overflow:auto}
+.sheet .grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 16px}
+.sheet h3{margin:0 0 6px;font-family:Unbounded,sans-serif;font-size:18px;font-weight:600}
+.sheet p{color:var(--muted);font-weight:600;margin:0 0 16px}
+.sheet .btn{margin-top:10px}
+.bigcheck{width:84px;height:84px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;margin:8px auto 16px}
+.bigcheck .ico{width:44px;height:44px;stroke-width:2.6}
+.spin{width:44px;height:44px;border-radius:50%;border:4px solid var(--surface2);border-top-color:var(--accent);margin:20px auto;animation:rot .8s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}} @keyframes fade{from{opacity:0}} @keyframes up{from{transform:translateY(40px);opacity:0}}
+.full{position:absolute;inset:0;background:#0f1a22;z-index:40;display:flex;flex-direction:column;animation:fade .2s}
+.tg{flex:1;overflow:auto;padding:calc(env(safe-area-inset-top) + 12px) 14px 20px;background:linear-gradient(#17212b,#0e1621);color:#f5f5f5}
+.tg .hd{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.tg .hd .back{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.1);color:#fff}
+.tg .hd b{display:block;font-size:15px} .tg .hd span{font-size:12px;color:#8ba0b3;font-weight:600}
+.tg .asview{background:rgba(255,255,255,.08);border-radius:14px;padding:8px 12px;margin-bottom:14px;font-size:12.5px;color:#a9bccd;font-weight:600}
+.tg select{width:100%;margin-top:6px;min-height:44px;border-radius:10px;border:0;background:#243445;color:#fff;font:inherit;font-weight:700;padding:0 10px}
+.msg{background:#233446;border-radius:6px 20px 20px 20px;padding:14px 16px;max-width:96%;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.msg h4{margin:0 0 8px;font-size:16px;font-weight:800}
+.msg .ln{display:flex;gap:10px;margin:7px 0;font-size:14.5px;font-weight:600}
+.msg .ln span:first-child{width:22px;flex:none;text-align:center}
+.msg .mm{text-align:right;font-size:11.5px;color:#8ba0b3;margin-top:8px}
+.tg .btn{margin-top:14px;min-height:60px;font-size:18px}
+.tg .btn.done{background:#2f9e5f;color:#fff}
+.tg .btn.sec{background:rgba(255,255,255,.12);color:#fff;min-height:48px;font-size:14px}
+.tg a.maplink{color:#6ab3f3;font-weight:800;text-decoration:none}
+.set .row{padding:14px 0;border-bottom:1px solid var(--line)}
+.hide-sb::-webkit-scrollbar{display:none}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--accent);display:grid;place-items:center;color:#fff;flex:none}
+.logo .ico{stroke:#fff}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ---------- иконки ---------- */
+const P={
+ back:'<path d="M15 5l-7 7 7 7"/>',
+ gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/>',
+ cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
+ clip:'<rect x="5" y="4" width="14" height="17" rx="3"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/>',
+ users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c2 .6 3.3 2.3 3.5 5.2"/>',
+ pin:'<path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+ hanger:'<path d="M12 7a2.5 2.5 0 10-2.5-2.5M12 7v2l9 6.5a1.5 1.5 0 01-.9 2.7H3.9A1.5 1.5 0 013 15.5L12 9"/>',
+ coin:'<circle cx="12" cy="12" r="9"/><path d="M14.8 9.2c-.5-.9-1.5-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2s1 1.7 2.8 2.1c1.8.4 2.8 1 2.8 2.2s-1.2 2-2.8 2c-1.3 0-2.4-.5-2.9-1.5M12 6v1.8M12 16.2V18"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ send:'<path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/>',
+ map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+ reset:'<path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8M3 3v5h5"/>',
+ film:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>'
+};
+const ico=(n,c='')=>`<svg class="ico ${c}" viewBox="0 0 24 24">${P[n]}</svg>`;
+
+/* ---------- данные (вымышленные) ---------- */
+const DATA=[
+{id:'p1',kind:'Реклама',title:'Реклама банка — имиджевый ролик',date:'2026-11-27',budget:1850000,
+ call:'06:30',end:'20:30',weather:'Пример: ясно, −2…+8 °C утром холодно, днём сухо, ветер слабый. Закат около 17:20, свет для сцены 9 успеть до 17:00.',
+ locId:'p1-l1',
+ plan:[
+  {s:'Смена 1',t:'06:30',a:'Сбор группы',d:'Квартира-студия, двор. Чай и завтрак для группы'},
+  {s:'Смена 1',t:'07:00',a:'Свет и грим',d:'Монтировка света в кухне, грим актёров'},
+  {s:'Смена 1',t:'08:30',a:'Сц. 1 «Утро в семье»',d:'Кухня, Мама, Дочь, Папа'},
+  {s:'Смена 1',t:'10:30',a:'Сц. 2 «Дорога в офис»',d:'Машина, двор. Папа'},
+  {s:'Смена 1',t:'12:30',a:'Обед',d:'60 минут, кейтеринг на площадке'},
+  {s:'Смена 2',t:'13:30',a:'Сц. 5 «Кабинет»',d:'Офис, Предприниматель, Коллега'},
+  {s:'Смена 2',t:'16:00',a:'Сц. 7 «Вечерний двор»',d:'Переезд во двор, Дедушка, внуки'},
+  {s:'Смена 2',t:'17:00',a:'Сц. 9 «Закат на балконе»',d:'Последний свет, вся семья'},
+  {s:'Смена 2',t:'20:30',a:'Конец смены',d:'Сдача площадки, выгрузка карт памяти'}],
+ crew:[['Азамат Токтогулов','Режиссёр',1],['Нурайым Сыдыкова','Линейный продюсер',1],['Эрлан Бекмуратов','Оператор-постановщик',1],['Мээрим Асанова','Ассистент режиссёра',1],['Бакыт Джумабаев','Гафер',1],['Алина Петрова','Художник-постановщик',0],['Тимур Исаков','Звукорежиссёр',1],['Асель Курманова','Костюмер',0],['Дмитрий Орлов','Реквизитор',1],['Гульнара Эркинова','Гример',0],['Нурбек Алымкулов','Фокус-пуллер',1],['Сания Мамытова','Скрипт-супервайзер',0],['Руслан Абдыкадыров','Транспорт',0],['Жылдыз Рахматова','Администратор площадки',1]],
+ cast:[['Адилет Мусаев','Предприниматель, 38',1],['Айдай Койчуева','Мама, 33',1],['Эмили Орлова','Дочь, 8',1],['Бектур Сатыбалдиев','Дедушка, 68',0],['Елена Волкова','Коллега, 30',0],['Данияр Жусупов','Папа, 36',2],['Камила Оморова','Мама (запасной вариант), 31',2],['Игорь Лебедев','Курьер, 27',0]],
+ locs:[['Квартира-студия «Светлая»','ул. Токтогула, 85','flat',1],['Офис на втором этаже','пр. Чуй, 120','office',1],['Двор жилого дома','ул. Исанова, 42','street',0],['Смотровая терраса','бульвар Эркиндик, 30','park',0]],
+ props:[['Сц. 1 «Утро в семье»',[['Посуда для завтрака, 6 комплектов','реквизит',1],['Свежие фрукты и хлеб','реквизит',1],['Школьный рюкзак','реквизит',0],['Домашняя одежда: мама, дочь','костюм',1]]],
+        ['Сц. 5 «Кабинет»',[['Деловой костюм, 2 комплекта','костюм',1],['Ноутбук без логотипов','реквизит',0],['Блокнот и ручка','реквизит',1]]],
+        ['Сц. 9 «Закат на балконе»',[['Тёплые пледы, 4 шт.','реквизит',0],['Чайник и 4 чашки','реквизит',0],['Семейное вечернее пальто','костюм',0]]]],
+ budget_lines:[['Группа и гонорары',620000,590000],['Актёры и массовка',240000,210000],['Аренда локаций',210000,180000],['Техника: камера, свет, звук',380000,402000],['Реквизит и костюмы',95000,64000],['Питание и транспорт',110000,48000],['Постпродакшн и музыка',150000,0],['Непредвиденное (резерв)',45000,0]]},
+{id:'p2',kind:'Сериал',title:'Сериал «Перевал», серия 3',date:'2026-12-03',budget:3200000,
+ call:'07:00',end:'19:00',weather:'Пример: снег, −9…−4 °C, ветер до 6 м/с. Брать грелки, термосы и запасные аккумуляторы.',
+ locId:'p2-l1',
+ plan:[
+  {s:'Смена 1',t:'07:00',a:'Сбор группы',d:'Парковка у базы, выезд в горы колонной'},
+  {s:'Смена 1',t:'09:00',a:'Сц. 12 «У костра»',d:'Лагерь на перевале, Тимур, Айжан'},
+  {s:'Смена 1',t:'11:30',a:'Сц. 13 «Спор у машины»',d:'Дорога, три актёра'},
+  {s:'Смена 1',t:'13:00',a:'Обед',d:'Горячий суп в автобусе'},
+  {s:'Смена 2',t:'14:00',a:'Сц. 15 «Находка»',d:'Склон, трюк-координатор на площадке'},
+  {s:'Смена 2',t:'16:30',a:'Сц. 16 «Сумерки»',d:'Последний свет, крупные планы'},
+  {s:'Смена 2',t:'19:00',a:'Конец смены',d:'Спуск колонной'}],
+ crew:[['Каныбек Осмонов','Режиссёр',1],['Диана Ким','Линейный продюсер',1],['Максат Эсенов','Оператор',1],['Алия Токтомушева','Ассистент режиссёра',0],['Серик Дуйшеев','Трюк-координатор',1],['Наталья Белова','Костюмер',0],['Эмиль Кубанычбеков','Звук',1],['Чолпон Бакирова','Гример',0],['Артём Жданов','Водитель',0]],
+ cast:[['Тимур Асанбеков','Тимур, 35',1],['Айжан Нуралиева','Айжан, 29',1],['Борис Громов','Проводник Борис, 52',0],['Улан Ормонов','Водитель, 40',2],['Нургуль Садырова','Старшая сестра, 45',0]],
+ locs:[['Перевал, смотровая площадка','Горная дорога, 62-й км, примерное место','mount',0],['База у подножия','с. Кашка-Суу, парковка','street',1],['Склон для сцены 15','Ущелье, примерное место','mount',0]],
+ props:[['Сц. 12 «У костра»',[['Палатка и спальники','реквизит',1],['Дрова и безопасный огонь','реквизит',0],['Походная посуда','реквизит',1]]],
+        ['Сц. 15 «Находка»',[['Старый рюкзак (состаренный)','реквизит',0],['Зимняя одежда с утеплением','костюм',1],['Лопата, верёвка','реквизит',0]]]],
+ budget_lines:[['Группа и гонорары',1100000,640000],['Актёры',650000,420000],['Аренда транспорта в горы',380000,150000],['Техника',520000,310000],['Трюки и безопасность',250000,90000],['Реквизит и костюмы',160000,70000],['Питание',90000,0],['Резерв',50000,0]]},
+{id:'p3',kind:'Социальный ролик',title:'Социальный ролик «Чистый двор»',date:'2026-12-10',budget:520000,
+ call:'09:00',end:'17:00',weather:'Пример: облачно, −5…0 °C, без осадков. Хорошо для мягкого света.',
+ locId:'p3-l1',
+ plan:[
+  {s:'Смена 1',t:'09:00',a:'Сбор группы',d:'Двор, знакомство с жителями'},
+  {s:'Смена 1',t:'10:00',a:'Сц. 1 «Мусор у подъезда»',d:'Двор, Жительница, дети'},
+  {s:'Смена 1',t:'12:30',a:'Обед',d:'Кафе рядом'},
+  {s:'Смена 2',t:'13:30',a:'Сц. 3 «Субботник»',d:'Массовка 15 человек'},
+  {s:'Смена 2',t:'17:00',a:'Конец смены',d:'Выгрузка материала'}],
+ crew:[['Венера Алиева','Режиссёр',1],['Ренат Исмаилов','Оператор',0],['Мария Соколова','Продюсер',1],['Бекзат Рысбеков','Звук',0],['Динара Токоева','Администратор',0],['Павел Зайцев','Свет',0]],
+ cast:[['Зарина Мамбетова','Жительница, 45',1],['Тилек Абдраимов','Дворник, 55',0],['Софья Лебедева','Девочка, 10',0]],
+ locs:[['Двор панельного дома','мкр. Джал, 15','street',0],['Детская площадка','мкр. Джал, 18','park',0]],
+ props:[['Сц. 1 «Мусор у подъезда»',[['Мусорные пакеты, 20 шт.','реквизит',0],['Перчатки и мешки','реквизит',0]]],
+        ['Сц. 3 «Субботник»',[['Грабли и метёлки, 10 шт.','реквизит',0],['Жилеты волонтёров','костюм',0]]]],
+ budget_lines:[['Группа',180000,0],['Актёры и массовка',70000,0],['Техника',150000,0],['Реквизит',40000,0],['Питание',40000,0],['Резерв',40000,0]]}
+];
+/* нормализуем данные в объекты с id */
+DATA.forEach(p=>{
+  p.crew=p.crew.map((c,i)=>({id:p.id+'-m'+i,name:c[0],role:c[1],acc:c[2]}));
+  p.cast=p.cast.map((c,i)=>({id:p.id+'-c'+i,name:c[0],role:c[1],st:c[2]}));
+  p.locs=p.locs.map((c,i)=>({id:p.id+'-l'+(i+1),name:c[0],addr:c[1],type:c[2],ok:c[3]}));
+  p.props=p.props.map((s,si)=>({scene:s[0],items:s[1].map((it,i)=>({id:p.id+'-r'+si+'_'+i,t:it[0],k:it[1],on:it[2]}))}));
+  p.bl=p.budget_lines.map((b,i)=>({id:p.id+'-b'+i,name:b[0],plan:b[1],fact:b[2]}));
+});
+const CAST_ST=[['кандидат','warn'],['утверждён','ok'],['отказ','bad']];
+
+/* ---------- состояние ---------- */
+const KEY='syomochnyj-den-v1';
+let st={cast:{},loc:{},prop:{},acc:{},sent:{}};
+try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&typeof o==='object')st=Object.assign(st,o)}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const gCast=c=>st.cast[c.id]??c.st, gLoc=l=>st.loc[l.id]??l.ok, gProp=i=>st.prop[i.id]??i.on, gAcc=m=>st.acc[m.id]??m.acc;
+
+let ui={view:'projects',pid:null,tab:'call',sheet:null,asId:null,theme:null};
+const proj=()=>DATA.find(p=>p.id===ui.pid);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money=n=>new Intl.NumberFormat('ru-RU').format(Math.round(n)).replace(/ | /g,' ')+' с';
+const dfmt=(iso,o)=>new Intl.DateTimeFormat('ru-RU',o).format(new Date(iso+'T12:00:00'));
+const mapUrl=a=>'https://2gis.kg/search/'+encodeURIComponent('Бишкек, '+a);
+function progress(p){
+  const parts=[
+    p.props.flatMap(s=>s.items).filter(gProp).length/Math.max(1,p.props.flatMap(s=>s.items).length),
+    p.cast.filter(c=>gCast(c)===1).length/Math.max(1,p.cast.length),
+    p.locs.filter(gLoc).length/Math.max(1,p.locs.length),
+    p.crew.filter(gAcc).length/Math.max(1,p.crew.length)];
+  return Math.round(parts.reduce((a,b)=>a+b,0)/4*100);
+}
+const hue=s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))%360;return h};
+const initials=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('');
+
+/* ---------- заглушки картинок ---------- */
+function silhouette(name,i){
+  const h=hue(name),w=i%3;
+  const bg=`hsl(${h} 38% 78%)`, bg2=`hsl(${h} 34% 62%)`, fg=`hsl(${h} 30% 28%)`;
+  const head=w===0?'<circle cx="100" cy="92" r="30"/>':w===1?'<ellipse cx="100" cy="92" rx="28" ry="32"/><path d="M68 90c0-26 14-40 32-40s32 14 32 40c-6-14-18-20-32-20s-26 6-32 20z"/>':'<circle cx="100" cy="94" r="29"/><path d="M70 96c-6-34 10-50 30-50s36 16 30 50c-4-12-4-26-30-26S74 84 70 96z"/>';
+  return `<svg viewBox="0 0 200 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g${i}${h}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${bg}"/><stop offset="1" stop-color="${bg2}"/></linearGradient></defs><rect width="200" height="210" fill="url(#g${i}${h})"/><g fill="${fg}" opacity=".85">${head}<path d="M30 215c0-48 30-70 70-70s70 22 70 70z"/></g></svg>`;
+}
+function scene(type,name){
+  const h=hue(name);
+  const sky=`hsl(${h} 45% 80%)`, sky2=`hsl(${(h+30)%360} 50% 90%)`, d=`hsl(${h} 30% 35%)`, d2=`hsl(${h} 28% 50%)`;
+  let g='';
+  if(type==='flat'||type==='office'){
+    g=`<rect width="400" height="130" fill="${sky2}"/><rect x="40" y="18" width="130" height="80" rx="6" fill="${sky}" stroke="${d}" stroke-width="4"/><path d="M105 18v80M40 58h130" stroke="${d}" stroke-width="3"/><rect x="0" y="100" width="400" height="30" fill="${d2}"/><rect x="220" y="62" width="120" height="38" rx="8" fill="${d}"/><rect x="230" y="40" width="100" height="26" rx="8" fill="${d2}"/><circle cx="360" cy="40" r="10" fill="${sky}"/>`;
+  }else if(type==='street'){
+    g=`<rect width="400" height="130" fill="${sky2}"/><rect x="20" y="30" width="90" height="100" fill="${d2}"/><rect x="120" y="14" width="110" height="116" fill="${d}"/><rect x="240" y="40" width="80" height="90" fill="${d2}"/><rect x="330" y="24" width="70" height="106" fill="${d}"/>${[0,1,2,3].map(r=>[0,1,2].map(c=>`<rect x="${132+c*32}" y="${28+r*24}" width="18" height="14" fill="${sky2}"/>`).join('')).join('')}${[0,1,2].map(r=>[0,1].map(c=>`<rect x="${32+c*34}" y="${44+r*28}" width="16" height="16" fill="${sky2}"/>`).join('')).join('')}<rect x="0" y="112" width="400" height="18" fill="${d}" opacity=".7"/>`;
+  }else if(type==='park'){
+    g=`<rect width="400" height="130" fill="${sky2}"/><circle cx="330" cy="34" r="18" fill="${sky}"/><path d="M0 100q80-40 160-10t160-20 80 10v50H0z" fill="${d2}"/>${[60,150,250,340].map((x,i)=>`<rect x="${x-3}" y="${72+i%2*6}" width="6" height="40" fill="${d}"/><circle cx="${x}" cy="${64+i%2*6}" r="${20-i%2*3}" fill="${d}"/>`).join('')}<rect x="0" y="116" width="400" height="14" fill="${d}" opacity=".55"/>`;
+  }else{
+    g=`<rect width="400" height="130" fill="${sky2}"/><path d="M0 110L90 40l50 50 60-70 90 90 40-30 70 50v10H0z" fill="${d2}"/><path d="M90 40l-18 18 14 6 12-8 12 10zM200 20l-26 30 16 8 14-12 18 14z" fill="#fff" opacity=".9"/><path d="M0 120q100-18 200-6t200-4v20H0z" fill="${d}"/>`;
+  }
+  return `<svg viewBox="0 0 400 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${g}</svg>`;
+}
+
+/* ---------- экраны ---------- */
+const $app=document.getElementById('app');
+function render(){
+  let h='';
+  if(ui.view==='projects') h=viewProjects(); else h=viewProject();
+  if(ui.view==='part') h=viewProject()+viewPart();
+  if(ui.sheet) h+=viewSheet();
+  const scr=$app.querySelector('main'); const top=scr?scr.scrollTop:0; const sameKey=$app.dataset.k;
+  const k=ui.view+ui.pid+ui.tab;
+  $app.innerHTML=h; $app.dataset.k=k;
+  const m=$app.querySelector('main'); if(m&&sameKey===k) m.scrollTop=top;
+}
+const demo='<div class="demo">Пример: данные вымышленные</div>';
+
+function viewProjects(){
+  const cards=DATA.map(p=>{
+    const pr=progress(p);
+    return `<button class="card pcard" data-act="open" data-id="${p.id}">
+      <div class="tag">${esc(p.kind)}</div><h3>${esc(p.title)}</h3>
+      <div class="meta">${ico('cal')}<span>Съёмка: <b>${dfmt(p.date,{day:'numeric',month:'long',weekday:'short'})}</b></span></div>
+      <div class="row small" style="margin-bottom:6px"><span>Готовность к съёмке</span><b style="color:var(--ink)">${pr}%</b></div>
+      <div class="bar"><i style="width:${pr}%"></i></div></button>`}).join('');
+  return `<div class="top"><div class="logo">${ico('film')}</div><div style="flex:1;min-width:0"><h1>Съёмочный день</h1><div class="sub">Мои проекты</div></div>
+    <button class="iconbtn" data-act="settings" aria-label="Настройки">${ico('gear')}</button></div>${demo}
+    <main><h2 style="margin-top:6px">Проекты</h2>${cards}
+    <p class="hint" style="text-align:center;margin-top:18px">Нажмите на проект, чтобы открыть вызывной, кастинг, локации, реквизит и смету.</p></main>`;
+}
+
+const TABS=[['call','Вызывной','clip'],['cast','Кастинг','users'],['loc','Локации','pin'],['props','Реквизит','hanger'],['budget','Смета','coin']];
+function viewProject(){
+  const p=proj();
+  const body={call:tCall,cast:tCast,loc:tLoc,props:tProps,budget:tBudget}[ui.tab](p);
+  const titles={call:'Вызывной',cast:'Кастинг',loc:'Локации',props:'Реквизит и костюмы',budget:'Смета'};
+  return `<div class="top"><button class="iconbtn" data-act="home" aria-label="Назад к проектам">${ico('back')}</button>
+    <div style="flex:1;min-width:0"><h1>${titles[ui.tab]}</h1><div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p.title)}</div></div></div>${demo}
+    <main>${body}</main>
+    <nav class="tabbar">${TABS.map(t=>`<button class="tab ${ui.tab===t[0]?'on':''}" data-act="tab" data-id="${t[0]}">${ico(t[2])}<span>${t[1]}</span></button>`).join('')}</nav>`;
+}
+
+function tCall(p){
+  const loc=p.locs.find(l=>l.id===p.locId), acc=p.crew.filter(gAcc).length, sent=st.sent[p.id];
+  let shifts='',last='';
+  p.plan.forEach(r=>{ if(r.s!==last){shifts+=`<li style="display:block;border:0;padding:6px 0 0"><div class="shift">${r.s}</div></li>`;last=r.s}
+    shifts+=`<li><time>${r.t}</time><div><b>${esc(r.a)}</b><span>${esc(r.d)}</span></div></li>`});
+  return `<div class="hero"><div class="d">${dfmt(p.date,{weekday:'long',day:'numeric',month:'long'})}</div><div class="s">Вызывной на съёмочный день</div>
+    <div class="big"><div><small>Сбор группы</small><b>${p.call}</b></div><div><small>Конец смены</small><b>${p.end}</b></div><div><small>Приняли</small><b>${acc}/${p.crew.length}</b></div></div></div>
+    <div class="card"><div class="row" style="align-items:flex-start"><div><div class="small">Локация сбора</div><b style="font-size:16px">${esc(loc.name)}</b><div class="small" style="margin-top:2px">${esc(loc.addr)}, Бишкек</div></div></div>
+      <a class="btn sec" style="margin-top:12px;text-decoration:none;min-height:48px" href="${mapUrl(loc.addr)}" target="_blank" rel="noopener">${ico('map')}Открыть в 2ГИС</a></div>
+    <div class="card"><div class="row" style="gap:12px;align-items:flex-start"><span style="color:var(--accent)">${ico('sun')}</span><div style="font-weight:600;font-size:14px">${esc(p.weather)}</div></div></div>
+    <button class="btn" data-act="send">${ico('send')}${sent?'Разослать ещё раз в Telegram':'Разослать вызывной в Telegram'}</button>
+    <button class="btn line" style="margin-top:10px" data-act="part">${ico('eye')}Посмотреть как участник</button>
+    <h2>План по часам</h2><div class="card" style="padding:6px 16px 10px"><ul class="tl">${shifts}</ul></div>
+    <h2>Группа · ${p.crew.length}</h2><div class="card" style="padding:6px 16px">${p.crew.map(m=>{const a=gAcc(m);return `<div class="person"><div class="ava" style="background:hsl(${hue(m.name)} 40% 42%)">${initials(m.name)}</div><div class="n"><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div><span class="chip ${a?'ok':'gray'}">${a?ico('check','')+'принял':'не ответил'}</span></div>`}).join('')}</div>`;
+}
+function tCast(p){
+  return `<p class="hint">Нажмите на статус под анкетой, чтобы сменить: кандидат → утверждён → отказ.</p>
+  <div class="grid2">${p.cast.map((c,i)=>{const s=gCast(c),[n,cl]=CAST_ST[s];
+    return `<div class="acard"><div class="ph">${silhouette(c.name,i)}</div><div class="bd"><b>${esc(c.name)}</b><div class="role">${esc(c.role)}</div>
+    <button class="chip ${cl} st" data-act="cast" data-id="${c.id}" style="min-height:40px">${s===1?ico('check'):''}${n}</button></div></div>`}).join('')}</div>
+  <div class="card" style="margin-top:14px"><div class="row small"><span>Утверждено</span><b style="color:var(--ink)">${p.cast.filter(c=>gCast(c)===1).length} из ${p.cast.length}</b></div></div>`;
+}
+function tLoc(p){
+  return p.locs.map(l=>{const ok=gLoc(l);
+    return `<div class="lcard"><div class="ph">${scene(l.type,l.name)}</div><div class="bd"><div class="row" style="align-items:flex-start;margin-bottom:4px"><h3>${esc(l.name)}</h3></div>
+    <p>${esc(l.addr)}, Бишкек</p>
+    <div class="row" style="margin-bottom:12px"><span class="small">Разрешение на съёмку</span><span class="chip ${ok?'ok':'warn'}">${ok?ico('check')+'получено':ico('clock')+'ждём'}</span></div>
+    <div class="acts"><button class="btn sec" data-act="loc" data-id="${l.id}">${ok?'Отметить «ждём»':'Получено ✓'}</button>
+    <a class="btn line" style="text-decoration:none" href="${mapUrl(l.addr)}" target="_blank" rel="noopener">${ico('map')}2ГИС</a></div></div></div>`}).join('');
+}
+function tProps(p){
+  const all=p.props.flatMap(s=>s.items),done=all.filter(gProp).length;
+  return `<div class="card"><div class="row" style="margin-bottom:8px"><b>Собрано</b><b>${done} из ${all.length}</b></div><div class="bar ok"><i style="width:${done/all.length*100}%"></i></div></div>`+
+  p.props.map(s=>`<div class="scn"><b>${esc(s.scene)}</b><span class="small">${s.items.filter(gProp).length}/${s.items.length}</span></div>
+    <div class="card" style="padding:2px 16px;margin-top:8px">${s.items.map(i=>`<button class="chk ${gProp(i)?'on':''}" data-act="prop" data-id="${i.id}"><span class="box">${ico('check')}</span><span class="t">${esc(i.t)}</span><span class="k">${i.k}</span></button>`).join('')}</div>`).join('');
+}
+function tBudget(p){
+  const plan=p.bl.reduce((a,b)=>a+b.plan,0),fact=p.bl.reduce((a,b)=>a+b.fact,0),pct=Math.min(100,Math.round(fact/p.budget*100));
+  return `<div class="card"><div class="small">Потрачено из бюджета</div>
+    <div class="row" style="margin:4px 0 10px;align-items:baseline"><span class="money" style="font-size:24px;font-family:Unbounded,sans-serif;font-weight:600">${money(fact)}</span><b>${pct}%</b></div>
+    <div class="bar ${fact>p.budget?'bad':''}"><i style="width:${pct}%"></i></div>
+    <div class="sum"><div><small>Бюджет</small><b class="money">${money(p.budget)}</b></div><div><small>Остаток</small><b class="money" style="color:var(--ok)">${money(p.budget-fact)}</b></div></div></div>
+    <h2 style="margin-top:6px">Статьи расходов</h2><div class="card" style="padding:4px 16px">${p.bl.map(b=>{const over=b.fact>b.plan,w=b.plan?Math.min(100,b.fact/b.plan*100):0;
+      return `<div class="bl"><div class="top2"><span>${esc(b.name)}</span>${over?`<span class="chip bad">+${money(b.fact-b.plan)}</span>`:''}</div><div class="bar ${over?'bad':''}"><i style="width:${w}%"></i></div>
+      <div class="nums"><span>план <b class="money" style="color:var(--ink)">${money(b.plan)}</b></span><span>факт <b class="money" style="color:var(--ink)">${money(b.fact)}</b></span></div></div>`}).join('')}</div>
+    <div class="card"><div class="row"><b>Итого по плану</b><b class="money">${money(plan)}</b></div><div class="row" style="margin-top:8px"><b>Итого по факту</b><b class="money">${money(fact)}</b></div></div>`;
+}
+
+function viewPart(){
+  const p=proj(); const m=p.crew.find(x=>x.id===ui.asId)||p.crew.find(x=>!gAcc(x))||p.crew[0];
+  const loc=p.locs.find(l=>l.id===p.locId), a=gAcc(m);
+  return `<div class="full"><div class="tg"><div class="hd"><button class="back" data-act="partback" aria-label="Назад">${ico('back')}</button><div><b>Съёмочный день · бот</b><span>вид участника, Telegram</span></div></div>
+    <div class="asview">Смотрим глазами участника:<select data-act="who">${p.crew.map(x=>`<option value="${x.id}" ${x.id===m.id?'selected':''}>${esc(x.name)} — ${esc(x.role)}</option>`).join('')}</select></div>
+    <div class="msg"><h4>Вызывной: ${dfmt(p.date,{weekday:'long',day:'numeric',month:'long'})}</h4>
+      <div class="ln"><span>🎬</span><span>${esc(p.title)}</span></div>
+      <div class="ln"><span>👤</span><span>${esc(m.name)}, ${esc(m.role.toLowerCase())}</span></div>
+      <div class="ln"><span>⏰</span><span>Сбор в <b>${p.call}</b>, конец смены около ${p.end}</span></div>
+      <div class="ln"><span>📍</span><span>${esc(loc.name)}<br>${esc(loc.addr)}, Бишкек<br><a class="maplink" href="${mapUrl(loc.addr)}" target="_blank" rel="noopener">Открыть в 2ГИС</a></span></div>
+      <div class="ln"><span>🌤</span><span>${esc(p.weather.replace('Пример: ',''))}</span></div>
+      <div class="ln"><span>👕</span><span>Одежда по погоде, паспорт, питьевая вода. Питание на площадке.</span></div>
+      <div class="mm">08:14</div></div>
+    ${a?`<button class="btn done" data-act="noaccept" data-id="${m.id}">${ico('check')}Вы приняли вызывной</button><p style="text-align:center;color:#8ba0b3;font-weight:600;font-size:13px;margin:10px 0 0">Спасибо! Продюсер видит, что вы на связи. Нажмите ещё раз, чтобы отменить (для примера).</p>`
+      :`<button class="btn" data-act="accept" data-id="${m.id}">Принял</button><p style="text-align:center;color:#8ba0b3;font-weight:600;font-size:13px;margin:10px 0 0">Нажмите «Принял», чтобы продюсер увидел подтверждение.</p>`}
+    </div></div>`;
+}
+
+function viewSheet(){
+  const s=ui.sheet;
+  if(s==='sending') return `<div class="sheet-bg"><div class="sheet"><div class="grab"></div><h3 style="text-align:center">Отправляем…</h3><div class="spin"></div></div></div>`;
+  if(s==='sent'){const p=proj();return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><div class="bigcheck">${ico('check')}</div>
+    <h3 style="text-align:center">Отправлено ${p.crew.length} участникам</h3><p style="text-align:center">Вызывной ушёл в Telegram. Это пример: реальной отправки нет, никто ничего не получил.</p>
+    <button class="btn" data-act="part2">${ico('eye')}Показать, что получит участник</button><button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`}
+  if(s==='settings') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet set" data-stop><div class="grab"></div><h3>Настройки</h3><p>Пример приложения «Съёмочный день». Все отметки хранятся только на этом телефоне.</p>
+    <div class="row"><span style="font-weight:700">Версия</span><span class="small">прототип 0.1</span></div>
+    <div class="row"><span style="font-weight:700">Данные</span><span class="small">вымышленные</span></div>
+    <button class="btn line" style="margin-top:16px" data-act="reset">${ico('reset')}Сбросить пример</button><button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`;
+  return '';
+}
+
+/* ---------- события ---------- */
+$app.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]'); if(!el) return;
+  if(el.tagName==='SELECT'||el.tagName==='OPTION') return;
+  if(el.classList.contains('sheet-bg')&&e.target!==el) return;
+  const a=el.dataset.act,id=el.dataset.id,p=ui.pid&&proj();
+  if(a==='open'){ui.view='project';ui.pid=id;ui.tab='call'}
+  else if(a==='home'){ui.view='projects';ui.pid=null}
+  else if(a==='tab'){ui.tab=id}
+  else if(a==='settings'){ui.sheet='settings'}
+  else if(a==='closeSheet'){ui.sheet=null}
+  else if(a==='reset'){st={cast:{},loc:{},prop:{},acc:{},sent:{}};try{localStorage.removeItem(KEY)}catch(e){};ui.sheet=null}
+  else if(a==='cast'){const c=p.cast.find(x=>x.id===id);st.cast[id]=(gCast(c)+1)%3;save()}
+  else if(a==='loc'){const l=p.locs.find(x=>x.id===id);st.loc[id]=gLoc(l)?0:1;save()}
+  else if(a==='prop'){const i=p.props.flatMap(s=>s.items).find(x=>x.id===id);st.prop[id]=gProp(i)?0:1;save()}
+  else if(a==='send'){ui.sheet='sending';render();setTimeout(()=>{ui.sheet='sent';st.sent[ui.pid]=1;save();render()},1100);return}
+  else if(a==='part'){ui.view='part';ui.asId=null}
+  else if(a==='part2'){ui.sheet=null;ui.view='part';ui.asId=null}
+  else if(a==='partback'){ui.view='project'}
+  else if(a==='accept'){st.acc[id]=1;save()}
+  else if(a==='noaccept'){st.acc[id]=0;save()}
+  render();
+});
+$app.addEventListener('change',e=>{ if(e.target.dataset.act==='who'){ui.asId=e.target.value;render()} });
+render();
+</script>
+</body>
+</html>
