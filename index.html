@@ -89,7 +89,7 @@ h2{font-family:Unbounded,Manrope,sans-serif;font-size:15px;font-weight:600;margi
 .person .n{flex:1;min-width:0} .person .n b{display:block;font-size:14.5px} .person .n span{font-size:12.5px;color:var(--muted);font-weight:600}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .acard{background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
-.acard .ph{aspect-ratio:4/4.2;position:relative}
+.acard .ph{aspect-ratio:4/4.2;position:relative;overflow:hidden}
 .acard .ph svg{width:100%;height:100%}
 .acard .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
 .acard b{font-size:14.5px;line-height:1.2} .acard .role{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:8px}
@@ -147,6 +147,42 @@ h2{font-family:Unbounded,Manrope,sans-serif;font-size:15px;font-weight:600;margi
 .hide-sb::-webkit-scrollbar{display:none}
 .logo{width:40px;height:40px;border-radius:12px;background:var(--accent);display:grid;place-items:center;color:#fff;flex:none}
 .logo .ico{stroke:#fff}
+
+.chip.new{background:var(--accent-soft);color:var(--accent)}
+.who{display:flex;align-items:center;gap:10px;width:100%;background:var(--surface);border-radius:16px;padding:8px 12px;box-shadow:var(--shadow);text-align:left;min-height:52px}
+.who .wt{flex:1;min-width:0;display:flex;flex-direction:column}.who .wt b{font-size:14px;line-height:1.2}.who .wt small{font-size:12px;color:var(--muted);font-weight:700}
+.who .chg{display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;color:var(--accent)}.who .chg .ico{width:18px;height:18px}
+.ava.s{width:34px;height:34px;font-size:12px}.ava.img{object-fit:cover;background:var(--surface2)}
+.login{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin-bottom:10px;padding:12px 14px}
+.login .n{flex:1;min-width:0}.login .n b{display:block;font-size:15px}.login .n span{display:block;font-size:12.5px;color:var(--muted);font-weight:700}.login .n small{display:block;font-size:12px;color:var(--accent);font-weight:700;margin-top:2px}
+.menu{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;margin-bottom:10px;min-height:64px}
+.menu .mi{width:42px;height:42px;border-radius:13px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.menu .n{flex:1;min-width:0}.menu .n b{display:block;font-size:15px}.menu .n small{display:block;font-size:12.5px;color:var(--muted);font-weight:600}
+.dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:10px;height:10px;border-radius:99px;background:var(--bad);border:2px solid var(--surface)}
+.dot.n{min-width:18px;height:18px;font-size:11px;font-style:normal;font-weight:800;color:#fff;display:grid;place-items:center;top:0;right:calc(50% - 26px);padding:0 4px;border-width:2px}
+.dot.inl{position:static;flex:none;margin-right:2px}
+.tab{position:relative}
+.badge{position:absolute;left:8px;top:8px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px}
+.num{width:42px;height:42px;border-radius:13px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:Unbounded,sans-serif;font-weight:600;font-size:17px;flex:none}
+.scard{display:block;width:100%;text-align:left}
+.ln2{font-size:13.5px;margin-top:6px;font-weight:600}.ln2 b{color:var(--accent)}
+.bul{font-weight:700;font-size:14px;padding:2px 0 2px 14px;position:relative}.bul:before{content:'';position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hl{background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:0 3px;font-weight:800}
+.ta,textarea.inp{width:100%;border-radius:16px;border:2px solid var(--line);background:var(--surface);padding:12px 14px;font-size:15.5px;font-weight:600;font-family:inherit;color:var(--ink);resize:vertical;min-height:100px;outline:none}
+.inp{width:100%;min-height:52px;border-radius:16px;border:2px solid var(--line);background:var(--surface);padding:0 14px;font-size:16px;font-weight:600;font-family:inherit;color:var(--ink);outline:none;margin-bottom:10px;appearance:none;-webkit-appearance:none}
+textarea.inp{padding:12px 14px}
+.lbl{display:block;font-weight:800;font-size:13.5px;margin:6px 0 6px}
+.msgerr{color:var(--bad);font-weight:700;font-size:13px;min-height:18px;margin:2px 0 4px}
+.urlbox{background:var(--surface2);border-radius:14px;padding:12px 14px;font-weight:700;font-size:13.5px;word-break:break-all;margin-bottom:10px}
+.kvr{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}.kvr:last-child{border-bottom:0}.kvr span{color:var(--muted);font-weight:600}.kvr b{text-align:right;font-weight:700;max-width:62%;word-break:break-word}
+.need{margin:0;padding-left:18px;font-weight:600;font-size:14px}.need li{margin:5px 0}
+.sk{aspect-ratio:16/10;position:relative;background:var(--surface)}.sk svg{width:100%;height:100%}
+.pcard.arch{opacity:.92}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.btn.sm{min-height:46px;font-size:13.5px;padding:0 6px;border-radius:14px}
+.cmt{margin-top:10px;background:var(--surface2);border-radius:12px;padding:10px 12px;font-size:13.5px;font-weight:600}
+.chips2{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.chip2{min-height:48px;padding:0 16px;border-radius:99px;border:2px solid var(--line);background:var(--surface);font-weight:700;font-size:14.5px}.chip2.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.filebtn{display:flex;align-items:center;gap:10px;min-height:56px;border:2px dashed var(--line);border-radius:16px;padding:0 14px;font-weight:700;margin-bottom:10px;cursor:pointer;background:var(--surface)}
 </style>
 </head>
 <body>
@@ -169,32 +205,38 @@ const P={
  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
  reset:'<path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8M3 3v5h5"/>',
- film:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>'
+ film:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+ grid:'<rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>',
+ dots:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>',
+ link:'<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',
+ chev:'<path d="M9 5l7 7-7 7"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ box:'<path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/>',
+ key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>',
+ out:'<path d="M9 4H5a2 2 0 00-2 2v12a2 2 0 002 2h4M16 8l4 4-4 4M20 12H9"/>'
 };
 const ico=(n,c='')=>`<svg class="ico ${c}" viewBox="0 0 24 24">${P[n]}</svg>`;
 
 /* ---------- данные (вымышленные) ---------- */
 const DATA=[
-{id:'p1',kind:'Реклама',title:'Реклама банка — имиджевый ролик',date:'2026-11-27',budget:1850000,
+{id:'p1',kind:'Реклама',title:'Реклама банка — имиджевый ролик',date:'2026-11-27',budget:1850000,contract:2300000,
  call:'06:30',end:'20:30',weather:'Пример: ясно, утром −2 °C, днём до +8 °C, ветер слабый. Закат около 17:20, сцену 9 снимаем до 17:00.',
  locId:'p1-l1',
  plan:[
   {s:'Смена 1',t:'06:30',a:'Сбор группы',d:'Квартира-студия, двор. Чай и завтрак для группы'},
   {s:'Смена 1',t:'07:00',a:'Свет и грим',d:'Монтировка света в кухне, грим актёров'},
-  {s:'Смена 1',t:'08:30',a:'Сц. 1 «Утро в семье»',d:'Кухня, Мама, Дочь, Папа'},
-  {s:'Смена 1',t:'10:30',a:'Сц. 2 «Дорога в офис»',d:'Машина, двор. Папа'},
+  {s:'Смена 1',t:'08:30',a:'Сц. 1 «Утро в семье»',d:'Кухня, Мама, Дочь, Папа',sc:'s1'},
+  {s:'Смена 1',t:'10:30',a:'Сц. 2 «Дорога в офис»',d:'Машина, двор. Папа',sc:'s2'},
   {s:'Смена 1',t:'12:30',a:'Обед',d:'60 минут, кейтеринг на площадке'},
-  {s:'Смена 2',t:'13:30',a:'Сц. 5 «Кабинет»',d:'Офис, Предприниматель, Коллега'},
-  {s:'Смена 2',t:'16:00',a:'Сц. 7 «Вечерний двор»',d:'Переезд во двор, Дедушка, внуки'},
-  {s:'Смена 2',t:'17:00',a:'Сц. 9 «Закат на балконе»',d:'Последний свет, вся семья'},
+  {s:'Смена 2',t:'13:30',a:'Сц. 5 «Кабинет»',d:'Офис, Предприниматель, Коллега',sc:'s5'},
+  {s:'Смена 2',t:'16:00',a:'Сц. 7 «Вечерний двор»',d:'Переезд во двор, Дедушка, внуки',sc:'s7'},
+  {s:'Смена 2',t:'17:00',a:'Сц. 9 «Закат на балконе»',d:'Последний свет, вся семья',sc:'s9'},
   {s:'Смена 2',t:'20:30',a:'Конец смены',d:'Сдача площадки, выгрузка карт памяти'}],
  crew:[['Азамат Токтогулов','Режиссёр',1],['Нурайым Сыдыкова','Линейный продюсер',1],['Эрлан Бекмуратов','Оператор-постановщик',1],['Мээрим Асанова','Ассистент режиссёра',1],['Бакыт Джумабаев','Гафер',1],['Алина Петрова','Художник-постановщик',0],['Тимур Исаков','Звукорежиссёр',1],['Асель Курманова','Костюмер',0],['Дмитрий Орлов','Реквизитор',1],['Гульнара Эркинова','Гример',0],['Нурбек Алымкулов','Фокус-пуллер',1],['Сания Мамытова','Скрипт-супервайзер',0],['Руслан Абдыкадыров','Транспорт',0],['Жылдыз Рахматова','Администратор площадки',1]],
  cast:[['Адилет Мусаев','Предприниматель, 38',1],['Айдай Койчуева','Мама, 33',1],['Эмили Орлова','Дочь, 8',1],['Бектур Сатыбалдиев','Дедушка, 68',0],['Елена Волкова','Коллега, 30',0],['Данияр Жусупов','Папа, 36',2],['Камила Оморова','Мама (запасной вариант), 31',2],['Игорь Лебедев','Курьер, 27',0]],
  locs:[['Квартира-студия «Светлая»','ул. Токтогула, 85','flat',1],['Офис на втором этаже','пр. Чуй, 120','office',1],['Двор жилого дома','ул. Исанова, 42','street',0],['Смотровая терраса','бульвар Эркиндик, 30','park',0]],
- props:[['Сц. 1 «Утро в семье»',[['Посуда для завтрака, 6 комплектов','реквизит',1],['Свежие фрукты и хлеб','реквизит',1],['Школьный рюкзак','реквизит',0],['Домашняя одежда: мама, дочь','костюм',1]]],
-        ['Сц. 5 «Кабинет»',[['Деловой костюм, 2 комплекта','костюм',1],['Ноутбук без логотипов','реквизит',0],['Блокнот и ручка','реквизит',1]]],
-        ['Сц. 9 «Закат на балконе»',[['Тёплые пледы, 4 шт.','реквизит',0],['Чайник и 4 чашки','реквизит',0],['Семейное вечернее пальто','костюм',0]]]],
- budget_lines:[['Группа и гонорары',620000,590000],['Актёры и массовка',240000,210000],['Аренда локаций',210000,180000],['Техника: камера, свет, звук',380000,402000],['Реквизит и костюмы',95000,64000],['Питание и транспорт',110000,48000],['Постпродакшн и музыка',150000,0],['Непредвиденное (резерв)',45000,0]]},
+ props:[],
+ budget_lines:[]},
 {id:'p2',kind:'Сериал',title:'Сериал «Перевал», серия 3',date:'2026-12-03',budget:3200000,
  call:'07:00',end:'19:00',weather:'Пример: снег, −9…−4 °C, ветер до 6 м/с. Брать грелки, термосы и запасные аккумуляторы.',
  locId:'p2-l1',
@@ -228,7 +270,109 @@ const DATA=[
         ['Сц. 3 «Субботник»',[['Грабли и метёлки, 10 шт.','реквизит',0],['Жилеты волонтёров','костюм',0]]]],
  budget_lines:[['Группа',180000,0],['Актёры и массовка',70000,0],['Техника',150000,0],['Реквизит',40000,0],['Питание',40000,0],['Резерв',40000,0]]}
 ];
-/* нормализуем данные в объекты с id */
+const ARCH=[{id:'a1',kind:'Музыкальный клип',title:'Клип «Шаар», студийный день',date:'2026-09-14',contract:780000,budget:640000,fact:612000,docs:[
+ ['Договор с заказчиком','PDF','2 стр.'],['Акт выполненных работ','PDF','1 стр.'],['Итоговая смета','XLSX','14 строк'],['Договоры с группой (11 шт.)','ZIP','3,2 МБ'],['Release-формы участников','PDF','8 стр.'],['Вызывные листы (2 дня)','PDF','4 стр.'],['Раскадровка','PDF','12 кадров'],['Чеки и расписки','ZIP','5,8 МБ'],['Финальный мастер-файл','MP4','1080p']]}];
+
+const DEPTS={p1:[
+{id:'rez',name:'Режиссёрская группа',head:'Азамат Токтогулов',mem:[0,3,11],ex:[],need:4,plan:200000,fact:190000,
+ tasks:[['Утвердить раскадровку',1],['Составить хронометраж сцен 1–9',1],['Репетиция с актёрами 26.11',0],['Список планов на день',1]],
+ needs:['Монитор для режиссёра','Рации на 6 человек','Печатная раскадровка, 10 копий']},
+{id:'prod',name:'Продюсерская',head:'Нурайым Сыдыкова',mem:[1,13],ex:[['Эльмира Жолдошева','Помощник продюсера',0]],need:3,plan:150000,fact:140000,
+ tasks:[['Договоры с группой подписаны',0],['Разрешения на съёмку получены',1],['Страховка оборудования',0],['Вызывной разослан группе',0]],
+ needs:['Печать вызывных, 20 копий','Аптечка и вода для группы','Связь с администрацией двора']},
+{id:'oper',name:'Операторский',head:'Эрлан Бекмуратов',mem:[2,10],ex:[['Фёдор Николаев','Механик (слайдер, кран)',0]],need:3,plan:300000,fact:310000,
+ tasks:[['Тест камеры и карт памяти',1],['Выбор объективов',1],['Проверка слайдера и мини-крана',0],['Лист планов на день',1]],
+ needs:['Камера 6K и запасной корпус','Объективы 24–85 мм и 85 мм','Слайдер и мини-кран','6 карт памяти и SSD']},
+{id:'svet',name:'Свет',head:'Бакыт Джумабаев',mem:[4],ex:[['Эмир Шарипов','Осветитель',1],['Нуртилек Базарбаев','Осветитель',0]],need:3,plan:190000,fact:165000,
+ tasks:[['Схема света для кухни',1],['Проверка розеток и мощности',1],['Аренда LED-приборов',1],['Генератор для двора',1]],
+ needs:['LED-приборы 4 шт. и софтбоксы','Удлинители и генератор 3 кВт','Флаги и рассеиватели']},
+{id:'zvuk',name:'Звук',head:'Тимур Исаков',mem:[6],ex:[['Айбек Мурзаев','Ассистент по звуку',0]],need:2,plan:90000,fact:80000,
+ tasks:[['Записать фоновый шум квартиры',0],['Проверить петлички',1],['Запас батареек',0]],
+ needs:['2 петлички и микрофон-пушка','Рекордер с запасной картой']},
+{id:'hud',name:'Художественный',head:'Алина Петрова',mem:[5,8],ex:[['Любовь Гусева','Декоратор',1]],need:3,plan:130000,fact:60000,
+ tasks:[['Эскиз кухни и кабинета',1],['Закупка реквизита сцены 1',1],['Покраска панели для сцены 5',0],['Список реквизита по сценам',1]],
+ needs:['Тёплые пледы, посуда, цветы','Краска и малярные материалы','Табличка на дверь без логотипа']},
+{id:'kost',name:'Костюм',head:'Асель Курманова',mem:[7],ex:[],need:2,plan:70000,fact:52000,
+ tasks:[['Примерка актёров',0],['Гардероб на 8 образов',0],['Отпаривание и запасные комплекты',0]],
+ needs:['Вешалки, штанга, отпариватель','Запасная обувь трёх размеров']},
+{id:'grim',name:'Грим и причёска',head:'Гульнара Эркинова',mem:[9],ex:[['Венера Осмонова','Стилист по волосам',1]],need:2,plan:60000,fact:46000,
+ tasks:[['Тесты грима на камеру',1],['Набор для детей и пожилых',1],['Расходники закуплены',1],['Сменный грим для 2 смен',0]],
+ needs:['Профессиональный кейс','Зеркало с подсветкой','Гигиенические расходники']},
+{id:'cast',name:'Кастинг (актёры и массовка)',head:'Кайрат Дюшеев',mem:[],ex:[['Кайрат Дюшеев','Кастинг-директор',1],['Гульзат Исакова','Помощник по массовке',0]],need:2,plan:225000,fact:200000,
+ tasks:[['Утвердить главных героев',1],['Договоры с актёрами',0],['Собрать массовку для сцены 7',0],['Разрешение родителей для ребёнка',0]],
+ needs:['Список вызывного для актёров','Сопровождающий для ребёнка','Договор с родителем']},
+{id:'loc',name:'Локации',head:'Гулжан Бекова',mem:[],ex:[['Гулжан Бекова','Локейшн-менеджер',1],['Ильяс Таипов','Скаут',0]],need:2,plan:130000,fact:115000,
+ tasks:[['Разрешение: квартира-студия',1],['Разрешение: офис',1],['Согласовать двор с жильцами',0],['Разрешение: терраса',0]],
+ needs:['Парковка для 3 машин','Оплата аренды двух локаций','Согласие жильцов двора']},
+{id:'trans',name:'Транспорт',head:'Руслан Абдыкадыров',mem:[12],ex:[['Омурбек Саякбаев','Водитель',0]],need:3,plan:50000,fact:20000,
+ tasks:[['Минивэн для группы',1],['Машина для сцены 2',1],['Пропуск во двор',0],['Маршрут сбора группы',0]],
+ needs:['2 легковых авто и минивэн на 8 мест','Топливо на смену','Парковочные места']},
+{id:'food',name:'Питание (кейтеринг)',head:'Динара Шамшиева',mem:[],ex:[['Динара Шамшиева','Кейтеринг (шеф)',1],['Руслан Карыбеков','Помощник повара',0]],need:2,plan:60000,fact:38000,
+ tasks:[['Меню на 24 человека',1],['Чай, кофе и вода с 06:30',1],['Обед в 12:30 подтверждён',1]],
+ needs:['Обед на 24 человека','Термосы и чай с 06:30','Столы и посуда на площадке']},
+{id:'post',name:'Пост-продакшн',head:'Арсен Тилеков',mem:[],ex:[['Арсен Тилеков','Монтажёр',1],['Влада Зотова','Колорист',0],['Эрнис Кадыров','Моушн-дизайнер',0]],need:3,plan:150000,fact:0,
+ tasks:[['Структура проекта и бэкапы',0],['Референсы по цвету',1],['Монтажный лист',0]],
+ needs:['Рабочая станция и диск 4 ТБ','Лицензии программ','Библиотека музыки']}
+]};
+
+/* сцены проекта 1 (разбивка сценария) */
+const SC=[
+{id:'s1',n:1,title:'Утро в семье',loc:0,tod:'Утро',chars:['Мама','Дочь','Папа'],day:1,at:'08:30',
+ text:'Кухня. Утро. Мама накрывает завтрак и ставит чайник. Дочь собирает рюкзак. Папа листает телефон и допивает кофе.',
+ props:['+Посуда для завтрака, 6 комплектов','+Свежие фрукты и хлеб','Школьный рюкзак'],decor:['Занавески на кухне','Календарь на стене'],costume:['+Домашняя одежда: мама, дочь','Школьная форма'],makeup:['Дневной грим','Укладка девочки'],transport:[],gear:['Слайдер','LED-панели 2 шт. к окну'],
+ fr:[['общий','Кухня целиком, семья за столом'],['средний','Мама у плиты, ставит чайник'],['крупный','Чашка и руки дочери'],['средний','Папа с телефоном'],['крупный','Улыбка мамы']]},
+{id:'s2',n:2,title:'Дорога в офис',loc:2,tod:'Утро',chars:['Папа'],day:1,at:'10:30',
+ text:'Двор. Папа садится в машину, кладёт на сиденье сумку с ноутбуком и уезжает.',
+ props:['Сумка с ноутбуком','Ключи от машины'],decor:[],costume:['Деловой костюм'],makeup:['Лёгкий грим'],transport:['Легковой автомобиль (седан)','Съёмочный минивэн'],gear:['Присоска на авто','Стедикам'],
+ fr:[['общий','Двор, машина у подъезда'],['средний','Папа за рулём'],['крупный','Рука на руле'],['общий','Машина выезжает со двора']]},
+{id:'s3',n:3,title:'Звонок',loc:0,tod:'День',chars:['Мама'],day:2,at:'10:00',
+ text:'Гостиная. Мама разговаривает по телефону, записывает что-то в блокнот.',
+ props:['Телефон','Блокнот'],decor:['Настольная лампа'],costume:['Домашняя кофта'],makeup:[],transport:[],gear:['Слайдер'],
+ fr:[['средний','Мама с телефоном'],['крупный','Рука с ручкой'],['общий','Гостиная']]},
+{id:'s4',n:4,title:'Школьный двор',loc:2,tod:'День',chars:['Дочь','Дедушка'],day:2,at:'12:00',
+ text:'Двор. Дедушка встречает дочь у ворот, берёт её рюкзак.',
+ props:['Школьный рюкзак'],decor:[],costume:['Пальто деда','Куртка дочери'],makeup:['Седой грим деда'],transport:[],gear:['Стедикам'],
+ fr:[['общий','Ворота двора'],['средний','Дедушка и дочь'],['крупный','Руки с рюкзаком']]},
+{id:'s5',n:5,title:'Кабинет',loc:1,tod:'День',chars:['Предприниматель','Коллега'],day:1,at:'13:30',
+ text:'Офис. День. Предприниматель подписывает папку с договором. Коллега приносит ноутбук и кофе.',
+ props:['Ноутбук без логотипов','+Блокнот и ручка','Папка с договором'],decor:['Табличка на двери (без логотипа)'],costume:['+Деловой костюм, 2 комплекта','Блузка коллеги'],makeup:['Матирование'],transport:[],gear:['LED-панели 4 шт.','Софтбокс','Слайдер'],
+ fr:[['общий','Кабинет целиком'],['средний','Предприниматель за столом'],['крупный','Ручка и подпись'],['средний','Коллега входит с кофе'],['крупный','Взгляд предпринимателя']]},
+{id:'s6',n:6,title:'Переговоры',loc:1,tod:'День',chars:['Предприниматель','Коллега','Папа'],day:2,at:'14:00',
+ text:'Переговорная. Трое за столом, на столе ноутбук и бумаги.',
+ props:['Ноутбук без логотипов','Бумаги и графики'],decor:['Стеклянная перегородка'],costume:['Деловой костюм'],makeup:['Матирование'],transport:[],gear:['LED-панели 4 шт.'],
+ fr:[['общий','Переговорная'],['средний','Три человека за столом'],['крупный','Рукопожатие']]},
+{id:'s7',n:7,title:'Вечерний двор',loc:2,tod:'Вечер',chars:['Дедушка','Дочь'],day:1,at:'16:00',
+ text:'Двор. Вечер. Дедушка играет с дочерью в шахматы на скамейке. Рядом лежит мяч.',
+ props:['Скамейка','Мяч','Шахматы'],decor:['Гирлянда во дворе'],costume:['Пальто деда','Куртка дочери'],makeup:['Седой грим деда'],transport:['Автомобиль у подъезда'],gear:['Дрон','Генератор 3 кВт'],
+ fr:[['общий','Двор, скамейка вдали'],['средний','Дедушка и дочь над доской'],['крупный','Рука двигает фигуру'],['общий','Дрон над двором']]},
+{id:'s8',n:8,title:'Прогулка на террасе',loc:3,tod:'Вечер',chars:['Папа','Мама'],day:2,at:'16:30',
+ text:'Смотровая терраса. Папа и мама идут вдоль перил, город внизу.',
+ props:['Два стаканчика с чаем'],decor:[],costume:['Вечерние пальто'],makeup:['Вечерний грим'],transport:[],gear:['Стедикам','Дрон'],
+ fr:[['общий','Терраса, город внизу'],['средний','Папа и мама идут'],['крупный','Руки рядом']]},
+{id:'s9',n:9,title:'Закат на балконе',loc:0,tod:'Закат',chars:['Вся семья'],day:1,at:'17:00',
+ text:'Балкон квартиры. Закат. Вся семья в пледах пьёт чай из чашек.',
+ props:['Тёплые пледы, 4 шт.','Чайник и 4 чашки'],decor:['Цветы на балконе'],costume:['Семейные вечерние пальто'],makeup:['Вечерний грим'],transport:[],gear:['Слайдер','Дрон','Отражатель'],
+ fr:[['общий','Балкон, семья в пледах'],['средний','Мама и дочь'],['крупный','Пар над чашкой'],['средний','Папа и дедушка'],['крупный','Улыбка дочери'],['общий','Закат над городом']]}
+];
+const CATLAB={props:'Реквизит',decor:'Декорации',costume:'Костюм',makeup:'Грим',loc:'Локация',transport:'Транспорт',gear:'Техника'};
+const DICT=[['чайник','props','Чайник'],['чашк','props','Чашки'],['кофе','props','Кофе и чашка'],['плед','props','Тёплые пледы'],['ноутбук','props','Ноутбук без логотипов'],['телефон','props','Телефон'],['рюкзак','props','Школьный рюкзак'],['цвет','props','Цветы'],['мяч','props','Мяч'],['шахмат','props','Шахматы'],['зонт','props','Зонт'],['газет','props','Газета'],['свеч','props','Свечи'],['ковёр','decor','Ковёр'],['ковер','decor','Ковёр'],['штор','decor','Шторы'],['ламп','decor','Настольная лампа'],['картин','decor','Картины на стене'],['пальто','costume','Пальто'],['костюм','costume','Деловой костюм'],['плать','costume','Платье'],['очк','costume','Очки'],['куртк','costume','Куртка'],['шарф','costume','Шарф'],['слёз','makeup','Грим: слёзы'],['слез','makeup','Грим: слёзы'],['синяк','makeup','Грим: синяк'],['седи','makeup','Седой грим'],['машин','transport','Легковой автомобиль'],['такси','transport','Такси'],['автобус','transport','Автобус'],['дрон','gear','Дрон'],['стедикам','gear','Стедикам'],['кран','gear','Кран'],['слайдер','gear','Слайдер'],['закат','gear','Отражатель для заката'],['дожд','gear','Дождевальная установка']];
+const PAY={m0:[45000,20000],m1:[36000,15000],m2:[40000,20000],m3:[18000,9000],m4:[15000,15000],m5:[30000,15000],m6:[16000,8000],m7:[12000,6000],m8:[12000,12000],m9:[12000,0],m10:[14000,7000],m11:[10000,5000],m12:[10000,0],m13:[9000,9000],c0:[30000,15000],c1:[24000,12000],c2:[10000,5000],c3:[12000,0],c4:[10000,0]};
+const OBL=[
+ {id:'o1',who:'Студия «Светлая» — аренда',amt:80000,due:'до 27 ноября',dir:'мы'},
+ {id:'o2',who:'Прокат света и камер',amt:120000,due:'до 26 ноября',dir:'мы'},
+ {id:'o3',who:'Кейтеринг на съёмочный день',amt:30000,due:'по факту',dir:'мы'},
+ {id:'o4',who:'Заказчик — второй транш',amt:690000,due:'до 5 декабря',dir:'нам'}];
+const RECEIVED0=1610000;
+const REQ0=[
+ {id:'q1',dept:'hud',by:'Алина Петрова',what:'Закуп реквизита к сценам 3–5',amt:45000,need:'2026-11-25',items:['Тёплые пледы, 4 шт.','Посуда и чашки','Цветы для балкона'],status:'wait'},
+ {id:'q2',dept:'oper',by:'Эрлан Бекмуратов',what:'Карты памяти и SSD для съёмки',amt:22000,need:'2026-11-26',items:[],status:'wait'},
+ {id:'q3',dept:'hud',by:'Алина Петрова',what:'Краска и материалы для панели (сц. 5)',amt:12000,need:'2026-11-24',items:['Краска, 2 банки','Малярный скотч','Валики'],status:'approved'},
+ {id:'q4',dept:'svet',by:'Бакыт Джумабаев',what:'Аренда генератора 3 кВт',amt:18000,need:'2026-11-23',items:[],status:'sent',method:'перевод'},
+ {id:'q5',dept:'kost',by:'Асель Курманова',what:'Ткань и вешалки для гардероба',amt:25000,need:'2026-11-25',items:[],status:'rejected',comment:'Уложитесь в аванс на неделю, отдельная заявка не нужна.'}];
+const ADV0=[{id:'v1',dept:'hud',amt:60000,period:'неделя 23–29 нояб.',status:'out'},{id:'v2',dept:'trans',amt:30000,period:'съёмочный блок 20–22 нояб.',status:'reported',spent:26500,left:3500,act:'вернул',photos:7}];
+const RQST={wait:['ждёт решения','warn'],clarify:['нужно уточнить','new'],approved:['одобрено','ok'],sent:['деньги отправлены','ok'],rejected:['отклонено','bad']};
+
+/* нормализация */
 DATA.forEach(p=>{
   p.crew=p.crew.map((c,i)=>({id:p.id+'-m'+i,name:c[0],role:c[1],acc:c[2]}));
   p.cast=p.cast.map((c,i)=>({id:p.id+'-c'+i,name:c[0],role:c[1],st:c[2]}));
@@ -236,31 +380,118 @@ DATA.forEach(p=>{
   p.props=p.props.map((s,si)=>({scene:s[0],items:s[1].map((it,i)=>({id:p.id+'-r'+si+'_'+i,t:it[0],k:it[1],on:it[2]}))}));
   p.bl=p.budget_lines.map((b,i)=>({id:p.id+'-b'+i,name:b[0],plan:b[1],fact:b[2]}));
 });
-const CAST_ST=[['кандидат','warn'],['утверждён','ok'],['отказ','bad']];
+Object.keys(DEPTS).forEach(pid=>{const p=DATA.find(x=>x.id===pid);
+  p.bl=DEPTS[pid].map((d,i)=>({id:pid+'-b'+i,name:d.name,plan:d.plan,fact:d.fact,dept:d.id})).concat([{id:pid+'-brez',name:'Непредвиденное (резерв)',plan:45000,fact:0}])});
+const getReqs=()=>REQ0.concat(st.rqNew).map(q=>Object.assign({},q,st.rq[q.id]||{}));
+const getAdv=()=>ADV0.concat(st.avNew).map(a=>Object.assign({},a,st.av[a.id]||{}));
+const reqSent=d=>getReqs().filter(q=>q.dept===d&&q.status==='sent').reduce((x,q)=>x+q.amt,0);
+const advUsed=d=>getAdv().filter(a=>a.dept===d).reduce((x,a)=>x+(a.status==='reported'?a.spent+(a.act==='перенёс'?a.left:0):a.amt),0);
+const blOf=p=>p.id==='p1'?p['bl'].map(b=>b.dept?Object.assign({},b,{fact:b.fact+reqSent(b.dept)+advUsed(b.dept)}):b):p['bl'];
+const waitCount=()=>getReqs().filter(q=>q.status==='wait').length;
+const dName=id=>{const d=DEPTS.p1.find(x=>x.id===id);return d?d.name:id};
+const plural=(n,a,b,c)=>n%10===1&&n%100!==11?a:(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?b:c);
+const CAST_ST=[['кандидат','warn'],['утверждён','ok'],['отказ','bad'],['новый отклик','new']];
 
 /* ---------- состояние ---------- */
-const KEY='syomochnyj-den-v1';
-let st={cast:{},loc:{},prop:{},acc:{},sent:{}};
+const KEY='syomochnyj-den-v1', FKEY='syomochnyj-den-anketa-v1';
+const ST0=()=>({cast:{},loc:{},prop:{},acc:{},sent:{},dtask:{},seen:{},team:[],hired:{},paid:{},obl:{},sceneAdd:{},sctext:{},arch:{},rq:{},rqNew:[],av:{},avNew:[],user:null});
+let st=ST0();
 try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&typeof o==='object')st=Object.assign(st,o)}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
-const gCast=c=>st.cast[c.id]??c.st, gLoc=l=>st.loc[l.id]??l.ok, gProp=i=>st.prop[i.id]??i.on, gAcc=m=>st.acc[m.id]??m.acc;
+let FORMS=[];
+const loadForms=()=>{try{const a=JSON.parse(localStorage.getItem(FKEY)||'[]');FORMS=Array.isArray(a)?a:[]}catch(e){FORMS=[]}};
+const gCast=c=>st.cast[c.id]??c.st, gLoc=l=>st.loc[l.id]??l.ok, gAcc=m=>st.acc[m.id]??m.acc;
+const gProp=i=>st.prop[i.id]??i.on;
 
-let ui={view:'projects',pid:null,tab:'call',sheet:null,asId:null,theme:null};
+let ui={view:'projects',pid:null,tab:'call',sheet:null,asId:null,dept:null,scene:null,fid:null,link:null,copied:0,hl:{},aid:null,inv:null,method:'перевод',ract:'вернул',rq:null};
 const proj=()=>DATA.find(p=>p.id===ui.pid);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const money=n=>new Intl.NumberFormat('ru-RU').format(Math.round(n)).replace(/ | /g,' ')+' с';
 const dfmt=(iso,o)=>new Intl.DateTimeFormat('ru-RU',o).format(new Date(iso+'T12:00:00'));
 const mapUrl=a=>'https://2gis.kg/search/'+encodeURIComponent('Бишкек, '+a);
+const hue=s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))%360;return h};
+const initials=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('');
+const baseUrl=()=>{try{return new URL('anketa.html',location.href).href}catch(e){return 'anketa.html'}};
+const NOTE='<p class="hint" style="margin-top:14px">В примере анкеты видны только на этом телефоне; в рабочей версии будут приходить вам со всех телефонов.</p>';
+const formsOf=(p,f)=>p.id==='p1'?FORMS.filter(f||(()=>true)):[];
+const clean=s=>s.replace(/^\+/,'');
+
+/* ---------- пользователи и роли ---------- */
+function roleInfo(role,dept){
+  const r=role.toLowerCase();
+  const m=[[/бухгалтер/,{kind:'accountant',dept:'prod'}],[/^режиссёр$/,{kind:'director',dept:'rez'}],[/художник-постановщик/,{kind:'artist',dept:'hud'}],[/реквизитор/,{kind:'props',dept:'hud'}],[/декоратор/,{kind:'dept',dept:'hud'}],
+   [/ассистент режиссёра|скрипт/,{kind:'dept',dept:'rez'}],[/продюсер|администратор|директор площадки/,{kind:'dept',dept:'prod'}],[/оператор|фокус|механик/,{kind:'dept',dept:'oper'}],[/гафер|гаффер|осветитель/,{kind:'dept',dept:'svet'}],[/звук/,{kind:'dept',dept:'zvuk'}],
+   [/костюмер/,{kind:'dept',dept:'kost'}],[/гример|стилист/,{kind:'dept',dept:'grim'}],[/транспорт|водитель/,{kind:'dept',dept:'trans'}],[/кейтеринг|повар/,{kind:'dept',dept:'food'}],[/монтаж|колорист|моушн/,{kind:'dept',dept:'post'}],[/актёр|актер|массовка/,{kind:'actor',dept:'cast'}]];
+  for(const [re,v] of m) if(re.test(r)) return v;
+  return {kind:'dept',dept:dept||'prod'};
+}
+function users(){
+  const p=DATA[0];
+  const base=[{id:'u-prod',name:'Нурлан Абдыкеримов',role:'Продюсер',kind:'producer',dept:null},{id:'u-acc',name:'Зарина Бообекова',role:'Бухгалтер',kind:'accountant',dept:'prod'}];
+  const crew=p.crew.map(c=>Object.assign({id:'u-'+c.id,name:c.name,role:c.role},roleInfo(c.role)));
+  const team=st.team.map(t=>Object.assign({id:'u-'+t.id,name:t.name,role:t.role,tag:t.hired?'нанят':'приглашён'},roleInfo(t.role,t.dept)));
+  return base.concat(crew,team);
+}
+const U=()=>users().find(x=>x.id===st.user);
+const isProd=u=>u&&u.kind==='producer';
+const canMoney=u=>u&&(u.kind==='producer'||u.kind==='accountant');
+const KIND_TXT={producer:'Видит всё, нанимает людей и видит деньги',accountant:'Видит только деньги проекта',director:'Сцены, раскадровка, кастинг, вызывные',artist:'Свой цех и сцены: реквизит, декорации, костюм',props:'Реквизит по сценам на сегодня и завтра',dept:'Свой цех, свои задачи и вызывной',actor:'Свой вызывной'};
+function tabsFor(u){
+  return {producer:['call','scenes','dept','money','more'],accountant:['money','call','more'],director:['call','scenes','cast','reqs','more'],artist:['mydept','scenes','reqs','call','more'],props:['props','scenes','reqs','call','more'],dept:['mydept','reqs','call','more'],actor:['call','more']}[u.kind];
+}
+const TABDEF={call:['Вызывной','clip'],scenes:['Сцены','film'],dept:['Цеха','grid'],mydept:['Мой цех','grid'],cast:['Кастинг','users'],money:['Деньги','coin'],props:['Реквизит','hanger'],more:['Ещё','dots'],reqs:['Заявки','coin']};
+const TITLES={call:'Вызывной',scenes:'Сцены',dept:'Цеха',mydept:'Мой цех',cast:'Кастинг',money:'Деньги',props:'Реквизит и костюмы',more:'Ещё',loc:'Локации',team:'Команда и доступы',reqs:'Заявки на деньги'};
+function catsFor(u){
+  if(u.kind==='producer'||u.kind==='director') return Object.keys(CATLAB);
+  if(u.kind==='artist') return ['props','decor','costume','loc'];
+  if(u.kind==='props') return ['props'];
+  if(u.kind==='dept'){return {hud:['props','decor','loc'],kost:['costume'],grim:['makeup'],trans:['transport','loc'],oper:['gear','loc'],svet:['gear','loc'],zvuk:['gear','loc'],prod:['loc','transport'],rez:Object.keys(CATLAB)}[u.dept]||[]}
+  return [];
+}
+const showCrew=u=>u&&(['producer','director'].includes(u.kind)||(u.kind==='dept'&&['prod','rez'].includes(u.dept)));
+
+/* ---------- цеха ---------- */
+const depts=p=>DEPTS[p.id]||[];
+const dMembers=(p,d)=>d.mem.map(i=>({name:p.crew[i].name,role:p.crew[i].role,acc:gAcc(p.crew[i])})).concat(d.ex.map(e=>({name:e[0],role:e[1],acc:e[2]})),st.team.filter(t=>t.dept===d.id).map(t=>({name:t.name,role:t.role,acc:t.hired?1:0,tag:t.hired?'нанят':'приглашён'})));
+const dTasks=(p,d)=>d.tasks.map((t,i)=>{const id=p.id+'-'+d.id+'-t'+i;return {id,t:t[0],on:st.dtask[id]??t[1]}});
+function dStat(p,d){
+  const mem=dMembers(p,d).length, tk=dTasks(p,d), pct=tk.filter(x=>x.on).length/Math.max(1,tk.length);
+  const ready=Math.round((pct+Math.min(1,mem/d.need))/2*100);
+  const k=mem<d.need?['short','не хватает людей','bad']:pct===1?['ready','готов','ok']:['work','в работе','warn'];
+  return {mem,need:d.need,pct,ready,key:k[0],txt:k[1],cl:k[2]};
+}
+const deptAvg=p=>{const a=depts(p);return a.length?Math.round(a.reduce((s,d)=>s+dStat(p,d).ready,0)/a.length):0};
+
+/* ---------- сцены ---------- */
+const scenesOf=p=>p.id==='p1'?SC:[];
+function sceneLists(p,s){
+  const o={};
+  ['props','decor','costume','makeup','transport','gear'].forEach(c=>{o[c]=s[c].map(clean)});
+  o.loc=[p.locs[s.loc].name+', '+p.locs[s.loc].addr];
+  (st.sceneAdd[s.id]||[]).forEach(a=>{if(o[a[0]]&&!o[a[0]].includes(a[1]))o[a[0]].push(a[1])});
+  return o;
+}
+function propsFor(p){
+  if(p.id!=='p1') return p.props;
+  return SC.map(s=>{
+    const items=[];
+    s.props.forEach((t,i)=>items.push({id:'p1-'+s.id+'-p'+i,t:clean(t),k:'реквизит',on:t[0]==='+'?1:0}));
+    s.costume.forEach((t,i)=>items.push({id:'p1-'+s.id+'-k'+i,t:clean(t),k:'костюм',on:t[0]==='+'?1:0}));
+    (st.sceneAdd[s.id]||[]).filter(a=>a[0]==='props'||a[0]==='costume').forEach((a,i)=>items.push({id:'p1-'+s.id+'-a'+i+a[1],t:a[1],k:a[0]==='props'?'реквизит':'костюм',on:0}));
+    return {scene:'Сц. '+s.n+' «'+s.title+'»',day:s.day,items};
+  }).filter(s=>s.items.length);
+}
 function progress(p){
+  const all=propsFor(p).flatMap(s=>s.items);
   const parts=[
-    p.props.flatMap(s=>s.items).filter(gProp).length/Math.max(1,p.props.flatMap(s=>s.items).length),
+    all.filter(gProp).length/Math.max(1,all.length),
     p.cast.filter(c=>gCast(c)===1).length/Math.max(1,p.cast.length),
     p.locs.filter(gLoc).length/Math.max(1,p.locs.length),
     p.crew.filter(gAcc).length/Math.max(1,p.crew.length)];
-  return Math.round(parts.reduce((a,b)=>a+b,0)/4*100);
+  if(depts(p).length)parts.push(deptAvg(p)/100);
+  return Math.round(parts.reduce((a,b)=>a+b,0)/parts.length*100);
 }
-const hue=s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))%360;return h};
-const initials=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('');
+const newCount=p=>formsOf(p,f=>!st.seen[f.id]).length;
 
 /* ---------- заглушки картинок ---------- */
 function silhouette(name,i){
@@ -284,67 +515,152 @@ function scene(type,name){
   }
   return `<svg viewBox="0 0 400 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${g}</svg>`;
 }
+function sketch(plan,i){
+  const c='var(--muted)',f='var(--surface2)',a='var(--accent)';
+  const person=(x,y,s)=>`<circle cx="${x}" cy="${y-8*s}" r="${6*s}" fill="${c}"/><rect x="${x-7*s}" y="${y-1*s}" width="${14*s}" height="${24*s}" rx="${6*s}" fill="${c}"/>`;
+  let g='';
+  if(plan==='общий'){
+    const x=40+(i*17)%50;
+    g=`<rect x="0" y="62" width="160" height="38" fill="${f}"/><rect x="${20+i%3*14}" y="30" width="38" height="32" fill="${f}" stroke="${c}" stroke-width="1.5"/><path d="M${20+i%3*14} 30l19-12 19 12" fill="none" stroke="${c}" stroke-width="1.5"/>${person(x+50,52,1)}${person(x+68,54,.9)}<rect x="110" y="56" width="30" height="8" rx="2" fill="${a}" opacity=".55"/>`;
+  }else if(plan==='средний'){
+    const x=70+(i*13)%30;
+    g=`<rect x="0" y="70" width="160" height="30" fill="${f}"/>${person(x,48,2.4)}<rect x="${x+24}" y="62" width="24" height="18" rx="3" fill="${a}" opacity=".55"/>`;
+  }else{
+    if(i%2) g=`<circle cx="80" cy="50" r="30" fill="${c}"/><circle cx="68" cy="45" r="3.5" fill="var(--surface)"/><circle cx="92" cy="45" r="3.5" fill="var(--surface)"/><path d="M66 60q14 12 28 0" fill="none" stroke="var(--surface)" stroke-width="3" stroke-linecap="round"/>`;
+    else g=`<rect x="52" y="34" width="46" height="44" rx="8" fill="${c}"/><path d="M98 44q22 0 22 14t-22 14" fill="none" stroke="${c}" stroke-width="7"/><path d="M62 24q4-8 0-14M76 24q4-8 0-14" fill="none" stroke="${a}" stroke-width="3" stroke-linecap="round"/>`;
+  }
+  return `<svg viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="100" fill="var(--surface)"/>${g}<rect x="1" y="1" width="158" height="98" rx="6" fill="none" stroke="var(--line)" stroke-width="2"/></svg>`;
+}
 
-/* ---------- экраны ---------- */
+/* ---------- каркас ---------- */
 const $app=document.getElementById('app');
 function render(){
-  let h='';
-  if(ui.view==='projects') h=viewProjects(); else h=viewProject();
-  if(ui.view==='part') h=viewProject()+viewPart();
-  if(ui.sheet) h+=viewSheet();
-  const scr=$app.querySelector('main'); const top=scr?scr.scrollTop:0; const sameKey=$app.dataset.k;
-  const k=ui.view+ui.pid+ui.tab;
+  loadForms();
+  const u=U(); let h='';
+  if(!u){ui.view='login'}
+  if(ui.view==='login') h=viewLogin();
+  else if(ui.view==='projects') h=viewProjects(u);
+  else if(ui.view==='arch') h=viewArch();
+  else {h=viewProject(u);if(ui.view==='part')h+=viewPart()}
+  if(ui.sheet) h+=viewSheet(u);
+  const scr=$app.querySelector('main'); const top=scr?scr.scrollTop:0, old=$app.dataset.k;
+  const k=[ui.view,ui.pid,ui.tab,ui.dept,ui.scene,ui.aid].join('|');
   $app.innerHTML=h; $app.dataset.k=k;
-  const m=$app.querySelector('main'); if(m&&sameKey===k) m.scrollTop=top;
+  const m=$app.querySelector('main'); if(m&&old===k) m.scrollTop=top;
 }
 const demo='<div class="demo">Пример: данные вымышленные</div>';
+const whoBar=u=>`<button class="who" data-act="logout"><span class="ava s" style="background:hsl(${hue(u.name)} 40% 42%)">${initials(u.name)}</span><span class="wt"><b>${esc(u.name)}</b><small>${esc(u.role)}</small></span><span class="chg">${ico('out')}Сменить</span></button>`;
 
-function viewProjects(){
-  const cards=DATA.map(p=>{
-    const pr=progress(p);
+function viewLogin(){
+  const us=users();
+  const row=x=>`<button class="card login" data-act="login" data-id="${x.id}"><div class="ava" style="background:hsl(${hue(x.name)} 40% 42%)">${initials(x.name)}</div><div class="n"><b>${esc(x.name)}</b><span>${esc(x.role)}${x.tag?' · '+x.tag:''}</span><small>${KIND_TXT[x.kind]}</small></div>${ico('chev')}</button>`;
+  return `<div class="top"><div class="logo">${ico('film')}</div><div style="flex:1;min-width:0"><h1>Съёмочный день</h1><div class="sub">Приложение для съёмочной группы</div></div></div>${demo}
+  <main><h2 style="margin-top:6px">Войти как</h2><p class="hint">В примере вход без пароля: выберите человека и посмотрите, что видит он. В рабочей версии каждый получает личную ссылку-приглашение от продюсера.</p>
+  <div class="shift" style="padding:0 0 6px">Руководство</div>${us.slice(0,2).map(row).join('')}
+  <div class="shift" style="padding:8px 0 6px">Съёмочная группа проекта «Реклама банка»</div>${us.slice(2).map(row).join('')}</main>`;
+}
+
+function viewProjects(u){
+  const act=DATA.filter(p=>!st.arch[p.id]), arch=DATA.filter(p=>st.arch[p.id]);
+  const cards=act.map(p=>{
+    const pr=progress(p),nc=newCount(p);
     return `<button class="card pcard" data-act="open" data-id="${p.id}">
       <div class="tag">${esc(p.kind)}</div><h3>${esc(p.title)}</h3>
       <div class="meta">${ico('cal')}<span>Съёмка: <b>${dfmt(p.date,{day:'numeric',month:'long',weekday:'short'})}</b></span></div>
+      ${(nc||(p.id==='p1'&&waitCount()))?`<div style="margin:-4px 0 10px;display:flex;gap:6px;flex-wrap:wrap">${nc?`<span class="chip new">новые анкеты: ${nc}</span>`:''}${p.id==='p1'&&waitCount()?`<span class="chip new">${waitCount()} ${plural(waitCount(),'новая заявка','новые заявки','новых заявок')}</span>`:''}</div>`:''}
       <div class="row small" style="margin-bottom:6px"><span>Готовность к съёмке</span><b style="color:var(--ink)">${pr}%</b></div>
       <div class="bar"><i style="width:${pr}%"></i></div></button>`}).join('');
+  const ar=ARCH.map(a=>({id:a.id,kind:a.kind,title:a.title,date:a.date})).concat(arch.map(p=>({id:p.id,kind:p.kind,title:p.title,date:p.date})));
   return `<div class="top"><div class="logo">${ico('film')}</div><div style="flex:1;min-width:0"><h1>Съёмочный день</h1><div class="sub">Мои проекты</div></div>
     <button class="iconbtn" data-act="settings" aria-label="Настройки">${ico('gear')}</button></div>${demo}
-    <main><h2 style="margin-top:6px">Проекты</h2>${cards}
-    <p class="hint" style="text-align:center;margin-top:18px">Нажмите на проект, чтобы открыть вызывной, кастинг, локации, реквизит и смету.</p></main>`;
+    <main>${whoBar(u)}<h2 style="margin-top:14px">Проекты</h2>${cards||'<p class="hint">Все проекты в архиве.</p>'}
+    <h2>Архив</h2>${ar.map(a=>`<button class="card pcard arch" data-act="openarch" data-id="${a.id}"><div class="row"><div><div class="tag" style="color:var(--muted)">${esc(a.kind)} · завершён</div><h3 style="margin-bottom:2px;font-size:15.5px">${esc(a.title)}</h3><div class="small">${dfmt(a.date,{day:'numeric',month:'long',year:'numeric'})} · документы внутри</div></div>${ico('box')}</div></button>`).join('')}
+    </main>`;
 }
 
-const TABS=[['call','Вызывной','clip'],['cast','Кастинг','users'],['loc','Локации','pin'],['props','Реквизит','hanger'],['budget','Смета','coin']];
-function viewProject(){
-  const p=proj();
-  const body={call:tCall,cast:tCast,loc:tLoc,props:tProps,budget:tBudget}[ui.tab](p);
-  const titles={call:'Вызывной',cast:'Кастинг',loc:'Локации',props:'Реквизит и костюмы',budget:'Смета'};
-  return `<div class="top"><button class="iconbtn" data-act="home" aria-label="Назад к проектам">${ico('back')}</button>
-    <div style="flex:1;min-width:0"><h1>${titles[ui.tab]}</h1><div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p.title)}</div></div></div>${demo}
-    <main>${body}</main>
-    <nav class="tabbar">${TABS.map(t=>`<button class="tab ${ui.tab===t[0]?'on':''}" data-act="tab" data-id="${t[0]}">${ico(t[2])}<span>${t[1]}</span></button>`).join('')}</nav>`;
+function viewArch(){
+  const a=ARCH.find(x=>x.id===ui.aid), p=DATA.find(x=>x.id===ui.aid);
+  const t=a||{kind:p.kind,title:p.title,date:p.date,contract:p.contract||Math.round(p.budget*1.25),budget:p.budget,fact:blOf(p).reduce((s,b)=>s+b.fact,0),docs:[['Договор с заказчиком','PDF','2 стр.'],['Итоговая смета','XLSX',blOf(p).length+' строк'],['Договоры с группой','ZIP','— '],['Вызывные листы','PDF','2 стр.'],['Чеки и расписки','ZIP','—']]};
+  return `<div class="top"><button class="iconbtn" data-act="home" aria-label="Назад">${ico('back')}</button><div style="flex:1;min-width:0"><h1>Архив</h1><div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(t.title)}</div></div></div>${demo}
+  <main><div class="card"><div class="tag small" style="font-weight:800;text-transform:uppercase">${esc(t.kind)} · завершён</div><h3 style="margin:4px 0 12px;font-size:17px">${esc(t.title)}</h3>
+   <div class="sum" style="margin-top:0"><div><small>Договор</small><b class="money">${money(t.contract)}</b></div><div><small>Бюджет</small><b class="money">${money(t.budget)}</b></div><div><small>Потрачено</small><b class="money">${money(t.fact)}</b></div><div><small>Итог (прибыль)</small><b class="money" style="color:var(--ok)">${money(t.contract-t.fact)}</b></div></div></div>
+  <h2>Документы · ${t.docs.length}</h2><div class="card" style="padding:4px 16px">${t.docs.map(d=>`<div class="person"><div class="ava" style="background:var(--surface2);color:var(--muted);border-radius:12px;font-size:11px">${d[1]}</div><div class="n"><b>${esc(d[0])}</b><span>${esc(d[2])}</span></div>${ico('chev')}</div>`).join('')}</div>
+  <p class="hint">В примере документы показаны списком. В рабочей версии завершённый проект уходит сюда со всеми файлами и остаётся навсегда.</p>
+  ${p?`<button class="btn line" data-act="unarch" data-id="${p.id}">${ico('reset')}Вернуть проект в работу</button>`:''}</main>`;
 }
 
-function tCall(p){
+function backKind(u){
+  const tabs=tabsFor(u);
+  if(ui.tab==='dept'&&ui.dept) return 'dept';
+  if(ui.tab==='scenes'&&ui.scene) return 'scene';
+  if(ui.tab==='reqs'&&!tabs.includes('reqs')) return 'money';
+  if(!tabs.includes(ui.tab)) return 'more';
+  return isProd(u)||u.kind==='accountant'&&false?'home':(isProd(u)?'home':null);
+}
+function viewProject(u){
+  const p=proj(), tabs=tabsFor(u);
+  if(!ui.tab||(!tabs.includes(ui.tab)&&!['loc','team','cast','props','reqs'].includes(ui.tab))) ui.tab=tabs[0];
+  const tabFn={call:tCall,scenes:tScenes,dept:tDept,mydept:tMyDept,cast:tCast,money:tMoney,props:tProps,more:tMore,loc:tLoc,team:tTeam,reqs:tReqs};
+  const body=tabFn[ui.tab](p,u);
+  let title=TITLES[ui.tab];
+  if(ui.tab==='dept'&&ui.dept) title=depts(p).find(d=>d.id===ui.dept).name;
+  if(ui.tab==='scenes'&&ui.scene){const s=SC.find(x=>x.id===ui.scene);title='Сцена '+s.n}
+  const bk=backKind(u);
+  const back=bk?`<button class="iconbtn" data-act="back" aria-label="Назад">${ico('back')}</button>`:'';
+  const nav=tabs.map(t=>{const on=ui.tab===t||(t==='more'&&!tabs.includes(ui.tab)&&ui.tab!=='reqs')||(t==='money'&&ui.tab==='reqs'&&!tabs.includes('reqs'));const wc=waitCount(),nb=isProd(u)&&((t==='dept'&&newCount(p))?'<i class="dot"></i>':(t==='money'&&wc?`<i class="dot n">${wc}</i>`:''));
+    return `<button class="tab ${on?'on':''}" data-act="tab" data-id="${t}">${nb||''}${ico(TABDEF[t][1])}<span>${TABDEF[t][0]}</span></button>`}).join('');
+  return `<div class="top">${back}<div style="flex:1;min-width:0"><h1>${esc(title)}</h1><div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p.title)}</div></div></div>${demo}
+    <main>${(['more','call','money','mydept'].includes(ui.tab))&&!ui.dept&&!ui.scene?whoBar(u)+'<div style="height:10px"></div>':''}${body}</main>
+    <nav class="tabbar" style="grid-template-columns:repeat(${tabs.length},1fr)">${nav}</nav>`;
+}
+
+/* ---------- вкладки ---------- */
+function todayScenes(p,u){
+  if(p.id!=='p1') return '';
+  const cats=catsFor(u);
+  const sc=SC.filter(s=>s.day===1);
+  const rows=sc.map(s=>{
+    const L=sceneLists(p,s);
+    const lines=cats.map(c=>L[c].length?`<div class="ln2"><b>${CATLAB[c]}:</b> ${L[c].map(esc).join('; ')}</div>`:'').join('');
+    if(!lines)return '';
+    return `<button class="card scard" data-act="scene" data-id="${s.id}"><div class="row"><b>Сегодня в сцене ${s.n}: «${esc(s.title)}»</b><span class="chip gray">${s.at}</span></div>${lines}</button>`;
+  }).join('');
+  return rows?`<h2>Сегодня по сценам</h2>${rows}`:'';
+}
+function tCall(p,u){
   const loc=p.locs.find(l=>l.id===p.locId), acc=p.crew.filter(gAcc).length, sent=st.sent[p.id];
   let shifts='',last='';
   p.plan.forEach(r=>{ if(r.s!==last){shifts+=`<li style="display:block;border:0;padding:6px 0 0"><div class="shift">${r.s}</div></li>`;last=r.s}
     shifts+=`<li><time>${r.t}</time><div><b>${esc(r.a)}</b><span>${esc(r.d)}</span></div></li>`});
+  const prodv=isProd(u);
   return `<div class="hero"><div class="d">${dfmt(p.date,{weekday:'long',day:'numeric',month:'long'})}</div><div class="s">Вызывной на съёмочный день</div>
     <div class="big"><div><small>Сбор</small><b>${p.call}</b></div><div><small>Конец</small><b>${p.end}</b></div><div><small>Приняли</small><b>${acc}/${p.crew.length}</b></div></div></div>
     <div class="card"><div class="row" style="align-items:flex-start"><div><div class="small">Локация сбора</div><b style="font-size:16px">${esc(loc.name)}</b><div class="small" style="margin-top:2px">${esc(loc.addr)}, Бишкек</div></div></div>
       <a class="btn sec" style="margin-top:12px;text-decoration:none;min-height:48px" href="${mapUrl(loc.addr)}" target="_blank" rel="noopener">${ico('map')}Открыть в 2ГИС</a></div>
     <div class="card"><div class="row" style="gap:12px;align-items:flex-start"><span style="color:var(--accent)">${ico('sun')}</span><div style="font-weight:600;font-size:14px">${esc(p.weather)}</div></div></div>
-    <button class="btn" data-act="send">${ico('send')}${sent?'Разослать ещё раз в Telegram':'Разослать вызывной в Telegram'}</button>
-    <button class="btn line" style="margin-top:10px" data-act="part">${ico('eye')}Посмотреть как участник</button>
+    ${prodv?`<button class="btn" data-act="send">${ico('send')}${sent?'Разослать ещё раз в Telegram':'Разослать вызывной в Telegram'}</button>
+    <button class="btn line" style="margin-top:10px" data-act="part">${ico('eye')}Посмотреть как участник</button>`:''}
+    ${todayScenes(p,u)}
     <h2>План по часам</h2><div class="card" style="padding:6px 16px 10px"><ul class="tl">${shifts}</ul></div>
-    <h2>Группа · ${p.crew.length}</h2><div class="card" style="padding:6px 16px">${p.crew.map(m=>{const a=gAcc(m);return `<div class="person"><div class="ava" style="background:hsl(${hue(m.name)} 40% 42%)">${initials(m.name)}</div><div class="n"><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div><span class="chip ${a?'ok':'gray'}">${a?ico('check','')+'принял':'не ответил'}</span></div>`}).join('')}</div>`;
+    ${showCrew(u)?`<h2>Группа · ${p.crew.length}</h2><div class="card" style="padding:6px 16px">${p.crew.map(m=>{const a=gAcc(m);return `<div class="person"><div class="ava" style="background:hsl(${hue(m.name)} 40% 42%)">${initials(m.name)}</div><div class="n"><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div><span class="chip ${a?'ok':'gray'}">${a?ico('check','')+'принял':'не ответил'}</span></div>`}).join('')}${formRows(p)}</div>${p.id==='p1'?NOTE:''}`:''}
+    ${prodv&&p.id==='p1'?linkBtn('gruppa','Ссылка на анкету группы'):''}`;
 }
-function tCast(p){
-  return `<p class="hint">Нажмите на статус под анкетой, чтобы сменить: кандидат → утверждён → отказ.</p>
-  <div class="grid2">${p.cast.map((c,i)=>{const s=gCast(c),[n,cl]=CAST_ST[s];
+function linkBtn(kind,label){return `<button class="btn line" style="margin-top:12px" data-act="link" data-id="${kind}">${ico('link')}${label}</button>`}
+function formRows(p){
+  return formsOf(p,f=>f.type==='gruppa').map(f=>{const hired=st.hired[f.id];
+    return `<button class="person" style="width:100%;text-align:left" data-act="fopen" data-id="${f.id}">${fAva(f)}<div class="n"><b>${esc(f.name)}</b><span>${esc(f.deptName)} · ${esc(f.sub)}</span></div><span class="chip ${hired?'ok':st.seen[f.id]?'gray':'new'}">${hired?'нанят':st.seen[f.id]?'просмотрено':'новый'}</span></button>`}).join('');
+}
+const fAva=f=>f.photos&&f.photos.face?`<img class="ava img" src="${f.photos.face}" alt="">`:`<div class="ava" style="background:hsl(${hue(f.name)} 40% 42%)">${initials(f.name)}</div>`;
+
+function tCast(p,u){
+  const fc=formsOf(p,f=>f.type==='akter').map((f,i)=>{const s=st.cast[f.id]??3,[n,cl]=CAST_ST[s];
+    return `<div class="acard"><button class="ph" style="display:block;width:100%;position:relative" data-act="fopen" data-id="${f.id}">${f.photos&&f.photos.face?`<img src="${f.photos.face}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`:silhouette(f.name,i)}<span class="badge">из анкеты</span></button><div class="bd"><b>${esc(f.name)}</b><div class="role">${esc(f.sub)}</div>
+    <button class="chip ${cl} st" data-act="cast" data-id="${f.id}" style="min-height:40px">${s===1?ico('check'):''}${n}</button></div></div>`}).join('');
+  return `${p.id==='p1'?linkBtn('akter','Ссылка на анкету актёра'):''}<p class="hint" style="margin-top:12px">Нажмите на статус под анкетой, чтобы сменить: кандидат → утверждён → отказ. Фото открывает полную анкету.</p>
+  <div class="grid2">${fc}${p.cast.map((c,i)=>{const s=gCast(c),[n,cl]=CAST_ST[s];
     return `<div class="acard"><div class="ph">${silhouette(c.name,i)}</div><div class="bd"><b>${esc(c.name)}</b><div class="role">${esc(c.role)}</div>
     <button class="chip ${cl} st" data-act="cast" data-id="${c.id}" style="min-height:40px">${s===1?ico('check'):''}${n}</button></div></div>`}).join('')}</div>
-  <div class="card" style="margin-top:14px"><div class="row small"><span>Утверждено</span><b style="color:var(--ink)">${p.cast.filter(c=>gCast(c)===1).length} из ${p.cast.length}</b></div></div>`;
+  <div class="card" style="margin-top:14px"><div class="row small"><span>Утверждено</span><b style="color:var(--ink)">${p.cast.filter(c=>gCast(c)===1).length} из ${p.cast.length}</b></div></div>${p.id==='p1'?NOTE:''}`;
 }
 function tLoc(p){
   return p.locs.map(l=>{const ok=gLoc(l);
@@ -354,24 +670,210 @@ function tLoc(p){
     <div class="acts"><button class="btn sec" data-act="loc" data-id="${l.id}">${ok?'Сбросить':'Получено ✓'}</button>
     <a class="btn line" style="text-decoration:none" href="${mapUrl(l.addr)}" target="_blank" rel="noopener">${ico('map')}2ГИС</a></div></div></div>`}).join('');
 }
-function tProps(p){
-  const all=p.props.flatMap(s=>s.items),done=all.filter(gProp).length;
-  return `<div class="card"><div class="row" style="margin-bottom:8px"><b>Собрано</b><b>${done} из ${all.length}</b></div><div class="bar ok"><i style="width:${done/all.length*100}%"></i></div></div>`+
-  p.props.map(s=>`<div class="scn"><b>${esc(s.scene)}</b><span class="small">${s.items.filter(gProp).length}/${s.items.length}</span></div>
-    <div class="card" style="padding:2px 16px;margin-top:8px">${s.items.map(i=>`<button class="chk ${gProp(i)?'on':''}" data-act="prop" data-id="${i.id}"><span class="box">${ico('check')}</span><span class="t">${esc(i.t)}</span><span class="k">${i.k}</span></button>`).join('')}</div>`).join('');
+function propList(s,all){
+  return `<div class="scn"><b>${esc(s.scene)}</b><span class="small">${s.items.filter(gProp).length}/${s.items.length}</span></div>
+    <div class="card" style="padding:2px 16px;margin-top:8px">${s.items.map(i=>`<button class="chk ${gProp(i)?'on':''}" data-act="prop" data-id="${i.id}"><span class="box">${ico('check')}</span><span class="t">${esc(i.t)}</span><span class="k">${i.k}</span></button>`).join('')}</div>`;
 }
-function tBudget(p){
-  const plan=p.bl.reduce((a,b)=>a+b.plan,0),fact=p.bl.reduce((a,b)=>a+b.fact,0),pct=Math.min(100,Math.round(fact/p.budget*100));
+function tProps(p,u){
+  const ps=propsFor(p), all=ps.flatMap(s=>s.items), done=all.filter(gProp).length;
+  const head=`<div class="card"><div class="row" style="margin-bottom:8px"><b>Собрано</b><b>${done} из ${all.length}</b></div><div class="bar ok"><i style="width:${done/Math.max(1,all.length)*100}%"></i></div></div>`;
+  if(p.id==='p1'){
+    const d1=ps.filter(s=>s.day===1),d2=ps.filter(s=>s.day===2);
+    return head+`<h2>Сегодня · 27 ноября (день 1)</h2>${d1.map(propList).join('')}<h2>Завтра · 28 ноября (день 2)</h2>${d2.map(propList).join('')}`;
+  }
+  return head+ps.map(propList).join('');
+}
+function tBudget(p,u,cap){
+  const plan=blOf(p).reduce((a,b)=>a+b.plan,0),fact=blOf(p).reduce((a,b)=>a+b.fact,0),pct=Math.min(100,Math.round(fact/p.budget*100));
   return `<div class="card"><div class="small">Потрачено из бюджета</div>
     <div class="row" style="margin:4px 0 10px;align-items:baseline"><span class="money" style="font-size:24px;font-family:Unbounded,sans-serif;font-weight:600">${money(fact)}</span><b>${pct}%</b></div>
     <div class="bar ${fact>p.budget?'bad':''}"><i style="width:${pct}%"></i></div>
     <div class="sum"><div><small>Бюджет</small><b class="money">${money(p.budget)}</b></div><div><small>Остаток</small><b class="money" style="color:var(--ok)">${money(p.budget-fact)}</b></div></div></div>
-    <h2 style="margin-top:6px">Статьи расходов</h2><div class="card" style="padding:4px 16px">${p.bl.map(b=>{const over=b.fact>b.plan,w=b.plan?Math.min(100,b.fact/b.plan*100):0;
+    <h2 style="margin-top:6px">${p.id==='p1'?'Смета по цехам':'Статьи расходов'}</h2><div class="card" style="padding:4px 16px">${blOf(p).map(b=>{const over=b.fact>b.plan,w=b.plan?Math.min(100,b.fact/b.plan*100):0;
       return `<div class="bl"><div class="top2"><span>${esc(b.name)}</span>${over?`<span class="chip bad">+${money(b.fact-b.plan)}</span>`:''}</div><div class="bar ${over?'bad':''}"><i style="width:${w}%"></i></div>
       <div class="nums"><span>план <b class="money" style="color:var(--ink)">${money(b.plan)}</b></span><span>факт <b class="money" style="color:var(--ink)">${money(b.fact)}</b></span></div></div>`}).join('')}</div>
     <div class="card"><div class="row"><b>Итого по плану</b><b class="money">${money(plan)}</b></div><div class="row" style="margin-top:8px"><b>Итого по факту</b><b class="money">${money(fact)}</b></div></div>`;
 }
 
+/* --- деньги / бухгалтерия --- */
+function people(p){
+  return p.crew.map((m,i)=>({id:m.id,name:m.name,role:m.role,pay:PAY['m'+i]})).concat(p.cast.slice(0,5).map((c,i)=>({id:c.id,name:c.name,role:'Актёр: '+c.role.split(',')[0],pay:PAY['c'+i]})));
+}
+function tMoney(p,u){
+  if(p.id!=='p1') return tBudget(p,u);
+  const fact=blOf(p).reduce((a,b)=>a+b.fact,0), pe=people(p);
+  const rem=x=>st.paid[x.id]?0:x.pay[0]-x.pay[1];
+  const owed=pe.reduce((s,x)=>s+rem(x),0), total=pe.reduce((s,x)=>s+x.pay[0],0);
+  const wePay=OBL.filter(o=>o.dir==='мы'&&!st.obl[o.id]).reduce((s,o)=>s+o.amt,0);
+  const theyPay=OBL.filter(o=>o.dir==='нам'&&!st.obl[o.id]).reduce((s,o)=>s+o.amt,0);
+  const got=RECEIVED0+OBL.filter(o=>o.dir==='нам'&&st.obl[o.id]).reduce((s,o)=>s+o.amt,0);
+  return `<div class="card"><div class="small">Договор с заказчиком</div><div class="money" style="font-size:24px;font-family:Unbounded,sans-serif;font-weight:600;margin:2px 0 4px">${money(p.contract)}</div>
+    <div class="sum"><div><small>Поступило</small><b class="money" style="color:var(--ok)">${money(got)}</b></div><div><small>Потрачено (факт)</small><b class="money">${money(fact)}</b></div>
+    <div><small>Деньги сейчас</small><b class="money">${money(got-fact)}</b></div><div><small>Прогноз прибыли</small><b class="money" style="color:var(--ok)">${money(p.contract-p.budget)}</b></div></div>
+    <p class="small" style="margin:10px 0 0">Прогноз = договор минус плановая смета (${money(p.budget)}).</p></div>
+  ${deptMoney(p,u)}<h2>Кто кому что должен</h2><div class="card" style="padding:4px 16px">
+    <div class="bl"><div class="top2"><span>Мы должны людям</span><b class="money">${money(owed)}</b></div></div>
+    <div class="bl"><div class="top2"><span>Мы должны поставщикам</span><b class="money">${money(wePay)}</b></div></div>
+    <div class="bl"><div class="top2"><span>Нам должен заказчик</span><b class="money" style="color:var(--ok)">${money(theyPay)}</b></div></div></div>
+  <div class="card" style="padding:4px 16px">${OBL.map(o=>{const d=st.obl[o.id];return `<div class="person"><div class="n"><b>${esc(o.who)}</b><span>${o.dir==='мы'?'платим':'ждём'} ${money(o.amt)} · ${o.due}</span></div><button class="chip ${d?'ok':o.dir==='мы'?'warn':'new'}" style="min-height:40px" data-act="obl" data-id="${o.id}">${d?ico('check')+(o.dir==='мы'?'оплачено':'получено'):(o.dir==='мы'?'Оплатить':'Получено?')}</button></div>`}).join('')}</div>
+  <h2>Платежи людям</h2><div class="card" style="padding:4px 16px"><div class="row small" style="padding:10px 0;border-bottom:1px solid var(--line)"><span>Начислено ${money(total)}</span><span>Осталось ${money(owed)}</span></div>${pe.map(x=>{const r=rem(x),paid=st.paid[x.id]||r===0;
+    return `<div class="person"><div class="ava" style="background:hsl(${hue(x.name)} 40% 42%)">${initials(x.name)}</div><div class="n"><b>${esc(x.name)}</b><span>${esc(x.role)}</span><small style="display:block;color:var(--muted);font-weight:600;font-size:12px">начислено ${money(x.pay[0])} · аванс ${money(x.pay[1])}</small></div>
+    <button class="chip ${paid?'ok':x.pay[1]>0?'warn':'bad'}" style="min-height:40px;flex-direction:column;gap:0;line-height:1.15" data-act="pay" data-id="${x.id}">${paid?ico('check')+'оплачено':`<span>долг</span><span>${money(r)}</span>`}</button></div>`}).join('')}</div>
+  <h2>Смета по цехам</h2>${tBudget(p,u).split('<h2')[1].replace(/^[^>]*>[^<]*<\/h2>/,'').replace(/^/,'')}
+  <p class="hint">Бухгалтерию видят только продюсер и бухгалтер. Другие цеха свои деньги не видят.</p>`;
+}
+
+/* --- цеха --- */
+function tDept(p,u){
+  const ds=depts(p);
+  if(!ds.length) return `<div class="card"><b>Цеха этого проекта</b><p class="small" style="margin:6px 0 0">В примере цеха полностью заполнены только в проекте «Реклама банка — имиджевый ролик».</p></div>`;
+  if(ui.dept) return dDetail(p,ds.find(d=>d.id===ui.dept),u);
+  const st2=ds.map(d=>dStat(p,d));
+  const cnt=k=>st2.filter(x=>x.key===k).length;
+  return `<div class="card"><div class="row" style="margin-bottom:10px"><b>Готовность по цехам</b><b>${deptAvg(p)}%</b></div><div class="bar"><i style="width:${deptAvg(p)}%"></i></div>
+   <div class="row" style="margin-top:12px;gap:6px"><span class="chip ok">готовы: ${cnt('ready')}</span><span class="chip warn">в работе: ${cnt('work')}</span><span class="chip bad">нет людей: ${cnt('short')}</span></div></div>`+
+  ds.map((d,i)=>{const s=st2[i],nf=formsOf(p,f=>f.dept===d.id&&!st.seen[f.id]).length;
+    return `<button class="card pcard" data-act="dept" data-id="${d.id}"><div class="row" style="align-items:flex-start;gap:8px"><h3 style="margin:0 0 4px;font-size:16px">${esc(d.name)}</h3><span class="chip ${s.cl}">${s.txt}</span></div>
+    <div class="small" style="margin-bottom:10px">Руководитель: <b style="color:var(--ink)">${esc(d.head)}</b></div>
+    <div class="bar ${s.cl==='bad'?'bad':s.cl==='ok'?'ok':''}"><i style="width:${s.ready}%"></i></div>
+    <div class="row small" style="margin-top:8px"><span>Люди ${s.mem}/${s.need} · задачи ${dTasks(p,d).filter(x=>x.on).length}/${d.tasks.length}</span>${nf?`<span class="chip new">новых: ${nf}</span>`:`<b style="color:var(--ink)">${s.ready}%</b>`}</div></button>`}).join('');
+}
+function tMyDept(p,u){
+  const d=depts(p).find(x=>x.id===u.dept)||depts(p)[0];
+  if(!d) return '<div class="card">Для этого проекта цеха ещё не заполнены.</div>';
+  return dDetail(p,d,u);
+}
+function dDetail(p,d,u){
+  const s=dStat(p,d),mem=dMembers(p,d),tk=dTasks(p,d),fs=formsOf(p,f=>f.dept===d.id);
+  const bl=blOf(p).find(b=>b.dept===d.id);
+  const linkKey=d.id==='cast'?'gruppa/mass':'gruppa/'+d.id;
+  return `<div class="card"><div class="row" style="align-items:flex-start"><div><div class="small">Руководитель цеха</div><b style="font-size:16px">${esc(d.head)}</b></div><span class="chip ${s.cl}">${s.txt}</span></div>
+    <div class="row small" style="margin:14px 0 6px"><span>Готовность цеха</span><b style="color:var(--ink)">${s.ready}%</b></div><div class="bar ${s.cl==='bad'?'bad':s.cl==='ok'?'ok':''}"><i style="width:${s.ready}%"></i></div>
+    ${s.key==='short'?`<p class="small" style="margin:10px 0 0;color:var(--bad)">Не хватает людей: ${d.need-s.mem}. Нужно ${d.need}, есть ${s.mem}.</p>`:''}</div>
+  <h2 style="margin-top:6px">Состав · ${mem.length}/${d.need}</h2><div class="card" style="padding:4px 16px">${mem.map(m=>`<div class="person"><div class="ava" style="background:hsl(${hue(m.name)} 40% 42%)">${initials(m.name)}</div><div class="n"><b>${esc(m.name)}</b><span>${esc(m.role)}${m.name===d.head?' · руководитель':''}</span></div><span class="chip ${m.acc?'ok':'gray'}">${m.tag||(m.acc?'принял':'не ответил')}</span></div>`).join('')}</div>
+  ${fs.length?`<h2>Отклики из анкет · ${fs.length}</h2><div class="card" style="padding:4px 16px">${fs.map(f=>{const hired=st.hired[f.id];return `<button class="person" style="width:100%;text-align:left" data-act="fopen" data-id="${f.id}">${fAva(f)}<div class="n"><b>${esc(f.name)}</b><span>${esc(f.sub)}</span></div><span class="chip ${hired?'ok':st.seen[f.id]?'gray':'new'}">${hired?'нанят':st.seen[f.id]?'просмотрено':'новый'}</span></button>`}).join('')}</div>`:''}
+  <h2>Задачи к съёмке · ${tk.filter(x=>x.on).length}/${tk.length}</h2><div class="card" style="padding:2px 16px">${tk.map(t=>`<button class="chk ${t.on?'on':''}" data-act="dtask" data-id="${t.id}"><span class="box">${ico('check')}</span><span class="t">${esc(t.t)}</span></button>`).join('')}</div>
+  <h2>Что нужно от цеха</h2><div class="card"><ul class="need">${d.needs.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>
+  ${canMoney(u)&&bl?`<h2>Бюджет цеха</h2><div class="card"><div class="bar ${bl.fact>bl.plan?'bad':''}"><i style="width:${Math.min(100,bl.fact/Math.max(1,bl.plan)*100)}%"></i></div><div class="nums row small" style="margin-top:8px"><span>план <b class="money" style="color:var(--ink)">${money(bl.plan)}</b></span><span>факт <b class="money" style="color:var(--ink)">${money(bl.fact)}</b></span></div></div>`:''}
+  ${isProd(u)?linkBtn(linkKey,'Ссылка на анкету цеха'):''}${p.id==='p1'?NOTE:''}`;
+}
+
+/* --- сцены --- */
+function tScenes(p,u){
+  const ss=scenesOf(p);
+  if(!ss.length) return `<div class="card"><b>Сцены</b><p class="small" style="margin:6px 0 0">В примере разбивка по сценам заполнена в проекте «Реклама банка — имиджевый ролик».</p></div>`;
+  if(ui.scene) return sDetail(p,SC.find(x=>x.id===ui.scene),u);
+  const cats=catsFor(u);
+  return `<p class="hint">Приложение собирает по каждой сцене реквизит, костюм, грим, локацию, транспорт и технику.${isProd(u)||u.kind==='director'?' Откройте сцену, чтобы вставить текст и увидеть раскадровку.':''}</p>`+ss.map(s=>{
+    const L=sceneLists(p,s),mine=cats.filter(c=>c!=='loc').reduce((n,c)=>n+L[c].length,0);
+    return `<button class="card scard" data-act="scene" data-id="${s.id}"><div class="row" style="gap:12px"><div class="num">${s.n}</div><div style="flex:1;min-width:0"><b style="font-size:16px">${esc(s.title)}</b><div class="small">${esc(p.locs[s.loc].name)} · ${s.tod.toLowerCase()}</div></div><span class="chip ${s.day===1?'ok':'gray'}">${s.day===1?'27 нояб. '+s.at:'28 нояб.'}</span></div>
+    <div class="small" style="margin-top:8px">Герои: ${esc(s.chars.join(', '))}</div>${cats.length&&u.kind!=='producer'&&u.kind!=='director'?`<div class="small" style="margin-top:4px;color:var(--accent)">Нужно вашему цеху: ${mine} поз.</div>`:''}</button>`}).join('');
+}
+function hlText(text){
+  const stems=DICT.map(d=>d[0]),re=new RegExp('(?<![а-яё])('+stems.join('|')+')[а-яё]*','gi');
+  return esc(text).replace(re,m=>`<mark class="hl">${m}</mark>`);
+}
+function suggest(p,s,text){
+  const L=sceneLists(p,s),seen={},out=[];
+  const re=new RegExp('(?<![а-яё])('+DICT.map(d=>d[0]).join('|')+')[а-яё]*','gi');
+  (text||'').toLowerCase().replace(re,(m,stem)=>{const d=DICT.find(x=>x[0]===stem.toLowerCase());if(d&&!seen[d[2]+d[1]]){seen[d[2]+d[1]]=1;if(!L[d[1]].includes(d[2]))out.push([d[1],d[2]])}return m});
+  return out;
+}
+function sDetail(p,s,u){
+  const L=sceneLists(p,s),cats=catsFor(u);
+  const sbAllowed=['producer','director','artist'].includes(u.kind)||(u.kind==='dept'&&u.dept==='oper');
+  const canParse=isProd(u)||u.kind==='director';
+  const text=st.sctext[s.id]??s.text, sug=ui.hl[s.id]?suggest(p,s,text):null;
+  const sec=cats.map(c=>`<div class="ln2" style="padding:8px 0;border-bottom:1px solid var(--line)"><div class="shift" style="padding:0 0 4px">${CATLAB[c]}</div>${L[c].length?L[c].map(x=>`<div class="bul">${esc(x)}</div>`).join(''):'<div class="small">нет</div>'}</div>`).join('');
+  return `<div class="card"><div class="row" style="gap:12px"><div class="num">${s.n}</div><div style="flex:1"><b style="font-size:17px">${esc(s.title)}</b><div class="small">${esc(p.locs[s.loc].name)} · ${s.tod.toLowerCase()}</div></div></div>
+   <div class="row" style="margin-top:12px;gap:6px;flex-wrap:wrap;justify-content:flex-start"><span class="chip ${s.day===1?'ok':'gray'}">${s.day===1?'27 нояб. '+s.at:'28 нояб.'}</span><span class="chip gray">${esc(s.chars.join(', '))}</span></div></div>
+  <h2 style="margin-top:6px">Разбивка сцены</h2><div class="card" style="padding:4px 16px">${sec||'<p class="small">Для вашей роли здесь ничего не нужно.</p>'}</div>
+  ${sbAllowed?`<h2>Раскадровка · ${s.fr.length} кадров</h2><div class="grid2">${s.fr.map((f,i)=>`<div class="acard"><div class="sk">${sketch(f[0],i+s.n)}<span class="badge">кадр ${i+1}</span></div><div class="bd" style="padding:8px 12px 12px"><span class="chip gray" style="align-self:flex-start;padding:3px 10px;margin-bottom:6px">${f[0]} план</span><div style="font-size:13px;font-weight:600">${esc(f[1])}</div></div></div>`).join('')}</div>`:''}
+  ${canParse?`<h2>Вставить текст сцены</h2><div class="card"><textarea id="sctext" class="ta" rows="5">${esc(text)}</textarea>
+   <p class="small" style="margin:8px 0 10px">Попробуйте дописать слова: «плед», «пальто», «дрон», «чайник».</p>
+   <button class="btn" data-act="hl" data-id="${s.id}">Найти в тексте</button>
+   ${sug?`<div style="margin-top:14px;line-height:1.7;font-weight:600">${hlText(text)}</div>
+    <div class="shift" style="padding:14px 0 6px">${sug.length?'Предлагаем добавить в разбивку':'Всё найденное уже есть в разбивке'}</div>
+    ${sug.map(a=>`<div class="person" style="padding:6px 0"><div class="n"><b>${esc(a[1])}</b><span>${CATLAB[a[0]]}</span></div><button class="chip new" style="min-height:40px" data-act="sadd" data-id="${s.id}" data-cat="${a[0]}" data-item="${esc(a[1])}">${ico('plus')}Добавить</button></div>`).join('')}`:''}
+   <p class="hint" style="margin:12px 0 0">В примере — по словарю; в рабочей версии разбирать будет ИИ.</p></div>`:''}`;
+}
+
+/* --- заявки на деньги и авансы --- */
+function deptMoney(p,u){
+  const rq=getReqs(),av=getAdv(),sum=a=>a.reduce((x,y)=>x+y,0);
+  const approved=sum(rq.filter(q=>q.status==='approved'||q.status==='sent').map(q=>q.amt));
+  const issuedReq=sum(rq.filter(q=>q.status==='sent').map(q=>q.amt)), issuedAdv=sum(av.map(a=>a.amt));
+  const under=sum(av.filter(a=>a.status==='out').map(a=>a.amt))+sum(av.filter(a=>a.status==='reported'&&a.act==='перенёс').map(a=>a.left));
+  const waitR=av.filter(a=>a.status==='out').length, wc=waitCount();
+  return `<button class="card menu" data-act="tab" data-id="reqs"><span class="mi">${ico('coin')}</span><span class="n"><b>Заявки на деньги</b><small>${wc?wc+' '+plural(wc,'новая заявка','новые заявки','новых заявок')+' ждут решения':'все заявки решены'}</small></span>${wc?`<i class="dot n inl">${wc}</i>`:''}${ico('chev')}</button>
+  <h2 style="margin-top:6px">Деньги цехам</h2><div class="card" style="padding:4px 16px">
+   <div class="bl"><div class="top2"><span>Бюджет по цехам (план)</span><b class="money">${money(blOf(p).reduce((x,b)=>x+b.plan,0))}</b></div></div>
+   <div class="bl"><div class="top2"><span>Одобрено заявок</span><b class="money">${money(approved)}</b></div></div>
+   <div class="bl"><div class="top2"><span>Выдано по заявкам</span><b class="money">${money(issuedReq)}</b></div></div>
+   <div class="bl"><div class="top2"><span>Выдано авансов под отчёт</span><b class="money">${money(issuedAdv)}</b></div></div>
+   <div class="bl"><div class="top2"><span>Сейчас под отчётом</span><b class="money" style="color:var(--warn)">${money(under)}</b></div><div class="small">Ждём отчёт: ${waitR} ${plural(waitR,'цех','цеха','цехов')}</div></div></div>`;
+}
+const fmtD=iso=>dfmt(iso,{day:'numeric',month:'long'});
+function reqCard(q,u,prod){
+  const [tx,cl]=RQST[q.status];
+  return `<div class="card"><div class="row" style="align-items:flex-start;gap:8px"><div style="flex:1;min-width:0"><div class="small">${esc(dName(q.dept))} · ${esc(q.by)}</div><b style="font-size:15.5px">${esc(q.what)}</b></div><span class="chip ${cl}">${tx}</span></div>
+   <div class="row" style="margin:10px 0 4px"><span class="money" style="font-size:19px;font-family:Unbounded,sans-serif;font-weight:600">${money(q.amt)}</span><span class="small">нужно к ${fmtD(q.need)}</span></div>
+   ${q.items&&q.items.length?`<ul class="need" style="margin:6px 0 0">${q.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`:''}
+   ${q.comment?`<div class="cmt"><b>${q.status==='clarify'?'Вопрос продюсера':'Комментарий'}:</b> ${esc(q.comment)}</div>`:''}
+   ${q.status==='sent'?`<div class="small" style="margin-top:8px">Выдано: ${q.method||'перевод'}. Сумма уже в бухгалтерии как выданная цеху.</div>`:''}
+   ${prod&&(q.status==='wait'||q.status==='clarify')?`<div class="grid3"><button class="btn sm" data-act="rqok" data-id="${q.id}">Одобрить</button><button class="btn sm sec" data-act="rqnote" data-id="${q.id}" data-k="ask">Уточнить</button><button class="btn sm line" data-act="rqnote" data-id="${q.id}" data-k="no">Отклонить</button></div>`:''}
+   ${prod&&q.status==='approved'?`<button class="btn" style="margin-top:12px;min-height:48px" data-act="rqsend" data-id="${q.id}">${ico('send')}Деньги отправлены</button>`:''}</div>`;
+}
+function advCard(a,u,prod){
+  const rep=a.status==='reported';
+  return `<div class="card"><div class="row" style="align-items:flex-start;gap:8px"><div style="flex:1"><div class="small">${esc(dName(a.dept))} · ${esc(a.period)}</div><b style="font-size:15.5px">Аванс под отчёт</b></div><span class="chip ${rep?'ok':'warn'}">${rep?'отчёт получен':'выдан, ждём отчёт'}</span></div>
+   <div class="row" style="margin:10px 0 4px"><span class="money" style="font-size:19px;font-family:Unbounded,sans-serif;font-weight:600">${money(a.amt)}</span><span class="small">лимит на период</span></div>
+   ${rep?`<div class="sum" style="margin-top:8px"><div><small>Потрачено</small><b class="money">${money(a.spent)}</b></div><div><small>Остаток: ${a.act}</small><b class="money">${money(a.left)}</b></div></div><div class="small" style="margin-top:8px">Фото чеков: ${a.photos}. Отчёт сдан один раз, без ежедневных записей.</div>`
+   :`<div class="small" style="margin-top:6px">Мелочи тратьте из аванса без записей. В конце периода сдайте одним разом фото всех чеков и остаток.</div>`}
+   ${!prod&&!rep&&u.kind!=='accountant'?`<button class="btn" style="margin-top:12px;min-height:48px" data-act="report" data-id="${a.id}">Отчитаться</button>`:''}</div>`;
+}
+function tReqs(p,u){
+  if(p.id!=='p1') return `<div class="card"><b>Заявки на деньги</b><p class="small" style="margin:6px 0 0">В примере заявки и авансы заполнены в проекте «Реклама банка — имиджевый ролик».</p></div>`;
+  const prod=isProd(u), mgr=prod||u.kind==='accountant';
+  const rq=getReqs().filter(q=>mgr||q.dept===u.dept), av=getAdv().filter(a=>mgr||a.dept===u.dept);
+  const grp=(t,f)=>{const l=rq.filter(f);return l.length?`<h2>${t} · ${l.length}</h2>${l.map(q=>reqCard(q,u,prod)).join('')}`:''};
+  return (mgr?(prod?`<button class="btn" data-act="newadv">${ico('plus')}Выдать аванс под отчёт</button>`:''):`<button class="btn" data-act="newreq">${ico('plus')}Новая заявка на деньги</button>`)+
+   `<p class="hint" style="margin-top:12px">${mgr?'Цеха не ведут ежедневные расходы: большие траты идут заявкой, мелочи — авансом под отчёт.':'Крупную трату оформите заявкой: что нужно, сумма и к какому дню. Мелочи — из аванса, чеки сдаёте один раз в конце.'}</p>`+
+   (rq.length?'':'<div class="card"><p class="small" style="margin:0">Заявок пока нет.</p></div>')+
+   grp('Ждут решения',q=>q.status==='wait'||q.status==='clarify')+grp('Одобрено, ждут денег',q=>q.status==='approved')+grp('Деньги отправлены',q=>q.status==='sent')+grp('Отклонено',q=>q.status==='rejected')+
+   (av.length?`<h2>Авансы под отчётом · ${av.length}</h2>${av.map(a=>advCard(a,u,prod)).join('')}`:'');
+}
+
+/* --- ещё / команда --- */
+function tMore(p,u){
+  const tabs=tabsFor(u);
+  const items=[];
+  const add=(tab,t,sub,ic)=>{if(!tabs.includes(tab))items.push(`<button class="card menu" data-act="tab" data-id="${tab}"><span class="mi">${ico(ic)}</span><span class="n"><b>${t}</b><small>${sub}</small></span>${ico('chev')}</button>`)};
+  if(isProd(u)){
+    add('reqs','Заявки на деньги',waitCount()?waitCount()+' ждут решения':'все решены','coin');
+    add('cast','Кастинг',p.cast.length+' анкет'+(formsOf(p,f=>f.type==='akter').length?' + '+formsOf(p,f=>f.type==='akter').length+' новых':''),'users');
+    add('loc','Локации',p.locs.filter(gLoc).length+' из '+p.locs.length+' с разрешением','pin');
+    add('props','Реквизит и костюмы','чек-лист по сценам','hanger');
+    if(p.id==='p1')items.push(`<button class="card menu" data-act="tab" data-id="team"><span class="mi">${ico('key')}</span><span class="n"><b>Команда и доступы</b><small>кто что видит, пригласить человека</small></span>${ico('chev')}</button>`);
+    if(p.id==='p1'){items.push(`<button class="card menu" data-act="link" data-id="akter"><span class="mi">${ico('link')}</span><span class="n"><b>Ссылка на анкету актёра</b><small>для чата кастинга</small></span>${ico('chev')}</button>`);
+      items.push(`<button class="card menu" data-act="link" data-id="gruppa"><span class="mi">${ico('link')}</span><span class="n"><b>Ссылка на анкету группы</b><small>выбор цеха и вопросы под цех</small></span>${ico('chev')}</button>`)}
+    items.push(`<button class="card menu" data-act="archive" data-id="${p.id}"><span class="mi">${ico('box')}</span><span class="n"><b>Завершить проект</b><small>уйдёт в архив со всеми документами</small></span>${ico('chev')}</button>`);
+  }else{
+    add('loc','Локации','адреса и разрешения','pin');
+    add('props','Реквизит и костюмы','чек-лист по сценам','hanger');
+  }
+  items.push(`<button class="card menu" data-act="logout"><span class="mi">${ico('out')}</span><span class="n"><b>Сменить пользователя</b><small>вы: ${esc(u.name)}</small></span>${ico('chev')}</button>`);
+  return items.join('')+`<p class="hint">Вход по ролям: каждый видит своё. Деньги видят только продюсер и бухгалтер.</p>`;
+}
+function tTeam(p,u){
+  const us=users();
+  const row=x=>`<div class="person"><div class="ava" style="background:hsl(${hue(x.name)} 40% 42%)">${initials(x.name)}</div><div class="n"><b>${esc(x.name)}</b><span>${esc(x.role)}</span><small style="display:block;color:var(--muted);font-weight:600;font-size:12px">${KIND_TXT[x.kind]}</small></div>${x.tag?`<span class="chip ${x.tag==='нанят'?'ok':'warn'}">${x.tag}</span>`:''}</div>`;
+  return `<button class="btn" data-act="invite">${ico('plus')}Пригласить человека</button>
+  <h2>Команда · ${us.length}</h2><div class="card" style="padding:4px 16px">${us.map(row).join('')}</div>
+  <p class="hint">Продюсер нанимает людей и выдаёт им вход с ролью. В примере приглашение понарошку: ссылка не работает.</p>`;
+}
+
+/* ---------- участник ---------- */
 function viewPart(){
   const p=proj(); const m=p.crew.find(x=>x.id===ui.asId)||p.crew.find(x=>!gAcc(x))||p.crew[0];
   const loc=p.locs.find(l=>l.id===p.locId), a=gAcc(m);
@@ -390,44 +892,150 @@ function viewPart(){
     </div></div>`;
 }
 
-function viewSheet(){
-  const s=ui.sheet;
+/* ---------- окна ---------- */
+function formRole(f){
+  const r=f.rows.find(x=>x[0]==='Должность');
+  if(r)return r[1];
+  if(f.type==='akter')return 'Актёр';
+  if(f.dept==='cast')return 'Массовка';
+  return f.deptName;
+}
+function viewSheet(u){
+  const s=ui.sheet,p=ui.pid&&proj();
   if(s==='sending') return `<div class="sheet-bg"><div class="sheet"><div class="grab"></div><h3 style="text-align:center">Отправляем…</h3><div class="spin"></div></div></div>`;
-  if(s==='sent'){const p=proj();return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><div class="bigcheck">${ico('check')}</div>
+  if(s==='sent') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><div class="bigcheck">${ico('check')}</div>
     <h3 style="text-align:center">Отправлено ${p.crew.length} участникам</h3><p style="text-align:center">Вызывной ушёл в Telegram. Это пример: реальной отправки нет, никто ничего не получил.</p>
-    <button class="btn" data-act="part2">${ico('eye')}Показать, что получит участник</button><button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`}
+    <button class="btn" data-act="part2">${ico('eye')}Показать, что получит участник</button><button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`;
+  if(s==='link'){const url=baseUrl()+'#'+ui.link.k;
+    return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>${esc(ui.link.t)}</h3><p>Отправьте её в чат кастинга / группе. Человек откроет анкету с телефона и заполнит её.</p>
+    <div class="urlbox">${esc(url)}</div><button class="btn" data-act="copy">${ico(ui.copied?'check':'link')}${ui.copied?'Скопировано':'Скопировать'}</button>
+    <a class="btn line" style="text-decoration:none" href="${esc(url)}" target="_blank" rel="noopener">${ico('eye')}Открыть анкету</a><button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`}
+  if(s==='anketa'){const f=FORMS.find(x=>x.id===ui.fid);if(!f)return '';
+    const ph=f.photos||{},hired=st.hired[f.id],stt=st.cast[f.id]??3;
+    return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div>
+    <div class="row" style="align-items:flex-start;margin-bottom:10px"><div><h3 style="margin:0">${esc(f.name)}</h3><div class="small" style="margin-top:2px">${esc(f.deptName)} · ${esc(f.sub)}</div></div><span class="chip new">из анкеты</span></div>
+    ${ph.face||ph.body?`<div class="grid2" style="margin-bottom:12px">${[ph.face,ph.body].filter(Boolean).map(x=>`<img src="${x}" alt="" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px">`).join('')}</div>`:''}
+    <div class="card" style="padding:4px 14px;box-shadow:none;background:var(--surface2)">${f.rows.map(r=>`<div class="kvr"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join('')}</div>
+    <p class="small" style="margin:10px 0 0">Получена ${new Date(f.ts).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})}</p>
+    ${isProd(u)&&f.dept!=='loc'?(hired?`<div class="chip ok" style="margin-top:12px;width:100%;justify-content:center;min-height:48px">${ico('check')}Нанят(а): получил(а) роль и вход</div>`:`<button class="btn" data-act="hire" data-id="${f.id}">${ico('check')}Нанять: роль «${esc(formRole(f))}»</button>`):''}
+    ${f.type==='akter'&&(isProd(u)||u.kind==='director')?`<button class="chip ${CAST_ST[stt][1]}" style="margin-top:10px;width:100%;justify-content:center;min-height:48px" data-act="cast" data-id="${f.id}">Статус: ${CAST_ST[stt][0]} (нажмите, чтобы сменить)</button>`:''}
+    <button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`}
+  if(s==='invite') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Пригласить человека</h3><p>Он получит ссылку и войдёт в приложение со своей ролью.</p>
+    <label class="lbl">Имя и фамилия</label><input id="iname" class="inp" type="text" placeholder="Например, Марат Сулайманов">
+    <label class="lbl">Цех</label><select id="idept" class="inp">${depts(p).map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select>
+    <label class="lbl">Роль</label><select id="irole" class="inp">${['Режиссёр','Художник-постановщик','Реквизитор','Оператор','Костюмер','Гример','Директор площадки','Бухгалтер','Звукорежиссёр','Гафер','Водитель','Монтажёр','Актёр'].map(r=>`<option>${r}</option>`).join('')}</select>
+    <div class="msgerr" id="ierr"></div><button class="btn" data-act="doinvite">${ico('send')}Создать приглашение</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`;
+  if(s==='invited'){const t=ui.inv;return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><div class="bigcheck">${ico('check')}</div><h3 style="text-align:center">${esc(t.name)} ${t.hired?"нанят(а)":"приглашён(а)"}</h3>
+    <p style="text-align:center">Роль «${esc(t.role)}». ${t.hired?'Человек уже получил вход.':'Отправьте ему ссылку-приглашение (в примере понарошку).'}</p>
+    ${t.hired?'':`<div class="urlbox">${esc(baseUrl().replace('anketa.html',''))}#invite=${esc(t.code)}</div>`}
+    <p class="small" style="text-align:center">Теперь он в списке «Команда и доступы» и в экране «Войти как».</p><button class="btn" data-act="closeSheet">Готово</button></div></div>`}
+  if(s==='newreq') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Заявка на деньги</h3><p>Уйдёт продюсеру. Цех: ${esc(dName(u.dept))}.</p>
+    <label class="lbl">На что нужны деньги</label><input id="rwhat" class="inp" type="text" placeholder="Например, закуп реквизита к сценам 3–5">
+    <label class="lbl">Сумма, сом</label><input id="ramt" class="inp" type="number" inputmode="numeric" placeholder="45000">
+    <label class="lbl">К какому дню нужны</label><input id="rneed" class="inp" type="date" value="2026-11-25">
+    <label class="lbl">Список позиций <span class="small">· по желанию</span></label><textarea id="ritems" class="inp ta" rows="3" placeholder="Каждая позиция с новой строки"></textarea>
+    <div class="msgerr" id="rerr"></div><button class="btn" data-act="doreq">${ico('send')}Отправить продюсеру</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`;
+  if(s==='rqnote'){const k=ui.rq.k;return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>${k==='ask'?'Уточнить у цеха':'Отклонить заявку'}</h3><p>${k==='ask'?'Напишите вопрос, цех увидит его в заявке.':'Напишите причину, цех увидит её в заявке.'}</p>
+    <textarea id="rnote" class="inp ta" rows="3" placeholder="${k==='ask'?'Например: какие именно пледы и сколько?':'Например: уложитесь в аванс'}"></textarea><div class="msgerr" id="rerr"></div>
+    <button class="btn" data-act="dornote">${k==='ask'?'Отправить вопрос':'Отклонить'}</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`}
+  if(s==='rqsend') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Деньги отправлены</h3><p>Выберите способ. Сумма сразу попадёт в бухгалтерию как выданная цеху.</p>
+    <div class="chips2">${['перевод','наличные'].map(m=>`<button class="chip2 ${ui.method===m?'on':''}" data-act="method" data-id="${m}">${m[0].toUpperCase()+m.slice(1)}</button>`).join('')}</div>
+    <button class="btn" data-act="dorqsend">${ico('check')}Подтвердить</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`;
+  if(s==='newadv') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Аванс под отчёт</h3><p>Цех тратит на мелочи без записей и отчитывается один раз в конце.</p>
+    <label class="lbl">Цех</label><select id="adept" class="inp">${depts(p).map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select>
+    <label class="lbl">Лимит, сом</label><input id="aamt" class="inp" type="number" inputmode="numeric" placeholder="40000">
+    <label class="lbl">На какой период</label><select id="aper" class="inp"><option>неделя 30 нояб. – 6 дек.</option><option>съёмочный блок 27–28 нояб.</option></select>
+    <div class="msgerr" id="rerr"></div><button class="btn" data-act="doadv">${ico('send')}Выдать аванс</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`;
+  if(s==='report'){return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Отчёт по авансу</h3><p>Один раз в конце периода: фото всех чеков пачкой и остаток.</p>
+    <label class="lbl">Фото чеков</label><label class="filebtn">${ico('plus')}<span id="rcount">Выбрать фото (можно сразу много)</span><input id="rfiles" type="file" accept="image/*" multiple hidden></label>
+    <label class="lbl">Остаток, сом</label><input id="rleft" class="inp" type="number" inputmode="numeric" placeholder="0">
+    <label class="lbl">Что с остатком</label><div class="chips2">${['вернул','перенёс'].map(m=>`<button class="chip2 ${ui.ract===m?'on':''}" data-act="ract" data-id="${m}">${m==='вернул'?'Вернуть продюсеру':'Перенести на след. период'}</button>`).join('')}</div>
+    <div class="msgerr" id="rerr"></div><button class="btn" data-act="doreport">${ico('send')}Отправить отчёт</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`}
   if(s==='settings') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet set" data-stop><div class="grab"></div><h3>Настройки</h3><p>Пример приложения «Съёмочный день». Все отметки хранятся только на этом телефоне.</p>
-    <div class="row"><span style="font-weight:700">Версия</span><span class="small">прототип 0.1</span></div>
+    <div class="row"><span style="font-weight:700">Версия</span><span class="small">прототип 0.2</span></div>
     <div class="row"><span style="font-weight:700">Данные</span><span class="small">вымышленные</span></div>
     <button class="btn line" style="margin-top:16px" data-act="reset">${ico('reset')}Сбросить пример</button><button class="btn sec" data-act="closeSheet">Закрыть</button></div></div>`;
   return '';
 }
 
 /* ---------- события ---------- */
+function copyText(t){
+  try{navigator.clipboard.writeText(t).catch(()=>fallbackCopy(t))}catch(e){fallbackCopy(t)}
+}
+function fallbackCopy(t){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}catch(e){}}
+const LINKT={akter:'Ссылка на анкету актёра',gruppa:'Ссылка на анкету группы'};
 $app.addEventListener('click',e=>{
   const el=e.target.closest('[data-act]'); if(!el) return;
   if(el.tagName==='SELECT'||el.tagName==='OPTION') return;
   if(el.classList.contains('sheet-bg')&&e.target!==el) return;
-  const a=el.dataset.act,id=el.dataset.id,p=ui.pid&&proj();
-  if(a==='open'){ui.view='project';ui.pid=id;ui.tab='call'}
-  else if(a==='home'){ui.view='projects';ui.pid=null}
-  else if(a==='tab'){ui.tab=id}
+  const a=el.dataset.act,id=el.dataset.id,p=ui.pid&&proj(),u=U();
+  if(a==='login'){st.user=id;save();const x=U();ui.sheet=null;ui.dept=null;ui.scene=null;
+    if(x.kind==='producer'){ui.view='projects';ui.pid=null}else{ui.view='project';ui.pid='p1';ui.tab=tabsFor(x)[0]}}
+  else if(a==='logout'){st.user=null;save();ui.view='login';ui.pid=null;ui.dept=null;ui.scene=null}
+  else if(a==='open'){ui.view='project';ui.pid=id;ui.tab='call';ui.dept=null;ui.scene=null}
+  else if(a==='openarch'){ui.view='arch';ui.aid=id}
+  else if(a==='unarch'){delete st.arch[id];save();ui.view='projects';ui.aid=null}
+  else if(a==='archive'){st.arch[id]=1;save();ui.view='projects';ui.pid=null}
+  else if(a==='home'){ui.view='projects';ui.pid=null;ui.aid=null}
+  else if(a==='back'){const k=backKind(u);if(k==='dept')ui.dept=null;else if(k==='scene')ui.scene=null;else if(k==='more')ui.tab='more';else if(k==='money')ui.tab='money';else{ui.view='projects';ui.pid=null}}
+  else if(a==='tab'){ui.tab=id;ui.dept=null;ui.scene=null}
+  else if(a==='dept'){ui.dept=id}
+  else if(a==='scene'){ui.tab='scenes';ui.scene=id}
   else if(a==='settings'){ui.sheet='settings'}
   else if(a==='closeSheet'){ui.sheet=null}
-  else if(a==='reset'){st={cast:{},loc:{},prop:{},acc:{},sent:{}};try{localStorage.removeItem(KEY)}catch(e){};ui.sheet=null}
-  else if(a==='cast'){const c=p.cast.find(x=>x.id===id);st.cast[id]=(gCast(c)+1)%3;save()}
+  else if(a==='reset'){st=ST0();try{localStorage.removeItem(KEY);localStorage.removeItem(FKEY)}catch(e){};FORMS=[];ui={view:'login',pid:null,tab:'call',sheet:null,asId:null,dept:null,scene:null,fid:null,link:null,copied:0,hl:{},aid:null,inv:null,method:'перевод',ract:'вернул',rq:null}}
+  else if(a==='cast'){const cur=st.cast[id]??(p.cast.find(x=>x.id===id)?gCast(p.cast.find(x=>x.id===id)):3);st.cast[id]=cur===3?0:(cur+1)%3;st.seen[id]=1;save()}
   else if(a==='loc'){const l=p.locs.find(x=>x.id===id);st.loc[id]=gLoc(l)?0:1;save()}
-  else if(a==='prop'){const i=p.props.flatMap(s=>s.items).find(x=>x.id===id);st.prop[id]=gProp(i)?0:1;save()}
+  else if(a==='prop'){const i=propsFor(p).flatMap(s=>s.items).find(x=>x.id===id);st.prop[id]=gProp(i)?0:1;save()}
+  else if(a==='dtask'){const d=dTasks(p,depts(p).find(x=>id.includes('-'+x.id+'-t'))).find(x=>x.id===id);st.dtask[id]=d.on?0:1;save()}
+  else if(a==='pay'){st.paid[id]=!st.paid[id];save()}
+  else if(a==='obl'){st.obl[id]=!st.obl[id];save()}
   else if(a==='send'){ui.sheet='sending';render();setTimeout(()=>{ui.sheet='sent';st.sent[ui.pid]=1;save();render()},1100);return}
-  else if(a==='part'){ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
-  else if(a==='part2'){ui.sheet=null;ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
+  else if(a==='part'||a==='part2'){ui.sheet=null;ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
   else if(a==='partback'){ui.view='project'}
   else if(a==='accept'){st.acc[id]=1;save()}
   else if(a==='noaccept'){st.acc[id]=0;save()}
+  else if(a==='link'){ui.link={k:id,t:id.startsWith('gruppa/')?'Ссылка на анкету цеха':(LINKT[id]||'Ссылка на анкету')};ui.copied=0;ui.sheet='link'}
+  else if(a==='copy'){copyText(baseUrl()+'#'+ui.link.k);ui.copied=1;render();setTimeout(()=>{ui.copied=0;if(ui.sheet==='link')render()},2200);return}
+  else if(a==='fopen'){ui.fid=id;ui.sheet='anketa';st.seen[id]=1;save()}
+  else if(a==='hire'){const f=FORMS.find(x=>x.id===id);const role=formRole(f);
+    st.team.push({id:'t'+f.id,name:f.name,dept:f.dept,role,hired:1,code:''});st.hired[id]=1;st.seen[id]=1;if(f.type==='akter')st.cast[id]=1;save();ui.inv={name:f.name,role,hired:1};ui.sheet='invited'}
+  else if(a==='invite'){ui.sheet='invite'}
+  else if(a==='doinvite'){const n=($app.querySelector('#iname').value||'').trim();
+    if(n.split(/\s+/).length<2){$app.querySelector('#ierr').textContent='Напишите имя и фамилию';return}
+    const role=$app.querySelector('#irole').value,dept=$app.querySelector('#idept').value,code=Math.random().toString(36).slice(2,8);
+    st.team.push({id:'t'+Date.now().toString(36),name:n,dept,role,hired:0,code});save();ui.inv={name:n,role,code};ui.sheet='invited'}
+  else if(a==='newreq'){ui.sheet='newreq'}
+  else if(a==='doreq'){const w=($app.querySelector('#rwhat').value||'').trim(),m=Number($app.querySelector('#ramt').value),nd=$app.querySelector('#rneed').value,it=($app.querySelector('#ritems').value||'').split('\n').map(x=>x.trim()).filter(Boolean);
+    const er=$app.querySelector('#rerr');if(w.length<4){er.textContent='Напишите, на что нужны деньги';return}if(!(m>=100)){er.textContent='Укажите сумму в сомах, например 45000';return}if(!nd){er.textContent='Выберите день';return}
+    st.rqNew.push({id:'q'+Date.now().toString(36),dept:u.dept,by:u.name,what:w,amt:m,need:nd,items:it,status:'wait'});save();ui.sheet=null}
+  else if(a==='rqok'){st.rq[id]=Object.assign(st.rq[id]||{},{status:'approved'});save()}
+  else if(a==='rqnote'){ui.rq={id,k:el.dataset.k};ui.sheet='rqnote'}
+  else if(a==='dornote'){const t=($app.querySelector('#rnote').value||'').trim();if(t.length<3){$app.querySelector('#rerr').textContent='Напишите пару слов';return}
+    st.rq[ui.rq.id]=Object.assign(st.rq[ui.rq.id]||{},{status:ui.rq.k==='ask'?'clarify':'rejected',comment:t});save();ui.sheet=null}
+  else if(a==='rqsend'){ui.rq={id};ui.method='перевод';ui.sheet='rqsend'}
+  else if(a==='method'){ui.method=id;$app.querySelectorAll('[data-act=method]').forEach(b=>b.classList.toggle('on',b.dataset.id===id));return}
+  else if(a==='dorqsend'){st.rq[ui.rq.id]=Object.assign(st.rq[ui.rq.id]||{},{status:'sent',method:ui.method});save();ui.sheet=null}
+  else if(a==='newadv'){ui.sheet='newadv'}
+  else if(a==='doadv'){const m=Number($app.querySelector('#aamt').value);if(!(m>=1000)){$app.querySelector('#rerr').textContent='Укажите лимит в сомах, например 40000';return}
+    st.avNew.push({id:'v'+Date.now().toString(36),dept:$app.querySelector('#adept').value,amt:m,period:$app.querySelector('#aper').value,status:'out'});save();ui.sheet=null}
+  else if(a==='report'){ui.rq={id};ui.ract='вернул';ui.sheet='report'}
+  else if(a==='ract'){ui.ract=id;$app.querySelectorAll('[data-act=ract]').forEach(b=>b.classList.toggle('on',b.dataset.id===id));return}
+  else if(a==='doreport'){const n=($app.querySelector('#rfiles').files||[]).length,l=$app.querySelector('#rleft').value,er=$app.querySelector('#rerr');
+    if(!n){er.textContent='Добавьте фото чеков';return}if(l===''||Number(l)<0){er.textContent='Укажите остаток (0, если всё потрачено)';return}
+    const av=getAdv().find(x=>x.id===ui.rq.id);const left=Number(l);if(left>av.amt){er.textContent='Остаток больше аванса';return}
+    st.av[ui.rq.id]={status:'reported',spent:av.amt-left,left,act:ui.ract,photos:n};save();ui.sheet=null}
+  else if(a==='hl'){const t=$app.querySelector('#sctext');if(t){st.sctext[id]=t.value;save()}ui.hl[id]=true}
+  else if(a==='sadd'){const arr=st.sceneAdd[id]||(st.sceneAdd[id]=[]);arr.push([el.dataset.cat,el.dataset.item]);save()}
   render();
 });
-$app.addEventListener('change',e=>{ if(e.target.dataset.act==='who'){ui.asId=e.target.value;render()} });
+$app.addEventListener('change',e=>{ if(e.target.dataset.act==='who'){ui.asId=e.target.value;render()}
+  if(e.target.id==='rfiles'){const n=e.target.files.length;const c=$app.querySelector('#rcount');if(c)c.textContent=n?'Выбрано фото: '+n:'Выбрать фото (можно сразу много)'} });
+window.addEventListener('storage',()=>render());
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});
+window.addEventListener('focus',()=>render());
 render();
+
 </script>
 </body>
 </html>

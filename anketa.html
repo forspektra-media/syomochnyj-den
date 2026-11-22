@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<title>Анкета · Съёмочный день</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6b2c'/%3E%3Cpath d='M14 26h36v22H14zM14 26l6-10 8 4-6 6M28 20l8-4 6 10' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{--bg:#f4f1ea;--surface:#fff;--surface2:#ece8df;--ink:#1b1d21;--muted:#6a6e76;--line:#d9d3c6;--accent:#e8541a;--accent-ink:#fff;--accent-soft:#fde6d9;--ok:#1f8a4c;--ok-soft:#dcf2e4;--warn:#b26a00;--warn-soft:#fdeccd;--bad:#c23a30;--bad-soft:#fadbd8;--shadow:0 1px 2px rgba(20,20,20,.06),0 4px 14px rgba(20,20,20,.06)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1e2127;--surface2:#2a2e36;--ink:#f1efe9;--muted:#9ba0a9;--line:#3a3f48;--accent:#ff7a3d;--accent-ink:#1a1006;--accent-soft:#3a2418;--ok:#4cc882;--ok-soft:#173326;--warn:#f0b04a;--warn-soft:#3a2b10;--bad:#ff7d72;--bad-soft:#40201d;--shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:15px;line-height:1.35;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+svg{display:block}.ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:520px){body{background:radial-gradient(circle at 20% 10%,#2b2f3a,#0e0f12)}#app{margin:16px auto!important;border-radius:38px;box-shadow:0 0 0 10px #000,0 30px 80px rgba(0,0,0,.5);min-height:0!important;height:min(880px,calc(100dvh - 32px));overflow:auto}}
+#app{max-width:430px;margin:0 auto;min-height:100dvh;background:var(--bg);display:flex;flex-direction:column;position:relative}
+.head{padding:calc(env(safe-area-inset-top) + 14px) 16px 8px}
+.demo{margin:0 0 10px;padding:6px 12px;border-radius:999px;background:var(--warn-soft);color:var(--warn);font-size:12px;font-weight:700;text-align:center}
+.proj{background:linear-gradient(135deg,var(--accent),#ff9a5c);color:#fff;border-radius:22px;padding:16px 18px;box-shadow:var(--shadow)}
+.proj .k{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.proj h1{margin:4px 0 6px;font-family:Unbounded,sans-serif;font-size:18px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.proj p{margin:0;font-weight:600;font-size:13.5px;opacity:.96}
+.proj .d{margin-top:10px;display:inline-block;background:rgba(255,255,255,.22);border-radius:99px;padding:5px 12px;font-weight:800;font-size:13px}
+.prog{padding:12px 16px 4px}
+.prog .t{display:flex;justify-content:space-between;font-weight:800;font-size:13.5px;margin-bottom:7px}
+.prog .t span{color:var(--muted)}
+.bar{height:8px;border-radius:99px;background:var(--surface2);overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+form{padding:8px 16px 28px;flex:1}
+h2{font-family:Unbounded,sans-serif;font-size:17px;font-weight:600;margin:14px 0 4px}
+.sub{color:var(--muted);font-weight:600;font-size:13.5px;margin:0 0 14px}
+.f{margin-bottom:16px}
+.f>label,.f>.lb{display:block;font-weight:800;font-size:14px;margin-bottom:6px}
+.f .req{color:var(--accent)}
+.f .opt{color:var(--muted);font-weight:600;font-size:12.5px}
+input[type=text],input[type=tel],input[type=number],input[type=url],input[type=date],select,textarea{width:100%;min-height:54px;border-radius:16px;border:2px solid var(--line);background:var(--surface);padding:0 16px;font-size:16px;font-weight:600;outline:none;appearance:none;-webkit-appearance:none}
+textarea{padding:14px 16px;min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+.f.err input,.f.err select,.f.err textarea{border-color:var(--bad)}
+.f.err .chips,.f.err .photo,.f.err .agree{outline:2px solid var(--bad);outline-offset:3px;border-radius:16px}
+.msg{display:none;color:var(--bad);font-weight:700;font-size:13px;margin-top:6px}
+.f.err .msg{display:block}
+.hintx{color:var(--muted);font-size:12.5px;font-weight:600;margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:48px;padding:0 16px;border-radius:99px;border:2px solid var(--line);background:var(--surface);font-weight:700;font-size:14.5px}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.photo{display:flex;align-items:center;gap:12px;background:var(--surface);border:2px dashed var(--line);border-radius:18px;padding:10px}
+.photo .pv{width:76px;height:96px;border-radius:12px;background:var(--surface2);display:grid;place-items:center;color:var(--muted);overflow:hidden;flex:none}
+.photo .pv img{width:100%;height:100%;object-fit:cover}
+.photo .tx{flex:1;min-width:0}.photo b{display:block;font-size:14px}.photo span{font-size:12.5px;color:var(--muted);font-weight:600}
+.photo .pick{margin-top:8px;min-height:44px;padding:0 16px;border-radius:12px;background:var(--surface2);font-weight:800;font-size:14px}
+.agree{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:16px;padding:14px;text-align:left;width:100%}
+.agree .bx{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);flex:none;display:grid;place-items:center;color:transparent}
+.agree.on .bx{background:var(--ok);border-color:var(--ok);color:#fff}
+.agree span{font-weight:600;font-size:14px}
+.nav{display:flex;gap:10px;margin-top:22px}
+.btn{flex:1;min-height:56px;border-radius:18px;font-weight:800;font-size:17px;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;gap:8px}
+.btn.sec{background:var(--surface2);color:var(--ink);flex:0 0 38%}
+.btn.line{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.thanks{text-align:center;padding:40px 24px}
+.bigcheck{width:96px;height:96px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;margin:0 auto 20px}
+.bigcheck .ico{width:50px;height:50px;stroke-width:2.8}
+.thanks h2{font-size:22px;margin:0 0 8px}.thanks p{color:var(--muted);font-weight:600;margin:0 0 22px}
+.thanks .btn{width:100%;margin-top:10px}
+a.link{display:block;text-align:center;color:var(--muted);font-weight:700;margin-top:16px;font-size:13.5px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const FKEY='syomochnyj-den-anketa-v1';
+const PROJECT={title:'Реклама банка — имиджевый ролик',date:'27 ноября, пятница',place:'Бишкек'};
+const DATES=[['26 ноября, чт — пробы'],['27 ноября, пт — съёмка'],['28 ноября, сб — запасной день']];
+const SIZES=['XS','S','M','L','XL','XXL','3XL'];
+const DEP=[['rez','Режиссёрская группа',['Режиссёр','Ассистент режиссёра','Скрипт-супервайзер','Другое']],['prod','Продюсерская',['Директор площадки','Администратор','Помощник продюсера','Другое']],['oper','Операторский',['Оператор','Фокус-пуллер','Механик','Другое']],['svet','Свет',['Гаффер','Осветитель','Другое']],['zvuk','Звук',['Звукорежиссёр','Ассистент по звуку','Другое']],['hud','Художественный',['Художник-постановщик','Реквизитор','Декоратор','Другое']],['kost','Костюм',['Костюмер','Ассистент костюмера','Другое']],['grim','Грим и причёска',['Гример','Стилист по волосам','Другое']],['mass','Массовка (кастинг)',[]],['loc','Локации (для владельцев мест)',[]],['trans','Транспорт',['Водитель','Другое']],['food','Питание (кейтеринг)',['Кейтеринг-компания','Повар','Другое']],['post','Пост-продакшн',['Монтажёр','Колорист','Моушн-дизайнер','Другое']]];
+const dep=d=>(DEP.find(x=>x[1]===d.dname)||[])[0];
+const inD=(...ids)=>d=>ids.includes(dep(d));
+const notD=(...ids)=>d=>!!d.dname&&!ids.includes(dep(d));
+const FORMS={
+ akter:{kind:'Анкета актёра',role:'Нам нужны актёры для семейной сцены: взрослые, дети и пожилые люди. Съёмка один день, питание и такси за счёт проекта.',
+  steps:[
+   {t:'О себе',s:'Коротко: кто вы и откуда.',f:[
+    {k:'name',l:'Имя и фамилия',type:'text',req:1,ph:'Например, Айдай Койчуева',check:v=>v.trim().split(/\s+/).length<2?'Напишите имя и фамилию, например «Айдай Койчуева»':''},
+    {k:'birth',l:'Дата рождения',type:'date',req:1,check:v=>{const a=age(v);return a<3||a>90?'Проверьте дату: возраст должен быть от 3 до 90 лет':''}},
+    {k:'sex',l:'Пол',type:'chips',opts:['Мужской','Женский'],req:1,single:1},
+    {k:'city',l:'Город',type:'text',req:1,ph:'Бишкек'},
+    {k:'lang',l:'Языки',type:'chips',opts:['Кыргызский','Русский','Английский','Другой'],req:1},
+    {k:'exp',l:'Опыт',type:'chips',opts:['Нет','Реклама','Кино','Театр'],req:1,excl:'Нет'}]},
+   {t:'Внешность и фото',s:'Нужно, чтобы подобрать костюм и понять, подходите ли вы по типажу.',f:[
+    {k:'h',l:'Рост, см',type:'number',req:1,ph:'172',check:v=>v<50||v>230?'Рост в сантиметрах, от 50 до 230':''},
+    {k:'w',l:'Вес, кг',type:'number',req:1,ph:'65',check:v=>v<10||v>250?'Вес в килограммах, от 10 до 250':''},
+    {k:'cl',l:'Размер одежды',type:'sel',opts:SIZES,req:1},
+    {k:'sh',l:'Размер обуви',type:'number',req:1,ph:'41',check:v=>v<18||v>52?'Размер обуви от 18 до 52':''},
+    {k:'face',l:'Фото лица',type:'photo',req:1,hint:'Без очков и фильтров, при дневном свете.'},
+    {k:'body',l:'Фото в полный рост',type:'photo',req:1,hint:'Чтобы были видны ноги и обувь.'},
+    {k:'video',l:'Видеовизитка',type:'url',ph:'https://…',opt:1,hint:'Ссылка на ролик, где вы говорите о себе. Можно пропустить.',check:v=>v&&!/^https?:\/\/\S+\.\S+/.test(v)?'Ссылка должна начинаться с https://':''}]},
+   {t:'Связь и даты',s:'Как с вами связаться и когда вы свободны.',f:[
+    {k:'phone',l:'Телефон',type:'tel',req:1,ph:'+996 555 12 34 56',check:phoneCheck},
+    {k:'tg',l:'Telegram',type:'text',req:1,ph:'@username или номер',check:tgCheck},
+    {k:'dates',l:'Свободные даты',type:'chips',opts:DATES.map(d=>d[0]),req:1},
+    {k:'ok',l:'',type:'agree',req:1}]}]},
+ gruppa:{kind:'Анкета для съёмочной группы',role:'Собираем группу на один съёмочный день. Выберите свой цех, ответьте на вопросы, продюсер свяжется и подтвердит смену.',
+  steps:[
+   {t:'Цех и должность',s:'Сначала выберите, где вы работаете на съёмке.',f:[
+    {k:'dname',l:'Цех',type:'chips',opts:DEP.map(x=>x[1]),req:1,single:1,onset:d=>{delete d.pos;delete d.pos2}},
+    {k:'pos',l:'Должность',type:'chips',opts:d=>(DEP.find(x=>x[1]===d.dname)||[0,0,[]])[2],req:1,single:1,showIf:d=>d.dname&&!inD('loc','mass')(d)},
+    {k:'pos2',l:'Какая должность',type:'text',req:1,ph:'Например, мастер по свету',showIf:d=>d.pos==='Другое'},
+    {k:'name',l:d=>dep(d)==='loc'?'Имя владельца или контактного лица':'Имя и фамилия',type:'text',req:1,ph:'Например, Бакыт Джумабаев',showIf:d=>d.dname,check:v=>v.trim().split(/\s+/).length<2?'Напишите имя и фамилию':''},
+    {k:'years',l:'Опыт, лет',type:'number',req:1,ph:'5',showIf:notD('loc','mass','food'),check:v=>v<0||v>60?'Опыт в годах, от 0 до 60':''}]},
+   {t:'Подробности',s:'Вопросы именно для вашего цеха.',f:[
+    {k:'rate',l:'Ставка за смену, сом',type:'number',req:1,ph:'6000',showIf:notD('loc','mass','food'),check:v=>v<500||v>200000?'Укажите ставку за смену в сомах, например 6000':''},
+    {k:'reel',l:'Ссылка на работы',type:'url',ph:'https://…',opt:1,showIf:inD('rez','oper','post'),check:urlCheck},
+    {k:'adexp',l:'Работали с рекламой?',type:'chips',opts:['Да','Нет'],single:1,req:1,showIf:inD('rez')},
+    {k:'pcar',l:'Свой автомобиль для служебных поездок?',type:'chips',opts:['Да','Нет'],single:1,req:1,showIf:inD('prod')},
+    {k:'ppermit',l:'Опыт с разрешениями на съёмку?',type:'chips',opts:['Да','Нет'],single:1,req:1,showIf:inD('prod')},
+    {k:'cam',l:'Своя камера',type:'text',opt:1,ph:'Например, камера 6K, запасной корпус',showIf:inD('oper')},
+    {k:'lens',l:'Объективы',type:'textarea',opt:1,ph:'Например: 24–70 мм, 85 мм, 50 мм',showIf:inD('oper')},
+    {k:'opx',l:'Дополнительно',type:'chips',opts:['Стедикам','Дрон','Слайдер','Кран'],showIf:inD('oper')},
+    {k:'lgear',l:'Свои световые приборы',type:'textarea',opt:1,ph:'Например: 4 LED-панели, софтбоксы, флаги',showIf:inD('svet')},
+    {k:'gen',l:'Генератор',type:'chips',opts:['Есть','Нет'],single:1,req:1,showIf:inD('svet')},
+    {k:'sgear',l:'Своя звуковая техника',type:'textarea',req:1,ph:'Например: рекордер, 2 петлички, микрофон-пушка',showIf:inD('zvuk')},
+    {k:'port',l:'Портфолио ссылкой',type:'url',req:1,ph:'https://…',showIf:inD('grim','kost','hud'),check:urlCheck},
+    {k:'kit',l:'Свой набор',type:'chips',opts:['Свой профессиональный набор','Нужен набор от проекта'],single:1,req:1,showIf:inD('grim')},
+    {k:'owng',l:'Свой реквизит или гардероб',type:'textarea',opt:1,ph:'Что можете принести с собой',showIf:inD('hud','kost')},
+    {k:'soft',l:'Программы',type:'chips',opts:['Premiere','DaVinci','After Effects','Другое'],req:1,showIf:inD('post')},
+    {k:'days',l:'Срок готовности, дней',type:'number',req:1,ph:'5',showIf:inD('post'),check:v=>v<1||v>90?'От 1 до 90 дней':''},
+    {k:'car',l:'Автомобиль (марка, модель, год)',type:'text',req:1,ph:'Toyota Alphard, 2018',showIf:inD('trans')},
+    {k:'cap',l:'Вместимость, мест',type:'number',req:1,ph:'7',showIf:inD('trans'),check:v=>v<1||v>60?'Сколько мест, от 1 до 60':''},
+    {k:'lic',l:'Права, категории',type:'chips',opts:['B','C','D','Другая'],req:1,showIf:inD('trans')},
+    {k:'cpl',l:'На сколько человек готовите',type:'number',req:1,ph:'24',showIf:inD('food'),check:v=>v<5||v>500?'От 5 до 500 человек':''},
+    {k:'menu',l:'Меню',type:'textarea',req:1,ph:'Например: плов, салат, чай, фрукты',showIf:inD('food')},
+    {k:'pprice',l:'Цена за порцию, сом',type:'number',req:1,ph:'350',showIf:inD('food'),check:v=>v<30||v>5000?'Цена порции в сомах, например 350':''},
+    {k:'deliv',l:'Доставка на площадку',type:'chips',opts:['Да','Нет'],single:1,req:1,showIf:inD('food')},
+    {k:'mage',l:'Возраст',type:'number',req:1,ph:'30',showIf:inD('mass'),check:v=>v<3||v>90?'Возраст от 3 до 90':''},
+    {k:'msex',l:'Пол',type:'chips',opts:['Мужской','Женский'],single:1,req:1,showIf:inD('mass')},
+    {k:'mh',l:'Рост, см',type:'number',req:1,ph:'172',showIf:inD('mass'),check:v=>v<50||v>230?'Рост в сантиметрах, от 50 до 230':''},
+    {k:'mface',l:'Фото лица',type:'photo',req:1,hint:'Без очков и фильтров, при дневном свете.',showIf:inD('mass')},
+    {k:'laddr',l:'Адрес места',type:'text',req:1,ph:'Например, ул. Токтогула, 85',showIf:inD('loc'),check:v=>v.trim().length<6?'Напишите улицу и номер дома':''},
+    {k:'ltype',l:'Что это за место',type:'chips',opts:['Квартира','Офис','Двор','Улица','Парк','Другое'],single:1,req:1,showIf:inD('loc')},
+    {k:'lphoto',l:'Фото места',type:'photo',req:1,hint:'Общий вид, лучше при дневном свете.',showIf:inD('loc')},
+    {k:'lcond',l:'Условия',type:'textarea',req:1,ph:'Когда можно снимать, что нельзя трогать, есть ли соседи',showIf:inD('loc')},
+    {k:'lprice',l:'Цена за смену, сом',type:'number',req:1,ph:'25000',showIf:inD('loc'),check:v=>v<0||v>1000000?'Цена в сомах за смену':''},
+    {k:'lpow',l:'Электричество',type:'chips',opts:['Есть','Нет'],single:1,req:1,showIf:inD('loc')},
+    {k:'lpark',l:'Парковка',type:'chips',opts:['Есть','Нет'],single:1,req:1,showIf:inD('loc')},
+    {k:'cl',l:'Размер одежды',type:'sel',opts:SIZES,req:1,hint:'Нужен для формы группы.',showIf:notD('loc','food')}]},
+   {t:'Связь и даты',s:'Как с вами связаться и когда вы свободны.',f:[
+    {k:'phone',l:'Телефон',type:'tel',req:1,ph:'+996 555 12 34 56',check:phoneCheck},
+    {k:'tg',l:'Telegram',type:'text',req:1,ph:'@username или номер',check:tgCheck},
+    {k:'dates',l:'Свободные даты',type:'chips',opts:DATES.map(d=>d[0]),req:1},
+    {k:'ok',l:'',type:'agree',req:1}]}]}
+};
+function urlCheck(v){return v&&!/^https?:\/\/\S+\.\S+/.test(v)?'Ссылка должна начинаться с https://':''}
+function age(v){if(!v)return 0;const b=new Date(v),n=new Date();let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),b.getMonth(),b.getDate()))a--;return a}
+function phoneCheck(v){const d=v.replace(/\D/g,'');return d.length<9||d.length>13?'Телефон: от 9 цифр, например +996 555 12 34 56':''}
+function tgCheck(v){v=v.trim();return /^@?[A-Za-z0-9_]{4,32}$/.test(v)||v.replace(/\D/g,'').length>=9?'':'Напишите @имя (латиницей, от 4 знаков) или номер телефона'}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ICO={check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',cam:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'};
+const ico=n=>`<svg class="ico" viewBox="0 0 24 24">${ICO[n]}</svg>`;
+
+const HP=(location.hash.replace('#','')||'akter').split('/');
+const type=FORMS[HP[0]]?HP[0]:'akter';
+const F=FORMS[type];
+let step=0,done=false,data={},errs={};
+if(type==='gruppa'&&HP[1]){const x=DEP.find(d=>d[0]===HP[1]);if(x)data.dname=x[1]}
+const $=document.getElementById('app');
+
+function fieldHtml(f){
+  const v=data[f.k], e=errs[f.k], OP=typeof f.opts==='function'?f.opts(data):f.opts, LB=typeof f.l==='function'?f.l(data):f.l;
+  let inp='';
+  if(f.type==='chips'){inp=`<div class="chips">${OP.map(o=>`<button type="button" class="chip ${(f.single?v===o:(v||[]).includes(o))?'on':''}" data-chip="${f.k}" data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div>`}
+  else if(f.type==='sel'){inp=`<select data-k="${f.k}"><option value="">Выберите…</option>${OP.map(o=>`<option ${v===o?'selected':''}>${o}</option>`).join('')}</select>`}
+  else if(f.type==='textarea'){inp=`<textarea data-k="${f.k}" placeholder="${esc(f.ph||'')}">${esc(v||'')}</textarea>`}
+  else if(f.type==='photo'){inp=`<div class="photo"><div class="pv">${v?`<img src="${v}" alt="">`:ico('cam')}</div><div class="tx"><b>${v?'Фото добавлено':'Фото не выбрано'}</b><span>${f.hint||''}</span><br><button type="button" class="pick" data-pick="${f.k}">${v?'Заменить фото':'Выбрать фото'}</button></div></div><input type="file" accept="image/*" hidden data-file="${f.k}">`}
+  else if(f.type==='agree'){return `<div class="f ${e?'err':''}"><button type="button" class="agree ${v?'on':''}" data-agree="1"><span class="bx">${ico('check')}</span><span>Согласен(на) на обработку моих персональных данных для подбора на съёмки этого проекта. Данные видит только продюсер.</span></button><div class="msg">${e||''}</div></div>`}
+  else{inp=`<input type="${f.type}" data-k="${f.k}" value="${esc(v??'')}" placeholder="${esc(f.ph||'')}" ${f.type==='number'?'inputmode="numeric"':''} ${f.type==='tel'?'inputmode="tel"':''}>`}
+  return `<div class="f ${e?'err':''}" data-f="${f.k}"><label class="lb">${LB} ${f.req?'<span class="req">*</span>':f.opt?'<span class="opt">· необязательно</span>':''}</label>${inp}${f.hint&&f.type!=='photo'?`<div class="hintx">${f.hint}</div>`:''}<div class="msg">${e||''}</div></div>`;
+}
+function visible(f){return !f.showIf||f.showIf(data)}
+function render(){
+  if(done){$.innerHTML=`<div class="head"><div class="demo">Пример: данные вымышленные</div></div><div class="thanks"><div class="bigcheck">${ico('check')}</div><h2>Спасибо! Продюсер свяжется с вами</h2><p>Анкета отправлена. В примере её видно в приложении «Съёмочный день» на этом же телефоне.</p><button class="btn" data-act="again">Заполнить ещё одну (для примера)</button><a class="link" href="index.html">Открыть приложение продюсера</a></div>`;return}
+  const S=F.steps[step],n=F.steps.length;
+  $.innerHTML=`<div class="head"><div class="demo">Пример: данные вымышленные</div><div class="proj"><div class="k">${F.kind}</div><h1>${PROJECT.title}</h1><p>${F.role}</p><span class="d">Съёмка: ${PROJECT.date}</span></div></div>
+  <div class="prog"><div class="t"><b>Шаг ${step+1} из ${n}</b><span>${S.t}</span></div><div class="bar"><i style="width:${(step+1)/n*100}%"></i></div></div>
+  <form novalidate><h2>${S.t}</h2><p class="sub">${S.s}</p>${S.f.filter(visible).map(fieldHtml).join('')}
+  <div class="nav">${step?'<button type="button" class="btn sec" data-act="back">Назад</button>':''}<button type="button" class="btn" data-act="next">${step===n-1?'Отправить анкету':'Далее'}</button></div></form>`;
+}
+function validate(){
+  errs={};let first=null;
+  F.steps[step].f.filter(visible).forEach(f=>{
+    const v=data[f.k];let m='';
+    const empty=v==null||v===''||(Array.isArray(v)&&!v.length);
+    if(f.req&&empty)m=f.type==='agree'?'Без согласия мы не можем принять анкету':f.type==='photo'?'Добавьте фото':f.type==='chips'?'Выберите хотя бы один вариант':f.type==='sel'?'Выберите из списка':'Заполните это поле';
+    else if(!empty&&f.check)m=f.check(v);
+    if(m){errs[f.k]=m;first=first||f.k}
+  });
+  return first;
+}
+function compress(file,cb){
+  const r=new FileReader();
+  r.onerror=()=>cb(null);
+  r.onload=()=>{const im=new Image();im.onerror=()=>cb(null);im.onload=()=>{const m=800,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.8))};im.src=r.result};
+  r.readAsDataURL(file);
+}
+function submit(){
+  const rows=[],photos={};
+  F.steps.forEach(S=>S.f.filter(visible).forEach(f=>{
+    const v=data[f.k];if(f.type==='agree')return;
+    if(f.type==='photo'){photos[f.k]=v;return}
+    if(v==null||v===''||(Array.isArray(v)&&!v.length))return;
+    let out=Array.isArray(v)?v.join(', '):v;
+    if(f.k==='birth')out=new Date(v).toLocaleDateString('ru-RU')+' ('+age(v)+' лет)';
+    if(['rate','pprice','lprice'].includes(f.k))out=Number(v).toLocaleString('ru-RU')+' с';
+    if(['h','mh'].includes(f.k))out+=' см';if(f.k==='w')out+=' кг';if(f.k==='cap')out+=' мест';if(f.k==='cpl')out+=' чел.';
+    if(f.k==='pos2')return;
+    if(f.k==='pos'&&v==='Другое')out=data.pos2;
+    const lab=(typeof f.l==='function'?f.l(data):f.l).replace(/, (см|кг|сом|лет|дней|мест)$/,'');
+    rows.push([f.k==='dname'?'Цех':lab,out]);
+  }));
+  rows.push(['Согласие на обработку данных','да']);
+  const did=type==='akter'?'cast':(dep(data)==='mass'?'cast':dep(data));
+  const dn=type==='akter'?'Кастинг (актёр)':(DEP.find(x=>x[1]===data.dname)||[])[1];
+  let sub;
+  if(type==='akter')sub=[age(data.birth)+' лет',data.sex,data.h+' см'].join(', ');
+  else if(dep(data)==='mass')sub='Массовка, '+data.mage+' лет, '+data.msex.toLowerCase();
+  else if(dep(data)==='loc')sub='Место: '+data.laddr;
+  else sub=(data.pos==='Другое'?data.pos2:data.pos)+(data.years!=null?', опыт '+data.years+' л.':'');
+  const ph=type==='akter'?photos:(data.lphoto?{face:data.lphoto}:data.mface?{face:data.mface}:{});
+  if(type==='akter'){}
+  const rec={id:'f'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),type,dept:did,deptName:dn,ts:Date.now(),project:'p1',name:data.name.trim(),sub,rows,photos:ph};
+  let list=[];try{list=JSON.parse(localStorage.getItem(FKEY)||'[]')||[]}catch(e){}
+  list.push(rec);
+  try{localStorage.setItem(FKEY,JSON.stringify(list));return true}catch(e){return false}
+}
+$.addEventListener('click',e=>{
+  const t=e.target.closest('button,[data-act]');if(!t)return;
+  if(t.dataset.chip){const f=F.steps[step].f.find(x=>x.k===t.dataset.chip),o=t.dataset.v;
+    if(f.single){data[f.k]=o;if(f.onset)f.onset(data)}else{let a=(data[f.k]||[]).slice();if(a.includes(o))a=a.filter(x=>x!==o);else{if(f.excl===o)a=[];else a=a.filter(x=>x!==f.excl);a.push(o)}data[f.k]=a}
+    delete errs[f.k];keep(render);return}
+  if(t.dataset.agree){data.ok=!data.ok;delete errs.ok;keep(render);return}
+  if(t.dataset.pick){$.querySelector(`[data-file=${t.dataset.pick}]`).click();return}
+  const a=t.dataset.act;
+  if(a==='back'){step--;render();window.scrollTo(0,0);$.scrollTop=0}
+  else if(a==='next'){
+    const first=validate();
+    if(first){render();const el=$.querySelector('.err');if(el)el.scrollIntoView({block:'center',behavior:'smooth'});return}
+    if(step<F.steps.length-1){step++;render();window.scrollTo(0,0);$.scrollTop=0}
+    else{if(submit()){done=true;render();window.scrollTo(0,0);$.scrollTop=0}else{errs.ok='Не получилось сохранить: слишком большие фото. Выберите другие.';render()}}}
+  else if(a==='again'){data={};errs={};step=0;done=false;render();window.scrollTo(0,0);$.scrollTop=0}
+});
+function keep(fn){const y=window.scrollY,s=$.scrollTop;fn();window.scrollTo(0,y);$.scrollTop=s}
+$.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;data[k]=e.target.type==='number'&&e.target.value!==''?Number(e.target.value):e.target.value;
+  if(errs[k]){delete errs[k];const f=e.target.closest('.f');if(f)f.classList.remove('err')}});
+$.addEventListener('change',e=>{
+  const k=e.target.dataset.k;
+  if(k&&e.target.tagName==='SELECT'){data[k]=e.target.value;delete errs[k];e.target.closest('.f').classList.remove('err')}
+  if(k==='pos'){}
+  const fk=e.target.dataset.file;
+  if(fk&&e.target.files[0]){compress(e.target.files[0],u=>{if(!u){errs[fk]='Не удалось открыть картинку. Выберите другое фото.'}else{data[fk]=u;delete errs[fk]}keep(render)})}
+});
+window.addEventListener('hashchange',()=>location.reload());
+render();
+</script>
+</body>
+</html>
