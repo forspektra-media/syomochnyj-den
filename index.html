@@ -282,13 +282,22 @@ const DEPTS={p1:[
  needs:['Печать вызывных, 20 копий','Аптечка и вода для группы','Связь с администрацией двора']},
 {id:'oper',name:'Операторский',head:'Эрлан Бекмуратов',mem:[2,10],ex:[['Фёдор Николаев','Механик (слайдер, кран)',0]],need:3,plan:300000,fact:310000,
  tasks:[['Тест камеры и карт памяти',1],['Выбор объективов',1],['Проверка слайдера и мини-крана',0],['Лист планов на день',1]],
- needs:['Камера 6K и запасной корпус','Объективы 24–85 мм и 85 мм','Слайдер и мини-кран','6 карт памяти и SSD']},
+ gear:[['Камера','Основная камера Sony FX9 (6K)',1,'прокат','have',9000],['Камера','Запасной корпус Sony FX6',1,'своё','have',0],['Камера','Хлопушка с таймкодом',1,'своё','have',0],
+   ['Оптика','Кинообъективы-фиксы 25, 35, 50, 85 мм',1,'прокат','book',12000],['Оптика','Зум-объектив 24–70 мм',1,'своё','have',0],['Оптика','Светофильтры ND и Pro-Mist',6,'прокат','book',2500],['Оптика','Компендиум (бленда-шторка от бликов)',1,'прокат','have',1500],
+   ['Фокус и мониторы','Беспроводной фоллоу-фокус (пульт фокуса)',1,'прокат','have',3000],['Фокус и мониторы','Монитор оператора 7"',1,'своё','have',0],['Фокус и мониторы','Монитор режиссёра 17" с видеосендером (картинка без провода)',1,'прокат','need',6000],
+   ['Опора и движение','Штатив с видеоголовой',1,'своё','have',0],['Опора и движение','Слайдер 1,2 м',1,'своё','have',0],['Опора и движение','Мини-кран',1,'прокат','book',7000],['Опора и движение','Стабилизатор DJI Ronin 2',1,'прокат','need',8000],['Опора и движение','Тележка с рельсами 6 м',1,'прокат','need',6500],
+   ['Питание и запись','Аккумуляторы V-mount и зарядка',8,'прокат','have',2400],['Питание и запись','Карты памяти CFexpress 256 ГБ',6,'своё','have',0],['Питание и запись','SSD 2 ТБ для сброса и копии',2,'куплено','have',0],['Питание и запись','Ноутбук для сброса материала',1,'своё','have',0],
+   ['Прочее','Дождевой чехол на камеру',1,'прокат','need',800],['Прочее','Кейсы и тележка для перевозки',1,'прокат','have',1000]],
+  needs:['Камера 6K и запасной корпус','Объективы 24–85 мм и 85 мм','Слайдер и мини-кран','6 карт памяти и SSD']},
 {id:'svet',name:'Свет',head:'Бакыт Джумабаев',mem:[4],ex:[['Эмир Шарипов','Осветитель',1],['Нуртилек Базарбаев','Осветитель',0]],need:3,plan:190000,fact:165000,
  tasks:[['Схема света для кухни',1],['Проверка розеток и мощности',1],['Аренда LED-приборов',1],['Генератор для двора',1]],
- needs:['LED-приборы 4 шт. и софтбоксы','Удлинители и генератор 3 кВт','Флаги и рассеиватели']},
+ gear:[['Приборы','LED-панели 1×1 м',4,'прокат','have',10000],['Приборы','Прибор 600 Вт с софтбоксом',2,'прокат','book',7000],['Приборы','Компактные LED-трубки',4,'прокат','need',4000],
+   ['Модификаторы','Флаги, рассеиватели, рамы',1,'прокат','have',2500],['Стойки','Стойки C-stand',8,'прокат','have',2400],['Питание','Генератор 3 кВт и удлинители',1,'прокат','book',6000]],
+  needs:['LED-приборы 4 шт. и софтбоксы','Удлинители и генератор 3 кВт','Флаги и рассеиватели']},
 {id:'zvuk',name:'Звук',head:'Тимур Исаков',mem:[6],ex:[['Айбек Мурзаев','Ассистент по звуку',0]],need:2,plan:90000,fact:80000,
  tasks:[['Записать фоновый шум квартиры',0],['Проверить петлички',1],['Запас батареек',0]],
- needs:['2 петлички и микрофон-пушка','Рекордер с запасной картой']},
+ gear:[['Запись','Рекордер Zoom F8n',1,'своё','have',0],['Микрофоны','Петлички беспроводные',2,'своё','have',0],['Микрофоны','Микрофон-пушка с удочкой и ветрозащитой',1,'своё','have',0],['Прочее','Батарейки и запасная карта',1,'куплено','need',0]],
+  needs:['2 петлички и микрофон-пушка','Рекордер с запасной картой']},
 {id:'hud',name:'Художественный',head:'Алина Петрова',mem:[5,8],ex:[['Любовь Гусева','Декоратор',1]],need:3,plan:130000,fact:60000,
  tasks:[['Эскиз кухни и кабинета',1],['Закупка реквизита сцены 1',1],['Покраска панели для сцены 5',0],['Список реквизита по сценам',1]],
  needs:['Тёплые пледы, посуда, цветы','Краска и малярные материалы','Табличка на дверь без логотипа']},
@@ -394,7 +403,7 @@ const CAST_ST=[['кандидат','warn'],['утверждён','ok'],['отк�
 
 /* ---------- состояние ---------- */
 const KEY='syomochnyj-den-v1', FKEY='syomochnyj-den-anketa-v1';
-const ST0=()=>({cast:{},loc:{},prop:{},acc:{},sent:{},dtask:{},seen:{},team:[],hired:{},paid:{},obl:{},sceneAdd:{},sctext:{},arch:{},rq:{},rqNew:[],av:{},avNew:[],user:null});
+const ST0=()=>({cast:{},loc:{},prop:{},acc:{},sent:{},dtask:{},gear:{},seen:{},team:[],hired:{},paid:{},obl:{},sceneAdd:{},sctext:{},arch:{},rq:{},rqNew:[],av:{},avNew:[],user:null});
 let st=ST0();
 try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&typeof o==='object')st=Object.assign(st,o)}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
@@ -454,6 +463,18 @@ const showCrew=u=>u&&(['producer','director'].includes(u.kind)||(u.kind==='dept'
 const depts=p=>DEPTS[p.id]||[];
 const dMembers=(p,d)=>d.mem.map(i=>({name:p.crew[i].name,role:p.crew[i].role,acc:gAcc(p.crew[i])})).concat(d.ex.map(e=>({name:e[0],role:e[1],acc:e[2]})),st.team.filter(t=>t.dept===d.id).map(t=>({name:t.name,role:t.role,acc:t.hired?1:0,tag:t.hired?'нанят':'приглашён'})));
 const dTasks=(p,d)=>d.tasks.map((t,i)=>{const id=p.id+'-'+d.id+'-t'+i;return {id,t:t[0],on:st.dtask[id]??t[1]}});
+const GST={need:['нужно','bad'],book:['забронировано','warn'],have:['есть','ok']}, GNEXT={need:'book',book:'have',have:'need'};
+const dGear=(p,d)=>(d.gear||[]).map((g,i)=>{const id=p.id+'-'+d.id+'-g'+i;return {id,grp:g[0],t:g[1],q:g[2],src:g[3],s:st.gear[id]||g[4],price:g[5]||0}});
+function gearBlock(p,d,u){
+  const g=dGear(p,d); if(!g.length) return '';
+  const have=g.filter(x=>x.s==='have').length, grps=[...new Set(g.map(x=>x.grp))];
+  const rent=g.filter(x=>x.src==='прокат').reduce((a,x)=>a+x.price,0), miss=g.filter(x=>x.s==='need');
+  return `<h2>Техника · есть ${have} из ${g.length}</h2>
+  ${miss.length?`<div class="card" style="border-left:3px solid var(--bad)"><b>Ещё не найдено: ${miss.length}</b><p class="small" style="margin:6px 0 0">${miss.map(x=>esc(x.t)).join(' · ')}</p></div>`:''}
+  <div class="card" style="padding:4px 16px">${grps.map(gr=>`<div class="small" style="margin:12px 0 2px;font-weight:600;color:var(--ink)">${esc(gr)}</div>`+g.filter(x=>x.grp===gr).map(x=>`<button class="person" style="width:100%;text-align:left" data-act="gear" data-id="${x.id}"><div class="n"><b>${esc(x.t)}${x.q>1?' × '+x.q:''}</b><span>${esc(x.src)}${canMoney(u)&&x.price?' · '+money(x.price)+' за смену':''}</span></div><span class="chip ${GST[x.s][1]}">${GST[x.s][0]}</span></button>`).join('')).join('')}
+  <p class="small" style="margin:10px 0 8px">Нажмите на строку, чтобы сменить статус: нужно → забронировано → есть.</p></div>
+  ${canMoney(u)&&rent?`<div class="card row small"><span>Прокат техники цеха</span><b class="money" style="color:var(--ink)">${money(rent)} за смену</b></div>`:''}`;
+}
 function dStat(p,d){
   const mem=dMembers(p,d).length, tk=dTasks(p,d), pct=tk.filter(x=>x.on).length/Math.max(1,tk.length);
   const ready=Math.round((pct+Math.min(1,mem/d.need))/2*100);
@@ -753,6 +774,7 @@ function dDetail(p,d,u){
   <h2 style="margin-top:6px">Состав · ${mem.length}/${d.need}</h2><div class="card" style="padding:4px 16px">${mem.map(m=>`<div class="person"><div class="ava" style="background:hsl(${hue(m.name)} 40% 42%)">${initials(m.name)}</div><div class="n"><b>${esc(m.name)}</b><span>${esc(m.role)}${m.name===d.head?' · руководитель':''}</span></div><span class="chip ${m.acc?'ok':'gray'}">${m.tag||(m.acc?'принял':'не ответил')}</span></div>`).join('')}</div>
   ${fs.length?`<h2>Отклики из анкет · ${fs.length}</h2><div class="card" style="padding:4px 16px">${fs.map(f=>{const hired=st.hired[f.id];return `<button class="person" style="width:100%;text-align:left" data-act="fopen" data-id="${f.id}">${fAva(f)}<div class="n"><b>${esc(f.name)}</b><span>${esc(f.sub)}</span></div><span class="chip ${hired?'ok':st.seen[f.id]?'gray':'new'}">${hired?'нанят':st.seen[f.id]?'просмотрено':'новый'}</span></button>`}).join('')}</div>`:''}
   <h2>Задачи к съёмке · ${tk.filter(x=>x.on).length}/${tk.length}</h2><div class="card" style="padding:2px 16px">${tk.map(t=>`<button class="chk ${t.on?'on':''}" data-act="dtask" data-id="${t.id}"><span class="box">${ico('check')}</span><span class="t">${esc(t.t)}</span></button>`).join('')}</div>
+  ${gearBlock(p,d,u)}
   <h2>Что нужно от цеха</h2><div class="card"><ul class="need">${d.needs.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>
   ${canMoney(u)&&bl?`<h2>Бюджет цеха</h2><div class="card"><div class="bar ${bl.fact>bl.plan?'bad':''}"><i style="width:${Math.min(100,bl.fact/Math.max(1,bl.plan)*100)}%"></i></div><div class="nums row small" style="margin-top:8px"><span>план <b class="money" style="color:var(--ink)">${money(bl.plan)}</b></span><span>факт <b class="money" style="color:var(--ink)">${money(bl.fact)}</b></span></div></div>`:''}
   ${isProd(u)?linkBtn(linkKey,'Ссылка на анкету цеха'):''}${p.id==='p1'?NOTE:''}`;
@@ -988,7 +1010,8 @@ $app.addEventListener('click',e=>{
   else if(a==='loc'){const l=p.locs.find(x=>x.id===id);st.loc[id]=gLoc(l)?0:1;save()}
   else if(a==='prop'){const i=propsFor(p).flatMap(s=>s.items).find(x=>x.id===id);st.prop[id]=gProp(i)?0:1;save()}
   else if(a==='dtask'){const d=dTasks(p,depts(p).find(x=>id.includes('-'+x.id+'-t'))).find(x=>x.id===id);st.dtask[id]=d.on?0:1;save()}
-  else if(a==='pay'){st.paid[id]=!st.paid[id];save()}
+  else if(a==='gear'){const d=depts(p).find(x=>id.includes('-'+x.id+'-g'));const g=dGear(p,d).find(x=>x.id===id);st.gear[id]=GNEXT[g.s];save()}
+   else if(a==='pay'){st.paid[id]=!st.paid[id];save()}
   else if(a==='obl'){st.obl[id]=!st.obl[id];save()}
   else if(a==='send'){ui.sheet='sending';render();setTimeout(()=>{ui.sheet='sent';st.sent[ui.pid]=1;save();render()},1100);return}
   else if(a==='part'||a==='part2'){ui.sheet=null;ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
