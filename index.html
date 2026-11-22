@@ -183,6 +183,13 @@ textarea.inp{padding:12px 14px}
 .cmt{margin-top:10px;background:var(--surface2);border-radius:12px;padding:10px 12px;font-size:13.5px;font-weight:600}
 .chips2{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.chip2{min-height:48px;padding:0 16px;border-radius:99px;border:2px solid var(--line);background:var(--surface);font-weight:700;font-size:14.5px}.chip2.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .filebtn{display:flex;align-items:center;gap:10px;min-height:56px;border:2px dashed var(--line);border-radius:16px;padding:0 14px;font-weight:700;margin-bottom:10px;cursor:pointer;background:var(--surface)}
+.gal{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:-2px -16px 10px;padding:0 16px}
+.gal::-webkit-scrollbar{display:none}
+.gal>*{flex:0 0 auto;width:230px;height:150px;border-radius:14px;overflow:hidden;background:var(--line)}
+.gal img,.gal svg{width:100%;height:100%;object-fit:cover;display:block}
+.vcard{background:var(--surface);border-radius:20px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:12px}
+.vcard h3{margin:0 0 2px;font-size:16px}
+.thumbs{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 10px}.thumbs img{width:64px;height:64px;object-fit:cover;border-radius:10px}
 </style>
 </head>
 <body>
@@ -403,7 +410,7 @@ const CAST_ST=[['кандидат','warn'],['утверждён','ok'],['отк�
 
 /* ---------- состояние ---------- */
 const KEY='syomochnyj-den-v1', FKEY='syomochnyj-den-anketa-v1';
-const ST0=()=>({cast:{},loc:{},prop:{},acc:{},sent:{},dtask:{},gear:{},seen:{},team:[],hired:{},paid:{},obl:{},sceneAdd:{},sctext:{},arch:{},rq:{},rqNew:[],av:{},avNew:[],user:null});
+const ST0=()=>({cast:{},loc:{},prop:{},acc:{},sent:{},dtask:{},gear:{},scout:{},scoutNew:[],art:{},artNew:[],seen:{},team:[],hired:{},paid:{},obl:{},sceneAdd:{},sctext:{},arch:{},rq:{},rqNew:[],av:{},avNew:[],user:null});
 let st=ST0();
 try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&typeof o==='object')st=Object.assign(st,o)}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
@@ -428,7 +435,7 @@ const clean=s=>s.replace(/^\+/,'');
 /* ---------- пользователи и роли ---------- */
 function roleInfo(role,dept){
   const r=role.toLowerCase();
-  const m=[[/бухгалтер/,{kind:'accountant',dept:'prod'}],[/^режиссёр$/,{kind:'director',dept:'rez'}],[/художник-постановщик/,{kind:'artist',dept:'hud'}],[/реквизитор/,{kind:'props',dept:'hud'}],[/декоратор/,{kind:'dept',dept:'hud'}],
+  const m=[[/бухгалтер/,{kind:'accountant',dept:'prod'}],[/локейшн|скаут/,{kind:'locman',dept:'loc'}],[/^режиссёр$/,{kind:'director',dept:'rez'}],[/художник-постановщик/,{kind:'artist',dept:'hud'}],[/реквизитор/,{kind:'props',dept:'hud'}],[/декоратор/,{kind:'dept',dept:'hud'}],
    [/ассистент режиссёра|скрипт/,{kind:'dept',dept:'rez'}],[/продюсер|администратор|директор площадки/,{kind:'dept',dept:'prod'}],[/оператор|фокус|механик/,{kind:'dept',dept:'oper'}],[/гафер|гаффер|осветитель/,{kind:'dept',dept:'svet'}],[/звук/,{kind:'dept',dept:'zvuk'}],
    [/костюмер/,{kind:'dept',dept:'kost'}],[/гример|стилист/,{kind:'dept',dept:'grim'}],[/транспорт|водитель/,{kind:'dept',dept:'trans'}],[/кейтеринг|повар/,{kind:'dept',dept:'food'}],[/монтаж|колорист|моушн/,{kind:'dept',dept:'post'}],[/актёр|актер|массовка/,{kind:'actor',dept:'cast'}]];
   for(const [re,v] of m) if(re.test(r)) return v;
@@ -436,7 +443,7 @@ function roleInfo(role,dept){
 }
 function users(){
   const p=DATA[0];
-  const base=[{id:'u-prod',name:'Нурлан Абдыкеримов',role:'Продюсер',kind:'producer',dept:null},{id:'u-acc',name:'Зарина Бообекова',role:'Бухгалтер',kind:'accountant',dept:'prod'}];
+  const base=[{id:'u-prod',name:'Нурлан Абдыкеримов',role:'Продюсер',kind:'producer',dept:null},{id:'u-acc',name:'Зарина Бообекова',role:'Бухгалтер',kind:'accountant',dept:'prod'},{id:'u-loc',name:'Гулжан Бекова',role:'Локейшн-менеджер',kind:'locman',dept:'loc'}];
   const crew=p.crew.map(c=>Object.assign({id:'u-'+c.id,name:c.name,role:c.role},roleInfo(c.role)));
   const team=st.team.map(t=>Object.assign({id:'u-'+t.id,name:t.name,role:t.role,tag:t.hired?'нанят':'приглашён'},roleInfo(t.role,t.dept)));
   return base.concat(crew,team);
@@ -444,12 +451,12 @@ function users(){
 const U=()=>users().find(x=>x.id===st.user);
 const isProd=u=>u&&u.kind==='producer';
 const canMoney=u=>u&&(u.kind==='producer'||u.kind==='accountant');
-const KIND_TXT={producer:'Видит всё, нанимает людей и видит деньги',accountant:'Видит только деньги проекта',director:'Сцены, раскадровка, кастинг, вызывные',artist:'Свой цех и сцены: реквизит, декорации, костюм',props:'Реквизит по сценам на сегодня и завтра',dept:'Свой цех, свои задачи и вызывной',actor:'Свой вызывной'};
+const KIND_TXT={producer:'Видит всё, нанимает людей и видит деньги',accountant:'Видит только деньги проекта',director:'Сцены, раскадровка, кастинг, вызывные',artist:'Свой цех и сцены: реквизит, декорации, костюм',props:'Реквизит по сценам на сегодня и завтра',locman:'Ищет локации и шлёт фото режиссёру на одобрение',dept:'Свой цех, свои задачи и вызывной',actor:'Свой вызывной'};
 function tabsFor(u){
-  return {producer:['call','scenes','dept','money','more'],accountant:['money','call','more'],director:['call','scenes','cast','reqs','more'],artist:['mydept','scenes','reqs','call','more'],props:['props','scenes','reqs','call','more'],dept:['mydept','reqs','call','more'],actor:['call','more']}[u.kind];
+  return {producer:['call','scenes','dept','money','more'],accountant:['money','call','more'],director:['call','scenes','appr','cast','more'],artist:['art','mydept','scenes','call','more'],props:['props','scenes','reqs','call','more'],locman:['scout','mydept','reqs','call','more'],dept:['mydept','reqs','call','more'],actor:['call','more']}[u.kind];
 }
-const TABDEF={call:['Вызывной','clip'],scenes:['Сцены','film'],dept:['Цеха','grid'],mydept:['Мой цех','grid'],cast:['Кастинг','users'],money:['Деньги','coin'],props:['Реквизит','hanger'],more:['Ещё','dots'],reqs:['Заявки','coin']};
-const TITLES={call:'Вызывной',scenes:'Сцены',dept:'Цеха',mydept:'Мой цех',cast:'Кастинг',money:'Деньги',props:'Реквизит и костюмы',more:'Ещё',loc:'Локации',team:'Команда и доступы',reqs:'Заявки на деньги'};
+const TABDEF={call:['Вызывной','clip'],scenes:['Сцены','film'],dept:['Цеха','grid'],mydept:['Мой цех','grid'],cast:['Кастинг','users'],money:['Деньги','coin'],props:['Реквизит','hanger'],more:['Ещё','dots'],reqs:['Заявки','coin'],scout:['Локации','pin'],appr:['Утвердить','check'],art:['Эскизы','hanger']};
+const TITLES={appr:'На утверждение',art:'Эскизы на утверждение',scout:'Выбор локаций',call:'Вызывной',scenes:'Сцены',dept:'Цеха',mydept:'Мой цех',cast:'Кастинг',money:'Деньги',props:'Реквизит и костюмы',more:'Ещё',loc:'Локации',team:'Команда и доступы',reqs:'Заявки на деньги'};
 function catsFor(u){
   if(u.kind==='producer'||u.kind==='director') return Object.keys(CATLAB);
   if(u.kind==='artist') return ['props','decor','costume','loc'];
@@ -620,8 +627,9 @@ function backKind(u){
 }
 function viewProject(u){
   const p=proj(), tabs=tabsFor(u);
-  if(!ui.tab||(!tabs.includes(ui.tab)&&!['loc','team','cast','props','reqs'].includes(ui.tab))) ui.tab=tabs[0];
-  const tabFn={call:tCall,scenes:tScenes,dept:tDept,mydept:tMyDept,cast:tCast,money:tMoney,props:tProps,more:tMore,loc:tLoc,team:tTeam,reqs:tReqs};
+  if(!ui.tab||(!tabs.includes(ui.tab)&&!['loc','team','cast','props','reqs','scout','art','appr'].includes(ui.tab))) ui.tab=tabs[0];
+  const tabFn={call:tCall,scenes:tScenes,dept:tDept,mydept:tMyDept,cast:tCast,money:tMoney,props:tProps,more:tMore,loc:tLoc,team:tTeam,reqs:tReqs,scout:tScout,art:tArt,appr:tAppr};
+  applyPicks(p);
   const body=tabFn[ui.tab](p,u);
   let title=TITLES[ui.tab];
   if(ui.tab==='dept'&&ui.dept) title=depts(p).find(d=>d.id===ui.dept).name;
@@ -683,9 +691,83 @@ function tCast(p,u){
     <button class="chip ${cl} st" data-act="cast" data-id="${c.id}" style="min-height:40px">${s===1?ico('check'):''}${n}</button></div></div>`}).join('')}</div>
   <div class="card" style="margin-top:14px"><div class="row small"><span>Утверждено</span><b style="color:var(--ink)">${p.cast.filter(c=>gCast(c)===1).length} из ${p.cast.length}</b></div></div>${p.id==='p1'?NOTE:''}`;
 }
+
+/* --- выбор локаций: фото вариантов → решение режиссёра --- */
+const SCOUT0=[
+ {id:'v1',need:'p1-l1',title:'Квартира-студия «Светлая»',addr:'ул. Токтогула, 85',note:'Большое окно на восток, утром мягкий свет. Хозяйка разрешает 2 дня, 15 000 с в день.',by:'Гулжан Бекова',ph:3,s:'ok',c:'Берём. Кухня как в раскадровке.'},
+ {id:'v2',need:'p1-l1',title:'Лофт на Абдрахманова',addr:'ул. Абдрахманова, 170',note:'Просторно, но кирпич и бетон — холодно для семейной сцены.',by:'Гулжан Бекова',ph:2,s:'no',c:'Слишком холодно по настроению, нужен тёплый дом.'},
+ {id:'v3',need:'p1-l2',title:'Офис на втором этаже',addr:'пр. Чуй, 120',note:'Стеклянные перегородки, можно снимать в субботу.',by:'Ильяс Таипов',ph:3,s:'ok',c:'Подходит.'},
+ {id:'v4',need:'p1-l3',title:'Двор на Исанова',addr:'ул. Исанова, 42',note:'Детская площадка и лавочки, жильцы в целом не против. Вечером тихо.',by:'Ильяс Таипов',ph:3,s:'wait',c:''},
+ {id:'v5',need:'p1-l3',title:'Двор в 7 мкр',addr:'7 мкр, дом 25',note:'Больше зелени, но рядом дорога — шум для звука.',by:'Гулжан Бекова',ph:2,s:'wait',c:''},
+ {id:'v6',need:'p1-l4',title:'Смотровая терраса на Эркиндик',addr:'бульвар Эркиндик, 30',note:'Закат виден с 17:10. Нужна оплата администрации парка.',by:'Гулжан Бекова',ph:3,s:'wait',c:''}];
+const NEEDL={'p1-l1':'Квартира семьи','p1-l2':'Офис предпринимателя','p1-l3':'Двор жилого дома','p1-l4':'Терраса с видом на закат'};
+const ALT={flat:'office',office:'flat',street:'park',park:'street',mount:'street'};
+const SCST={wait:['ждёт режиссёра','warn'],ok:['одобрено','ok'],no:['отклонено','bad'],skip:['не выбрано','gray']};
+const canPick=u=>u&&(u.kind==='director'||u.kind==='producer');
+function scoutAll(p){ if(p.id!=='p1') return [];
+  return SCOUT0.map(v=>Object.assign({},v)).concat(st.scoutNew.map(v=>Object.assign({},v))).map(v=>{const d=st.scout[v.id];if(d){v.s=d.s;v.c=d.c||''}return v}); }
+const scoutWait=p=>scoutAll(p).filter(v=>v.s==='wait').length;
+function applyPicks(p){ (p.locs||[]).forEach(l=>{ if(l.name0===undefined){l.name0=l.name;l.addr0=l.addr}
+  const v=scoutAll(p).filter(x=>x.need===l.id&&x.s==='ok').pop();
+  if(v){l.name=v.title;l.addr=v.addr;l.photo=v.photos&&v.photos[0]?v.photos[0]:v.title+' 0'}else{l.name=l.name0;l.addr=l.addr0;l.photo=null} }); }
+function vPhotos(v,typ){ if(v.photos&&v.photos.length) return v.photos.map(src=>`<div><img src="${src}" alt=""></div>`).join('');
+  return Array.from({length:v.ph||2},(_,i)=>`<div>${scene(i%2?(ALT[typ]||typ):typ,v.title+' '+i)}</div>`).join(''); }
+function vCard(p,v,l,u){ const S=SCST[v.s];
+  const act=canPick(u)&&v.s!=='ok'?`<textarea class="inp" id="vc-${v.id}" placeholder="Комментарий для локейшн-менеджера (необязательно)" style="min-height:64px;margin-bottom:10px">${esc(v.c||'')}</textarea>
+    <div class="acts"><button class="btn" data-act="vok" data-id="${v.id}">${ico('check')}Одобрить</button><button class="btn sec" data-act="vno" data-id="${v.id}">Отклонить</button></div>`
+   :canPick(u)&&v.s==='ok'?`<button class="btn sec" data-act="vreset" data-id="${v.id}">Пересмотреть</button>`:'';
+  return `<div class="vcard"><div class="gal">${vPhotos(v,l.type)}</div>
+   <div class="row" style="align-items:flex-start;gap:10px"><div><h3>${esc(v.title)}</h3><div class="small">${esc(v.addr)} · <a href="${mapUrl(v.addr)}" target="_blank" rel="noopener">2ГИС</a></div></div><span class="chip ${S[1]}">${S[0]}</span></div>
+   ${v.note?`<p style="margin:8px 0 6px">${esc(v.note)}</p>`:''}<div class="small" style="margin-bottom:8px">Нашёл(ла): ${esc(v.by)}</div>
+   ${v.c?`<div class="card" style="background:var(--bg);box-shadow:none;margin:0 0 10px;padding:10px 12px"><div class="small">Режиссёр</div><b>${esc(v.c)}</b></div>`:''}${act}</div>`; }
+function tScout(p,u){ if(p.id!=='p1') return `<div class="card">В примере выбор локаций заполнен в проекте «Реклама банка — имиджевый ролик».</div>`;
+  applyPicks(p); const all=scoutAll(p), w=all.filter(v=>v.s==='wait').length, isLoc=u.kind==='locman'||isProd(u);
+  const head=canPick(u)?`<p class="hint">Локейшн-менеджер присылает фото вариантов. Одобренная локация сама встаёт в сцены и вызывной.</p>${w?`<div class="card" style="border-left:3px solid var(--warn,#d9a400)"><b>Ждут вашего решения: ${w}</b></div>`:''}`
+   :`<p class="hint">Загрузите фото вариантов по каждой локации и отправьте режиссёру. Его решение и комментарий появятся здесь.</p>`;
+  return head+p.locs.map(l=>{ const vs=all.filter(v=>v.need===l.id), ok=vs.find(v=>v.s==='ok');
+    const sc=SC.filter(s=>p.locs[s.loc]===l).map(s=>s.n);
+    return `<h2>${esc(NEEDL[l.id]||l.name0)}${sc.length?` <span class="small" style="font-weight:600">· сц. ${sc.join(', ')}</span>`:''}</h2>
+    <div class="small" style="margin:-4px 0 10px">${ok?'✅ Выбрано: '+esc(ok.title):vs.length?'Вариантов: '+vs.length+', решения ещё нет':'Вариантов пока нет'}</div>
+    ${vs.map(v=>vCard(p,v,l,u)).join('')}
+    ${isLoc?`<button class="btn line" data-act="vadd" data-id="${l.id}">${ico('plus')}Добавить вариант с фото</button>`:''}`}).join(''); }
+function shrink(file){ return new Promise(res=>{ const r=new FileReader(); r.onload=()=>{ const im=new Image(); im.onload=()=>{ const k=Math.min(1,900/Math.max(im.width,im.height)); const c=document.createElement('canvas'); c.width=Math.round(im.width*k); c.height=Math.round(im.height*k); c.getContext('2d').drawImage(im,0,0,c.width,c.height); res(c.toDataURL('image/jpeg',0.72)) }; im.onerror=()=>res(null); im.src=r.result }; r.onerror=()=>res(null); r.readAsDataURL(file) }); }
+
+/* --- эскизы художников по сценам → решение режиссёра --- */
+const ARTK={decor:['Декорация','hud'],props:['Реквизит','hud'],costume:['Костюм','kost'],makeup:['Грим','grim']};
+const ART0=[
+ {id:'a1',sc:'s1',k:'decor',title:'Кухня: тёплое дерево, зелень на подоконнике',note:'Убираем холодный белый свет, добавляем плед и цветы.',by:'Алина Петрова',ph:2,s:'ok',c:'Отлично, так и оставляем.'},
+ {id:'a2',sc:'s1',k:'props',title:'Завтрак: чайник, чашки, лепёшки, мёд',note:'Посуда без логотипов, тёплые цвета.',by:'Дмитрий Орлов',ph:2,s:'wait',c:''},
+ {id:'a3',sc:'s1',k:'costume',title:'Мама: домашний кардиган, мягкие тона',note:'Два варианта: бежевый и терракота.',by:'Асель Курманова',ph:2,s:'wait',c:''},
+ {id:'a4',sc:'s5',k:'decor',title:'Кабинет: панель за столом перекрасить',note:'Цвет — тёмно-зелёный, чтобы лицо читалось.',by:'Алина Петрова',ph:2,s:'no',c:'Зелёный спорит с брендом банка. Давай графит.'},
+ {id:'a5',sc:'s7',k:'makeup',title:'Дедушка: лёгкая седина, без грима «под старость»',note:'Естественно, только убрать блеск.',by:'Гульнара Эркинова',ph:1,s:'wait',c:''},
+ {id:'a6',sc:'s8',k:'costume',title:'Папа и мама на террасе: вечерние пальто',note:'Сочетаются по цвету с закатом.',by:'Асель Курманова',ph:2,s:'ok',c:'Да.'}];
+const ARTTYPE={decor:'flat',props:'flat',costume:'park',makeup:'park'};
+function artAll(p){ if(p.id!=='p1') return [];
+  return ART0.map(v=>Object.assign({},v)).concat(st.artNew.map(v=>Object.assign({},v))).map(v=>{const d=st.art[v.id];if(d){v.s=d.s;v.c=d.c||''}return v}); }
+const artWait=p=>artAll(p).filter(v=>v.s==='wait').length;
+function aCard(p,v,u){ const S=SCST[v.s], s=SC.find(x=>x.id===v.sc);
+  const act=canPick(u)&&v.s!=='ok'?`<textarea class="inp" id="ac-${v.id}" placeholder="Комментарий художнику (необязательно)" style="min-height:64px;margin-bottom:10px">${esc(v.c||'')}</textarea>
+    <div class="acts"><button class="btn" data-act="aok" data-id="${v.id}">${ico('check')}Одобрить</button><button class="btn sec" data-act="ano" data-id="${v.id}">Отклонить</button></div>`
+   :canPick(u)&&v.s==='ok'?`<button class="btn sec" data-act="areset" data-id="${v.id}">Пересмотреть</button>`:'';
+  return `<div class="vcard"><div class="gal">${vPhotos(v,ARTTYPE[v.k])}</div>
+   <div class="row" style="align-items:flex-start;gap:10px"><div><div class="small">${ARTK[v.k][0]} · сцена ${s?s.n+' «'+esc(s.title)+'»':''}</div><h3>${esc(v.title)}</h3></div><span class="chip ${S[1]}">${S[0]}</span></div>
+   ${v.note?`<p style="margin:8px 0 6px">${esc(v.note)}</p>`:''}<div class="small" style="margin-bottom:8px">Прислал(а): ${esc(v.by)}</div>
+   ${v.c?`<div class="card" style="background:var(--bg);box-shadow:none;margin:0 0 10px;padding:10px 12px"><div class="small">Режиссёр</div><b>${esc(v.c)}</b></div>`:''}${act}</div>`; }
+function tArt(p,u){ if(p.id!=='p1') return `<div class="card">В примере эскизы заполнены в проекте «Реклама банка — имиджевый ролик».</div>`;
+  const all=artAll(p), w=all.filter(v=>v.s==='wait').length, canAdd=u.kind==='artist'||u.kind==='props'||isProd(u)||u.dept==='hud'||u.dept==='kost'||u.dept==='grim';
+  const head=canPick(u)?`<p class="hint">Художник, реквизитор, костюмер и гример присылают эскизы и фото по сценам. Одобренное сразу видно цеху в списке на день.</p>${w?`<div class="card" style="border-left:3px solid #d9a400"><b>Ждут вашего решения: ${w}</b></div>`:''}`
+   :`<p class="hint">Загрузите эскиз или фото по сцене и отправьте режиссёру. Его решение и комментарий появятся здесь.</p>${canAdd?`<button class="btn" data-act="aadd">${ico('plus')}Отправить эскиз режиссёру</button>`:''}`;
+  const ss=SC.filter(s=>all.some(v=>v.sc===s.id));
+  return head+ss.map(s=>`<h2>Сцена ${s.n} · ${esc(s.title)}</h2>${all.filter(v=>v.sc===s.id).map(v=>aCard(p,v,u)).join('')}`).join('')
+   +(canPick(u)&&isProd(u)?`<button class="btn line" data-act="aadd">${ico('plus')}Добавить эскиз</button>`:''); }
+function tAppr(p,u){ const seg=ui.apSeg||'loc', lw=scoutWait(p), aw=artWait(p);
+  return `<div class="chips2" style="margin-bottom:12px"><button class="chip2 ${seg==='loc'?'on':''}" data-act="apseg" data-id="loc">Локации${lw?' · '+lw:''}</button><button class="chip2 ${seg==='art'?'on':''}" data-act="apseg" data-id="art">Художники${aw?' · '+aw:''}</button></div>`+(seg==='loc'?tScout(p,u):tArt(p,u)); }
+function approvedFor(p,dept){ return artAll(p).filter(v=>v.s==='ok'&&ARTK[v.k][1]===dept); }
+function approvedBlock(p,dept,kinds){ const a=approvedFor(p,dept).filter(v=>!kinds||kinds.includes(v.k)); if(!a.length) return '';
+  return `<h2>Утверждено режиссёром · ${a.length}</h2><div class="card" style="padding:4px 16px">${a.map(v=>{const s=SC.find(x=>x.id===v.sc);return `<div class="person"><div class="n"><b>${esc(v.title)}</b><span>${ARTK[v.k][0]} · сцена ${s?s.n:''}${v.c?' · «'+esc(v.c)+'»':''}</span></div><span class="chip ok">одобрено</span></div>`}).join('')}</div>`; }
 function tLoc(p){
   return p.locs.map(l=>{const ok=gLoc(l);
-    return `<div class="lcard"><div class="ph">${scene(l.type,l.name)}</div><div class="bd"><div class="row" style="align-items:flex-start;margin-bottom:4px"><h3>${esc(l.name)}</h3></div>
+    return `<div class="lcard"><div class="ph">${l.photo?(l.photo.startsWith('data:')?`<img src="${l.photo}" alt="" style="width:100%;height:100%;object-fit:cover">`:scene(l.type,l.photo)):scene(l.type,l.name)}</div><div class="bd"><div class="row" style="align-items:flex-start;margin-bottom:4px"><h3>${esc(l.name)}</h3></div>
     <p>${esc(l.addr)}, Бишкек</p>
     <div class="row" style="margin-bottom:12px"><span class="small">Разрешение на съёмку</span><span class="chip ${ok?'ok':'warn'}">${ok?ico('check')+'получено':ico('clock')+'ждём'}</span></div>
     <div class="acts"><button class="btn sec" data-act="loc" data-id="${l.id}">${ok?'Сбросить':'Получено ✓'}</button>
@@ -700,7 +782,7 @@ function tProps(p,u){
   const head=`<div class="card"><div class="row" style="margin-bottom:8px"><b>Собрано</b><b>${done} из ${all.length}</b></div><div class="bar ok"><i style="width:${done/Math.max(1,all.length)*100}%"></i></div></div>`;
   if(p.id==='p1'){
     const d1=ps.filter(s=>s.day===1),d2=ps.filter(s=>s.day===2);
-    return head+`<h2>Сегодня · 27 ноября (день 1)</h2>${d1.map(propList).join('')}<h2>Завтра · 28 ноября (день 2)</h2>${d2.map(propList).join('')}`;
+    return head+approvedBlock(p,'hud',['props'])+`<h2>Сегодня · 27 ноября (день 1)</h2>${d1.map(propList).join('')}<h2>Завтра · 28 ноября (день 2)</h2>${d2.map(propList).join('')}`;
   }
   return head+ps.map(propList).join('');
 }
@@ -774,7 +856,7 @@ function dDetail(p,d,u){
   <h2 style="margin-top:6px">Состав · ${mem.length}/${d.need}</h2><div class="card" style="padding:4px 16px">${mem.map(m=>`<div class="person"><div class="ava" style="background:hsl(${hue(m.name)} 40% 42%)">${initials(m.name)}</div><div class="n"><b>${esc(m.name)}</b><span>${esc(m.role)}${m.name===d.head?' · руководитель':''}</span></div><span class="chip ${m.acc?'ok':'gray'}">${m.tag||(m.acc?'принял':'не ответил')}</span></div>`).join('')}</div>
   ${fs.length?`<h2>Отклики из анкет · ${fs.length}</h2><div class="card" style="padding:4px 16px">${fs.map(f=>{const hired=st.hired[f.id];return `<button class="person" style="width:100%;text-align:left" data-act="fopen" data-id="${f.id}">${fAva(f)}<div class="n"><b>${esc(f.name)}</b><span>${esc(f.sub)}</span></div><span class="chip ${hired?'ok':st.seen[f.id]?'gray':'new'}">${hired?'нанят':st.seen[f.id]?'просмотрено':'новый'}</span></button>`}).join('')}</div>`:''}
   <h2>Задачи к съёмке · ${tk.filter(x=>x.on).length}/${tk.length}</h2><div class="card" style="padding:2px 16px">${tk.map(t=>`<button class="chk ${t.on?'on':''}" data-act="dtask" data-id="${t.id}"><span class="box">${ico('check')}</span><span class="t">${esc(t.t)}</span></button>`).join('')}</div>
-  ${gearBlock(p,d,u)}
+  ${gearBlock(p,d,u)}${p.id==='p1'?approvedBlock(p,d.id):''}
   <h2>Что нужно от цеха</h2><div class="card"><ul class="need">${d.needs.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>
   ${canMoney(u)&&bl?`<h2>Бюджет цеха</h2><div class="card"><div class="bar ${bl.fact>bl.plan?'bad':''}"><i style="width:${Math.min(100,bl.fact/Math.max(1,bl.plan)*100)}%"></i></div><div class="nums row small" style="margin-top:8px"><span>план <b class="money" style="color:var(--ink)">${money(bl.plan)}</b></span><span>факт <b class="money" style="color:var(--ink)">${money(bl.fact)}</b></span></div></div>`:''}
   ${isProd(u)?linkBtn(linkKey,'Ссылка на анкету цеха'):''}${p.id==='p1'?NOTE:''}`;
@@ -870,10 +952,14 @@ function tReqs(p,u){
 function tMore(p,u){
   const tabs=tabsFor(u);
   const items=[];
+  const addR=()=>{if(!isProd(u)&&!tabs.includes('reqs')&&u.kind!=='accountant'&&u.kind!=='actor')items.push(`<button class="card menu" data-act="tab" data-id="reqs"><span class="mi">${ico('coin')}</span><span class="n"><b>Заявки на деньги</b><small>свои заявки и авансы</small></span>${ico('chev')}</button>`)};
   const add=(tab,t,sub,ic)=>{if(!tabs.includes(tab))items.push(`<button class="card menu" data-act="tab" data-id="${tab}"><span class="mi">${ico(ic)}</span><span class="n"><b>${t}</b><small>${sub}</small></span>${ico('chev')}</button>`)};
+  addR();
   if(isProd(u)){
     add('reqs','Заявки на деньги',waitCount()?waitCount()+' ждут решения':'все решены','coin');
     add('cast','Кастинг',p.cast.length+' анкет'+(formsOf(p,f=>f.type==='akter').length?' + '+formsOf(p,f=>f.type==='akter').length+' новых':''),'users');
+    if(p.id==='p1')add('art','Эскизы художников',artWait(p)?artWait(p)+' ждут режиссёра':'декорации, реквизит, костюм, грим','hanger');
+    if(p.id==='p1')add('scout','Выбор локаций',scoutWait(p)?scoutWait(p)+' вариантов ждут режиссёра':'фото вариантов и решения режиссёра','pin');
     add('loc','Локации',p.locs.filter(gLoc).length+' из '+p.locs.length+' с разрешением','pin');
     add('props','Реквизит и костюмы','чек-лист по сценам','hanger');
     if(p.id==='p1')items.push(`<button class="card menu" data-act="tab" data-id="team"><span class="mi">${ico('key')}</span><span class="n"><b>Команда и доступы</b><small>кто что видит, пригласить человека</small></span>${ico('chev')}</button>`);
@@ -924,6 +1010,21 @@ function formRole(f){
 }
 function viewSheet(u){
   const s=ui.sheet,p=ui.pid&&proj();
+  if(s==='aadd'){const def=u&&u.dept==='kost'?'costume':u&&u.dept==='grim'?'makeup':u&&u.kind==='props'?'props':'decor';ui.ak=ui.ak||def;
+    return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Эскиз на утверждение</h3>
+    <label class="lbl">Сцена</label><select id="asc" class="inp">${SC.map(s=>`<option value="${s.id}">Сцена ${s.n} · ${esc(s.title)}</option>`).join('')}</select>
+    <label class="lbl">Что это</label><div class="chips2">${Object.keys(ARTK).map(k=>`<button class="chip2 ${ui.ak===k?'on':''}" data-act="ak" data-id="${k}">${ARTK[k][0]}</button>`).join('')}</div>
+    <label class="lbl">Коротко, что на эскизе</label><input id="atitle" class="inp" placeholder="Например, гостиная: ковёр, торшер, фото на стене">
+    <label class="lbl">Эскизы и фото</label><label class="filebtn">${ico('plus')}<span id="vcount">Выбрать фото (можно сразу много)</span><input id="vfiles" type="file" accept="image/*" multiple hidden></label><div class="thumbs" id="vthumbs"></div>
+    <label class="lbl">Заметка для режиссёра</label><textarea id="anote" class="inp" placeholder="Цвета, материалы, варианты" style="min-height:80px"></textarea>
+    <div class="msgerr" id="aerr"></div><button class="btn" data-act="doaadd">${ico('send')}Отправить режиссёру</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`}
+  if(s==='vadd'){const l=p.locs.find(x=>x.id===ui.vneed)||{};
+    return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><h3>Новый вариант: ${esc(NEEDL[l.id]||l.name0||'')}</h3>
+    <label class="lbl">Название места</label><input id="vtitle" class="inp" placeholder="Например, кафе «Арча», летняя веранда">
+    <label class="lbl">Адрес</label><input id="vaddr" class="inp" placeholder="Улица и дом">
+    <label class="lbl">Фото</label><label class="filebtn">${ico('plus')}<span id="vcount">Выбрать фото (можно сразу много)</span><input id="vfiles" type="file" accept="image/*" multiple hidden></label><div class="thumbs" id="vthumbs"></div>
+    <label class="lbl">Заметка для режиссёра</label><textarea id="vnote" class="inp" placeholder="Свет, шум, цена, когда можно снимать" style="min-height:80px"></textarea>
+    <div class="msgerr" id="verr"></div><button class="btn" data-act="dovadd">${ico('send')}Отправить режиссёру</button><button class="btn sec" data-act="closeSheet">Отмена</button></div></div>`}
   if(s==='sending') return `<div class="sheet-bg"><div class="sheet"><div class="grab"></div><h3 style="text-align:center">Отправляем…</h3><div class="spin"></div></div></div>`;
   if(s==='sent') return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop><div class="grab"></div><div class="bigcheck">${ico('check')}</div>
     <h3 style="text-align:center">Отправлено ${p.crew.length} участникам</h3><p style="text-align:center">Вызывной ушёл в Telegram. Это пример: реальной отправки нет, никто ничего не получил.</p>
@@ -1011,7 +1112,29 @@ $app.addEventListener('click',e=>{
   else if(a==='prop'){const i=propsFor(p).flatMap(s=>s.items).find(x=>x.id===id);st.prop[id]=gProp(i)?0:1;save()}
   else if(a==='dtask'){const d=dTasks(p,depts(p).find(x=>id.includes('-'+x.id+'-t'))).find(x=>x.id===id);st.dtask[id]=d.on?0:1;save()}
   else if(a==='gear'){const d=depts(p).find(x=>id.includes('-'+x.id+'-g'));const g=dGear(p,d).find(x=>x.id===id);st.gear[id]=GNEXT[g.s];save()}
-   else if(a==='pay'){st.paid[id]=!st.paid[id];save()}
+   else if(a==='apseg'){ui.apSeg=id}
+  else if(a==='aadd'){ui.ak=null;ui.sheet='aadd'}
+  else if(a==='ak'){ui.ak=id;$app.querySelectorAll('[data-act=ak]').forEach(b=>b.classList.toggle('on',b.dataset.id===id));return}
+  else if(a==='doaadd'){const q=s=>$app.querySelector(s);const title=q('#atitle').value.trim(),files=[...(q('#vfiles').files||[])],note=q('#anote').value.trim(),sc=q('#asc').value,er=q('#aerr');
+    if(!title){er.textContent='Напишите, что на эскизе';return} if(!files.length){er.textContent='Добавьте хотя бы один эскиз или фото';return}
+    er.textContent='Загружаю…'; Promise.all(files.slice(0,8).map(shrink)).then(ph=>{ph=ph.filter(Boolean);
+      const v={id:'an'+Date.now(),sc,k:ui.ak||'decor',title,note,by:(u&&u.name)||'Художник',photos:ph,s:'wait',c:''};
+      st.artNew.push(v); try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){st.artNew.pop();v.photos=ph.slice(0,2);st.artNew.push(v);save()}
+      ui.sheet=null;render()});return}
+  else if(a==='aok'||a==='ano'){const c=($app.querySelector('#ac-'+id)||{}).value||'';st.art[id]={s:a==='aok'?'ok':'no',c:c.trim()||(a==='aok'?'Одобрено':'')};save()}
+  else if(a==='areset'){st.art[id]={s:'wait',c:''};save()}
+  else if(a==='vadd'){ui.vneed=id;ui.sheet='vadd'}
+  else if(a==='dovadd'){const q=s=>$app.querySelector(s);const title=q('#vtitle').value.trim(),addr=q('#vaddr').value.trim(),files=[...(q('#vfiles').files||[])],note=q('#vnote').value.trim(),er=q('#verr');
+    if(!title){er.textContent='Напишите название места';return} if(!files.length){er.textContent='Добавьте хотя бы одно фото';return}
+    er.textContent='Загружаю фото…'; Promise.all(files.slice(0,8).map(shrink)).then(ph=>{ph=ph.filter(Boolean);
+      const v={id:'vn'+Date.now(),need:ui.vneed,title,addr:addr||'адрес уточняется',note,by:(u&&u.name)||'Локейшн-менеджер',photos:ph,s:'wait',c:''};
+      st.scoutNew.push(v); try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){st.scoutNew.pop();v.photos=ph.slice(0,2);st.scoutNew.push(v);save()}
+      ui.sheet=null;render()});return}
+  else if(a==='vok'||a==='vno'){const c=($app.querySelector('#vc-'+id)||{}).value||'';const all=scoutAll(p),v=all.find(x=>x.id===id);
+    if(a==='vok'){all.filter(x=>x.need===v.need&&x.id!==id&&(x.s==='wait'||x.s==='ok')).forEach(x=>{st.scout[x.id]={s:'skip',c:x.c}});st.scout[id]={s:'ok',c:c.trim()||'Одобрено'}}
+    else st.scout[id]={s:'no',c:c.trim()};save()}
+  else if(a==='vreset'){st.scout[id]={s:'wait',c:''};save()}
+  else if(a==='pay'){st.paid[id]=!st.paid[id];save()}
   else if(a==='obl'){st.obl[id]=!st.obl[id];save()}
   else if(a==='send'){ui.sheet='sending';render();setTimeout(()=>{ui.sheet='sent';st.sent[ui.pid]=1;save();render()},1100);return}
   else if(a==='part'||a==='part2'){ui.sheet=null;ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
@@ -1053,6 +1176,7 @@ $app.addEventListener('click',e=>{
   render();
 });
 $app.addEventListener('change',e=>{ if(e.target.dataset.act==='who'){ui.asId=e.target.value;render()}
+  if(e.target.id==='vfiles'){const fs=[...e.target.files];const c=$app.querySelector('#vcount');if(c)c.textContent=fs.length?'Выбрано фото: '+fs.length:'Выбрать фото (можно сразу много)';const th=$app.querySelector('#vthumbs');if(th)th.innerHTML=fs.slice(0,8).map(f=>`<img src="${URL.createObjectURL(f)}" alt="">`).join('')}
   if(e.target.id==='rfiles'){const n=e.target.files.length;const c=$app.querySelector('#rcount');if(c)c.textContent=n?'Выбрано фото: '+n:'Выбрать фото (можно сразу много)'} });
 window.addEventListener('storage',()=>render());
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});
