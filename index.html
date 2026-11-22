@@ -43,7 +43,8 @@ svg{display:block}
 .top .sub{font-size:12.5px;color:var(--muted);font-weight:600}
 .iconbtn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow);flex:none}
 .demo{flex:none;margin:0 16px 8px;padding:6px 12px;border-radius:999px;background:var(--warn-soft);color:var(--warn);font-size:12px;font-weight:700;text-align:center}
-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 24px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+main::-webkit-scrollbar{display:none}
+main{scrollbar-width:none;flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 24px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .tabbar{flex:none;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(env(safe-area-inset-bottom) + 6px)}
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:11px;font-weight:700;color:var(--muted);border-radius:12px;min-height:52px}
 .tab.on{color:var(--accent)}
@@ -69,7 +70,8 @@ h2{font-family:Unbounded,Manrope,sans-serif;font-size:15px;font-weight:600;margi
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
 .kv dt{color:var(--muted);font-weight:600} .kv dd{margin:0;font-weight:700;text-align:right}
 .hero{background:linear-gradient(135deg,var(--accent),#ff9a5c);color:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
-.hero .d{font-family:Unbounded,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.02em;text-transform:capitalize}
+.hero .d{font-family:Unbounded,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.02em}
+.hero .d::first-letter{text-transform:uppercase}
 .hero .s{opacity:.92;font-weight:600;font-size:13.5px;margin-top:2px}
 .hero .big{display:flex;gap:10px;margin-top:14px}
 .hero .big div{flex:1;background:rgba(255,255,255,.2);border-radius:14px;padding:10px 12px}
@@ -174,7 +176,7 @@ const ico=(n,c='')=>`<svg class="ico ${c}" viewBox="0 0 24 24">${P[n]}</svg>`;
 /* ---------- данные (вымышленные) ---------- */
 const DATA=[
 {id:'p1',kind:'Реклама',title:'Реклама банка — имиджевый ролик',date:'2026-11-27',budget:1850000,
- call:'06:30',end:'20:30',weather:'Пример: ясно, −2…+8 °C утром холодно, днём сухо, ветер слабый. Закат около 17:20, свет для сцены 9 успеть до 17:00.',
+ call:'06:30',end:'20:30',weather:'Пример: ясно, утром −2 °C, днём до +8 °C, ветер слабый. Закат около 17:20, сцену 9 снимаем до 17:00.',
  locId:'p1-l1',
  plan:[
   {s:'Смена 1',t:'06:30',a:'Сбор группы',d:'Квартира-студия, двор. Чай и завтрак для группы'},
@@ -328,7 +330,7 @@ function tCall(p){
   p.plan.forEach(r=>{ if(r.s!==last){shifts+=`<li style="display:block;border:0;padding:6px 0 0"><div class="shift">${r.s}</div></li>`;last=r.s}
     shifts+=`<li><time>${r.t}</time><div><b>${esc(r.a)}</b><span>${esc(r.d)}</span></div></li>`});
   return `<div class="hero"><div class="d">${dfmt(p.date,{weekday:'long',day:'numeric',month:'long'})}</div><div class="s">Вызывной на съёмочный день</div>
-    <div class="big"><div><small>Сбор группы</small><b>${p.call}</b></div><div><small>Конец смены</small><b>${p.end}</b></div><div><small>Приняли</small><b>${acc}/${p.crew.length}</b></div></div></div>
+    <div class="big"><div><small>Сбор</small><b>${p.call}</b></div><div><small>Конец</small><b>${p.end}</b></div><div><small>Приняли</small><b>${acc}/${p.crew.length}</b></div></div></div>
     <div class="card"><div class="row" style="align-items:flex-start"><div><div class="small">Локация сбора</div><b style="font-size:16px">${esc(loc.name)}</b><div class="small" style="margin-top:2px">${esc(loc.addr)}, Бишкек</div></div></div>
       <a class="btn sec" style="margin-top:12px;text-decoration:none;min-height:48px" href="${mapUrl(loc.addr)}" target="_blank" rel="noopener">${ico('map')}Открыть в 2ГИС</a></div>
     <div class="card"><div class="row" style="gap:12px;align-items:flex-start"><span style="color:var(--accent)">${ico('sun')}</span><div style="font-weight:600;font-size:14px">${esc(p.weather)}</div></div></div>
@@ -349,7 +351,7 @@ function tLoc(p){
     return `<div class="lcard"><div class="ph">${scene(l.type,l.name)}</div><div class="bd"><div class="row" style="align-items:flex-start;margin-bottom:4px"><h3>${esc(l.name)}</h3></div>
     <p>${esc(l.addr)}, Бишкек</p>
     <div class="row" style="margin-bottom:12px"><span class="small">Разрешение на съёмку</span><span class="chip ${ok?'ok':'warn'}">${ok?ico('check')+'получено':ico('clock')+'ждём'}</span></div>
-    <div class="acts"><button class="btn sec" data-act="loc" data-id="${l.id}">${ok?'Отметить «ждём»':'Получено ✓'}</button>
+    <div class="acts"><button class="btn sec" data-act="loc" data-id="${l.id}">${ok?'Сбросить':'Получено ✓'}</button>
     <a class="btn line" style="text-decoration:none" href="${mapUrl(l.addr)}" target="_blank" rel="noopener">${ico('map')}2ГИС</a></div></div></div>`}).join('');
 }
 function tProps(p){
