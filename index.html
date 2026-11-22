@@ -419,8 +419,8 @@ $app.addEventListener('click',e=>{
   else if(a==='loc'){const l=p.locs.find(x=>x.id===id);st.loc[id]=gLoc(l)?0:1;save()}
   else if(a==='prop'){const i=p.props.flatMap(s=>s.items).find(x=>x.id===id);st.prop[id]=gProp(i)?0:1;save()}
   else if(a==='send'){ui.sheet='sending';render();setTimeout(()=>{ui.sheet='sent';st.sent[ui.pid]=1;save();render()},1100);return}
-  else if(a==='part'){ui.view='part';ui.asId=null}
-  else if(a==='part2'){ui.sheet=null;ui.view='part';ui.asId=null}
+  else if(a==='part'){ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
+  else if(a==='part2'){ui.sheet=null;ui.view='part';ui.asId=(p.crew.find(x=>!gAcc(x))||p.crew[0]).id}
   else if(a==='partback'){ui.view='project'}
   else if(a==='accept'){st.acc[id]=1;save()}
   else if(a==='noaccept'){st.acc[id]=0;save()}
